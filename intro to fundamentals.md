@@ -46,3 +46,6 @@
 all data types are truthy except for number 0, null and undefined.
 
 using the + and - javasript assumes what you are supposed to do and it does the expected operation which is a bad trait as it leads to bugs
+
+# Arithmetic Operators
+- These are calculations
