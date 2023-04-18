@@ -39,4 +39,10 @@
     8. Object(arrays,functions and objects)
     
     
-# type conversion
+# Type conversion & Coercion
+- Conversion Refers to converting variables to a different data type
+- Coercion refers to joining two data types, so one is changes to a different one so the output is similar
+
+all data types are truthy except for number 0, null and undefined.
+
+using the + and - javasript assumes what you are supposed to do and it does the expected operation which is a bad trait as it leads to bugs
