@@ -49,3 +49,21 @@ using the + and - javasript assumes what you are supposed to do and it does the 
 
 # Arithmetic Operators
 - These are calculations
+
+# Relational operators
+- used to compare different values
+ - Output is a boolean value
+
+ 1. greater than >
+ 2. Less than <
+ 3. less than or equal to <= 
+ 4. Greater than or equal to >= 
+ 5. Equal to ==
+ 6. Strictly equal to ===
+ 
+ # Logical Operators
+ 1. AND (&&) - true if both are true
+ 2. OR (||) - true if either is true
+ 3. NOT (!) - reverses logic
+
+
