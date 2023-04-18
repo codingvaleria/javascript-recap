@@ -66,4 +66,8 @@ using the + and - javasript assumes what you are supposed to do and it does the 
  2. OR (||) - true if either is true
  3. NOT (!) - reverses logic
 
+# Loops
+1. while
+2. do..while
+3. for
 
