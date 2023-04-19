@@ -20,4 +20,27 @@ for (let b = 0; b <= 5; b++){
     console.log(`${b} times`)
 }
 
- 
+//  divisible by 3
+for (let number = 1; number <= 100; number++){
+    if (number % 3 === 0){
+        console.log (number)
+    }
+}
+
+let number = 1;
+while (number <= 100) {
+    if (number % 3 === 0) {
+        console.log(number)
+    }
+    number++;
+}
+
+do 
+{
+    if (number %3 === 0) {
+        console.log(number);
+    }
+    number ++
+}
+while (number <= 100)
+
