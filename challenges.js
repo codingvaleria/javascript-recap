@@ -96,6 +96,25 @@ function fizzBuzz() {
 }
 
 fizzBuzz();
+ // function fizzBuzz() {
+//     for (let number = 1; number <= 100; number++){
+//         switch (true) {
+//             case number % 3 === 0:
+//             case number % 5 === 0:
+//                 console.log("FizzBuzz")
+//                 break;
+//             case number % 5 === 0:
+//                 console.log("Buzz")
+//                 break;
+//             case number % 3 === 0:
+//                 console.log("Fizz")
+//                 break;
+//             default:
+//                 console.log(`${number}`)
+//         }
+//     }
+// }
+
 
 // Problem 6: Array Sum
 //  *
@@ -247,6 +266,11 @@ console.log(findDuplicates([1, 2, 3, 4, 5])); // should log []
 
 function capitalizeWords(str) {
   // TODO: Write your solution here
+  let splitWord = str.split(" ");
+  let capitalizedArray = splitWord.map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+  })
+  console.log(capitalizedArray.join(" "))
 }
 
 console.log(capitalizeWords("hello world")); // should log "Hello World"
