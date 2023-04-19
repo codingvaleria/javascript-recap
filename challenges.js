@@ -42,10 +42,13 @@ console.log(reverseString(string));
 let str = prompt("Enter a string: ");
 function palindromeChecker(str) {
   // TODO:  Implement the prompt for whether the string is a palindrome
-    str = str.toLowerCase();
-    let reversedString = str.split('').reverse().join('');
-    let isPalindrome = str === reversedString ? "The string is a palindrome." : "The string is not a palindrome";
-    return isPalindrome;
+  str = str.toLowerCase();
+  let reversedString = str.split("").reverse().join("");
+  let isPalindrome =
+    str === reversedString
+      ? "The string is a palindrome."
+      : "The string is not a palindrome";
+  return isPalindrome;
 }
 
 console.log(palindromeChecker(str));
@@ -63,7 +66,6 @@ console.log(palindromeChecker(str));
 
 function wordFrequency(str) {
   // TODO: Write your solution here
-
 }
 
 console.log(wordFrequency("Hello, World! This is a test. Hello world!"));
@@ -105,12 +107,148 @@ fizzBuzz();
 
 function arraySum(arr) {
   // TODO: Write your solution here
-    let sum = 0;
-    for (let i = 0; i < arr.length; i++){
-        sum += arr[i]
-    
-    }
-    return sum;
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum;
 }
 
 console.log(arraySum([1, 2, 3, 4, 5])); // should log 15
+
+//  Problem 7: Find Maximum Number
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an array of numbers as an argument
+//  * and returns the largest number in the array. Call the function
+//  * with an array of your choice and log the result to the console.
+//  */
+
+function findMaxNumber(arr) {
+  // TODO: Write your solution here
+  sortedArray = arr.sort(function (a, b) {
+    return b - a;
+  });
+  return sortedArray[0];
+}
+
+console.log(findMaxNumber([5, 10, 2, 7, 1])); // should log 10
+
+// Problem 8: Weird Palindrome
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in a string as an argument
+//  * and returns true if the string is a palindrome (reads the same backwards
+//  * as forwards) and false otherwise. The function should ignore whitespace
+//  * and treat uppercase and lowercase letters as equivalent. Call the function
+//  * with a string of your choice and log the result to the console.
+//  */
+
+function isPalindrome(str) {
+  // TODO: Write your solution here
+  lowercasedString = str.toLowerCase();
+  let reversedString = lowercasedString.split("").reverse().join("");
+  if (reversedString === lowercasedString) {
+    console.log("true");
+  } else {
+    console.log("false");
+  }
+}
+
+console.log(isPalindrome("racecar")); // should log true
+console.log(isPalindrome("hello")); // should log false
+console.log(isPalindrome("A man a plan a canal Panama")); // should log true
+
+// Problem 9: Find Average
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an array of numbers as an argument
+//  * and returns the average (mean) of the numbers. Call the function with an array
+//  * of your choice and log the result to the console.
+//  */
+
+function findAverage(arr) {
+  // TODO: Write your solution here
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+}
+
+console.log(findAverage([5, 10, 2, 7, 1])); // should log 5
+console.log(findAverage([1, 2, 3, 4, 5])); // should log 3
+console.log(findAverage([-1, 0, 1])); // should log 0
+
+// Problem 10: Multiplication Table
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in a number n as an argument
+//  * and logs the multiplication table for that number from 1 to 10.
+//  * For example, if n is 3, the function should log:
+//  *
+//  * 3 x 1 = 3
+//  * 3 x 2 = 6
+//  * 3 x 3 = 9
+//  * 3 x 4 = 12
+//  * 3 x 5 = 15
+//  * 3 x 6 = 18
+//  * 3 x 7 = 21
+//  * 3 x 8 = 24
+//  * 3 x 9 = 27
+//  * 3 x 10 = 30
+//  *
+//  * Call the function with a number of your choice and log the result to the console.
+//  */
+
+function multiplicationTable(n) {
+  // TODO: Write your solution here
+    let i = 1;
+    while (i <= 10) {
+        let result = i * n;
+        console.log(`${n} * ${i} = ${result}`);
+        i++;
+    }
+    
+}
+
+multiplicationTable(5); // should log the multiplication table for 5 from 1 to 10
+
+// Problem 11: Find Duplicates
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an array of numbers as an argument
+//  * and returns an array of the numbers that appear more than once in the original array.
+//  * The returned array should not contain any duplicates.
+//  *
+//  * For example, if the input array is [1, 2, 3, 4, 5, 2, 4], the function should return [2, 4].
+//  *
+//  * Call the function with an array of your choice and log the result to the console.
+//  */
+
+function findDuplicates(arr) {
+  // TODO: Write your solution here
+    
+}
+
+console.log(findDuplicates([1, 2, 3, 4, 5, 2, 4])); // should log [2, 4]
+console.log(findDuplicates([1, 1, 2, 2, 3, 3, 4, 4, 5, 5])); // should log [1, 2, 3, 4, 5]
+console.log(findDuplicates([1, 2, 3, 4, 5])); // should log []
+
+// Problem 12: Capitalize Words
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in a string and returns a new string
+//  * with the first letter of each word capitalized. All other letters in each word
+//  * should be lowercase. For example, if the input string is "hello world", the
+//  * function should return "Hello World". Call the function with a string of your
+//  * choice and log the result to the console.
+//  */
+
+function capitalizeWords(str) {
+  // TODO: Write your solution here
+}
+
+console.log(capitalizeWords("hello world")); // should log "Hello World"
+console.log(capitalizeWords("this is a test")); // should log "This Is A Test"
+console.log(capitalizeWords("capitalize ME")); // should log "Capitalize Me"
