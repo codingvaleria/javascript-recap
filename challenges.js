@@ -31,6 +31,45 @@ function reverseString(string) {
 
 console.log(reverseString(string));
 
+// // Reversing using loops
+// // for
+function reverseString(string) {
+  // TODO: Write your solution here
+  let stringArray = [];
+  for (let i = string.length; i >= 0; i--) {
+    stringArray.push(string.charAt(i));
+  }
+  return stringArray.join("");
+}
+console.log(reverseString(string));
+
+// //  while 
+function reverseString(string) {
+  // TODO: Write your solution here
+  let stringArray = [];
+  let i = string.length;
+  while (i >= 0) {
+    stringArray.push(string.charAt(i));
+    i--;
+  }
+  return stringArray.join("");
+}
+console.log(reverseString(string));
+// // do..while
+function reverseString(string) {
+  // TODO: Write your solution here
+  let stringArray = [];
+  let i = string.length;
+
+  do {
+        stringArray.push(string.charAt(i));
+        i--;
+      }
+  while (i >= 0) 
+  return stringArray.join("");
+}
+console.log(reverseString(string));
+
 //  Problem 3: Palindrome Checker
 // Write a JavaScript function that prompts the user for a string and
 //  * checks if the string is a palindrome. A palindrome is a word, phrase,
@@ -53,6 +92,27 @@ function palindromeChecker(str) {
 
 console.log(palindromeChecker(str));
 
+//  Palindrome using loops
+function palindromeChecker(str) {
+  // TODO:  Implement the prompt for whether the string is a palindrome
+  str = str.toLowerCase();
+  let strStartsWith = [];
+  let strEndsWith = [];
+
+  for (let i = 0; i <= parseInt(str.length / 2); i++) {
+    strStartsWith.push(str.charAt(i));
+    strStartsWith.join("");
+  }
+  for (let i = str.length; i > parseInt(str.length/2) ; i--) {
+    strEndsWith.push(str.charAt(i));
+    strEndsWith.join("")
+  }
+
+  return (strStartsWith === strEndsWith) ? "The string is a palindrome." : "The string is not a palindrome."
+}
+
+console.log(palindromeChecker("RaceCar"));
+
 // Problem 4: Word Frequency
 //  *
 //  * Description:
@@ -65,7 +125,16 @@ console.log(palindromeChecker(str));
 //  */
 
 function wordFrequency(str) {
-  // TODO: Write your solution here
+  //   // TODO: Write your solution here
+  let stringLowerCase = str.toLowerCase();
+  let wordsArray = stringLowerCase.split(" ");
+
+  // Count frequency of each word
+  let wordsCount = {};
+  for (let i = 0; i < wordsArray.length; i++) {
+
+
+  }
 }
 
 console.log(wordFrequency("Hello, World! This is a test. Hello world!"));
@@ -96,24 +165,25 @@ function fizzBuzz() {
 }
 
 fizzBuzz();
- // function fizzBuzz() {
-//     for (let number = 1; number <= 100; number++){
-//         switch (true) {
-//             case number % 3 === 0:
-//             case number % 5 === 0:
-//                 console.log("FizzBuzz")
-//                 break;
-//             case number % 5 === 0:
-//                 console.log("Buzz")
-//                 break;
-//             case number % 3 === 0:
-//                 console.log("Fizz")
-//                 break;
-//             default:
-//                 console.log(`${number}`)
-//         }
-//     }
-// }
+ function fizzBuzz() {
+    for (let number = 1; number <= 100; number++){
+        switch (true) {
+          case (number % 3 === 0 && number % 5 === 0):
+                console.log("FizzBuzz")
+                break;
+            case number % 5 === 0:
+                console.log("Buzz")
+                break;
+            case number % 3 === 0:
+                console.log("Fizz")
+                break;
+          default:
+            console.log(`${number}`)
+            break;
+        }
+    }
+ }
+fizzBuzz()
 
 
 // Problem 6: Array Sum
@@ -152,6 +222,18 @@ function findMaxNumber(arr) {
 }
 
 console.log(findMaxNumber([5, 10, 2, 7, 1])); // should log 10
+// Find Maximum using loops
+function findMaxNumber(arr) {
+  //   // TODO: Write your solution here
+  let max = arr[0];
+  for (let i = 0; i < arr.length; i++){
+    if (arr[i] > max) {
+      max = arr[i]
+    }
+  }
+  return max;
+}
+  console.log(findMaxNumber([5, 10, 2, 7, 1])); // should log 10
 
 // Problem 8: Weird Palindrome
 //  *
@@ -247,6 +329,7 @@ multiplicationTable(5); // should log the multiplication table for 5 from 1 to 1
 
 function findDuplicates(arr) {
   // TODO: Write your solution here
+
     
 }
 
