@@ -1,5 +1,11 @@
 const prompt = require("prompt-sync")();
-const currentPassword = "abcd";
+let currentPassword = "abcd";
+let arrayOfCandidates = [
+            "Alex",
+            "Jane",
+            "Alice",
+            "Mark",
+        ];
 
 // Problem: Simple Voting Command Line Application
 
@@ -24,41 +30,79 @@ let choice = prompt(
 
 if (choice === "1") {
     console.log("                WELCOME TO THE ADMIN PORTAL                     ")
-}
- let password = prompt("Enter your password: ");
 
-if (password === currentPassword) {
-  // 3. Once the admin is logged in, display a menu of options that the admin can choose from.
-    console.log("login successful")
-}
-let action = prompt(
-  ` Please select actions you would like to perform
+    let passwordPrompts = 0;
+    let inputPassword = prompt("Enter your password: ");
+
+    if (inputPassword !== currentPassword) {
+      console.log("Login unsuccessful, input password again");
+
+      for (passwordPrompts; passwordPrompts <= 3; passwordPrompts++) {
+        passwordPrompts += 1;
+
+        inputPassword = prompt("Enter your password: ");
+      }
+    }
+    //   3. Once the admin is logged in, display a menu of options that the admin can choose from.
+    else if (inputPassword === currentPassword) {
+      console.log("login successful");
+      let action = prompt(
+        ` Please select actions you would like to perform
         1. Add new candidates
         2. Display sore of each candidate
         3. Reset your password
           `
-);
+      );
 
-// 4. Implement the ability for the admin to add new candidates to the list of candidates.
-let arrayOfCandidates = ["nitawapea maji", "i'll build hospitals", "nitaongeza bursary", "bei ya unga"]
-if (action === "1") {
-    console.log(`Here's a list of existing candidates` )
-    // listOfCandidates)
-    let newCandidate = prompt("Please key in the name of candidate you would like to add:")
-    arrayOfCandidates.push(newCandidate)
-    // console.log(arrayOfCandidates);
-    let i = 1;
-    console.log("The updated list of candidates is:");
-    while (i <= arrayOfCandidates.length) {
-        console.log(`${i}. ${arrayOfCandidates[i]}`)
-        i++
+      // 4. Implement the ability for the admin to add new candidates to the list of candidates.
+
+      if (action === "1") {
+        console.log(`Here's a list of existing candidates`);
+        // listOfCandidates)
+        let newCandidate = prompt(
+          "Please key in the name of candidate you would like to add:"
+        );
+        arrayOfCandidates.push(newCandidate);
+        // console.log(arrayOfCandidates);
+        let i = 1;
+        console.log("The updated list of candidates is:");
+        while (i <= arrayOfCandidates.length) {
+          console.log(`${i}. ${arrayOfCandidates[i]}`);
+          i++;
+        }
+        return arrayOfCandidates;
+      }
+      // 5. Implement the ability for the admin to reset the password.
+      else if (action === "3") {
+        newPassword = prompt("Set your new password: ");
+        currentPassword = newPassword;
+        console.log("Password changed successfully");
+        // console.log(currentPassword);
+      }
     }
-    return arrayOfCandidates;
+    console.log("Your account is blocked consult your admin");
 }
-
-// 5. Implement the ability for the admin to reset the password.
+else if (choice === "2") {
 // 6. Implement the ability for a voter to view the list of candidates.
+  console.log(
+    "             WELCOME TO THE KURA YAKO VOTING PORTAL                     "
+  );
+    
+    let i = 1;
+    console.log("Here's a list of vying candidates:")
+    function candidateList() {
+        while (i <= arrayOfCandidates.length) {
+        console.log(`${i}. ${arrayOfCandidates[i]}`);
+          i++;
+        }
+    } 
+    candidateList();     
+}
+else {
+    console.log("Enter a valid choice")
+}
 // 7. Implement the ability for a voter to vote for their favorite candidate.
+
 // 8. Implement the ability for the admin to display the score of each candidate.
 // 9. Implement a loop that keeps the application running until the admin chooses to stop it.
 // 10. Add appropriate error handling to handle incorrect input and prevent the application from crashing.
@@ -67,3 +111,4 @@ if (action === "1") {
 
 // Note: You can choose to implement the requirements in any order you prefer.
 //       consider using "prompt-sync" for getting the user's input
+
