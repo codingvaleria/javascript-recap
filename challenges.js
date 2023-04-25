@@ -99,16 +99,19 @@ function palindromeChecker(str) {
   let strStartsWith = [];
   let strEndsWith = [];
 
-  for (let i = 0; i <= parseInt(str.length / 2); i++) {
+  for (let i = 0; i < parseInt(str.length / 2); i++) {
     strStartsWith.push(str.charAt(i));
-    strStartsWith.join("");
   }
-  for (let i = str.length; i > parseInt(str.length/2) ; i--) {
-    strEndsWith.push(str.charAt(i));
-    strEndsWith.join("")
-  }
+  strStartsWith = strStartsWith.join("");
 
-  return (strStartsWith === strEndsWith) ? "The string is a palindrome." : "The string is not a palindrome."
+  for (let i = str.length - 1; i > parseInt((str.length - 1) / 2); i--) {
+    strEndsWith.push(str.charAt(i));
+  }
+  strEndsWith = strEndsWith.join("");
+
+  return strStartsWith === strEndsWith
+    ? "The string is a palindrome."
+    : "The string is not a palindrome.";
 }
 
 console.log(palindromeChecker("RaceCar"));
@@ -132,7 +135,6 @@ function wordFrequency(str) {
   // Count frequency of each word
   let wordsCount = {};
   for (let i = 0; i < wordsArray.length; i++) {
-
 
   }
 }
@@ -184,7 +186,6 @@ fizzBuzz();
     }
  }
 fizzBuzz()
-
 
 // Problem 6: Array Sum
 //  *
@@ -310,7 +311,6 @@ function multiplicationTable(n) {
         console.log(`${n} * ${i} = ${result}`);
         i++;
     }
-    
 }
 
 multiplicationTable(5); // should log the multiplication table for 5 from 1 to 10
@@ -330,7 +330,6 @@ multiplicationTable(5); // should log the multiplication table for 5 from 1 to 1
 function findDuplicates(arr) {
   // TODO: Write your solution here
 
-    
 }
 
 console.log(findDuplicates([1, 2, 3, 4, 5, 2, 4])); // should log [2, 4]
