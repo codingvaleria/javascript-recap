@@ -31,3 +31,17 @@ console.log(alien.laptop.brand.length)
 // delete
 console.log(delete alien.laptop)
 console.log(alien)
+
+// print properties of an object one by one
+
+for (let key in alien) {
+    console.log(key);
+    console.log(key, alien[key])// fetch value
+   
+}
+
+// Fetch all properties of laptop
+for (let key in alien.laptop) {
+  console.log(alien.laptop[key]);
+}
+
