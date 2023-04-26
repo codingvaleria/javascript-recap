@@ -43,7 +43,7 @@ function reverseString(string) {
 }
 console.log(reverseString(string));
 
-// //  while 
+// //  while
 function reverseString(string) {
   // TODO: Write your solution here
   let stringArray = [];
@@ -65,7 +65,7 @@ function reverseString(string) {
         stringArray.push(string.charAt(i));
         i--;
       }
-  while (i >= 0) 
+  while (i >= 0)
   return stringArray.join("");
 }
 console.log(reverseString(string));
@@ -134,8 +134,11 @@ function wordFrequency(str) {
 
   // Count frequency of each word
   let wordsCount = {};
-  for (let i = 0; i < wordsArray.length; i++) {
 
+  for (let i = 0; i < wordsArray.length; i++) {
+    let word = word[i];
+    // assign key of the word and count
+    
   }
 }
 
@@ -329,6 +332,19 @@ multiplicationTable(5); // should log the multiplication table for 5 from 1 to 1
 
 function findDuplicates(arr) {
   // TODO: Write your solution here
+  let duplicateNumbers = [];
+  let uniqNumbers = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let currentValue = arr[i];
+
+    if (uniqNumbers.includes(currentValue)) {
+      duplicateNumbers.push(currentValue);
+    } else {
+      uniqNumbers.push(currentValue);
+    }
+  }
+  return duplicateNumbers;
 
 }
 
