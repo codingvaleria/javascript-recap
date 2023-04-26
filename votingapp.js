@@ -80,7 +80,7 @@ if (choice === "1") {
         // console.log(currentPassword);
       }
     }
-    console.log("Your account is blocked consult your admin");
+    // console.log("Your account is blocked consult your admin");
 }
 else if (choice === "2") {
 // 6. Implement the ability for a voter to view the list of candidates.
@@ -102,9 +102,37 @@ else {
     console.log("Enter a valid choice")
 }
 // 7. Implement the ability for a voter to vote for their favorite candidate.
+let vote =
+  prompt(` To vote for a candidate, key in their corresponding number for a vote,
+What candidate are you voting for? `);
+
+let janeCount = 0;
+let aliceCount = 0;
+let markCount = 0;
+
+function votesCount() {
+  if (vote === "1") {
+    janeCount = janeCount++;
+    console.log("you've voted for Jane");
+  } else if (vote === "2") {
+    aliceCount = aliceCount++;
+    console.log("you've voted for Alice");
+  } else if (vote === "3") {
+    markCount = markCount++;
+    console.log("you've voted for Mark");
+  } else {
+    console.log("please vote for a contesting candidate");
+  }
+ }
 
 // 8. Implement the ability for the admin to display the score of each candidate.
+console.log(`
+Jane: ${janeCount}
+Alice: ${aliceCount}
+Mark: ${markCount}
+`)
 // 9. Implement a loop that keeps the application running until the admin chooses to stop it.
+
 // 10. Add appropriate error handling to handle incorrect input and prevent the application from crashing.
 // 11. Implement a command that allows the admin to exit the loop and stop the application.
 // 12. Display a farewell message to the user when the application is stopped.
