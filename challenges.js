@@ -122,7 +122,7 @@ console.log(palindromeChecker("RaceCar"));
 //  * Write a JavaScript function that takes in a string as an argument
 //  * and returns an object containing the frequency of each word in the string.
 //  * For example, if the input string is "hello world world", the function should
-//  * return {hello: 1, world: 2}. The function should ignore punctuation and
+//  * return {hello: 1, world: 2}. The function should ignore 
 //  * treat uppercase and lowercase letters as equivalent. Call the function
 //  * with a string of your choice and log the result to the console.
 //  */
@@ -136,13 +136,21 @@ function wordFrequency(str) {
   let wordsCount = {};
 
   for (let i = 0; i < wordsArray.length; i++) {
-    let word = word[i];
-    // assign key of the word and count
-    
+    let key = wordsArray[i];
+    let value = wordsCount[key]
+
+    if (value === undefined) {
+      wordsCount[key] = 1;
+    }
+    else {
+      wordsCount[key] = value + 1;
+    }
   }
+  return wordsCount;
 }
 
-console.log(wordFrequency("Hello, World! This is a test. Hello world!"));
+console.log(wordFrequency("hello world world"));
+console.log(wordFrequency("Hello World This is a test Hello world"));
 
 // Problem 5: FizzBuzz
 //  *
@@ -339,7 +347,9 @@ function findDuplicates(arr) {
     let currentValue = arr[i];
 
     if (uniqNumbers.includes(currentValue)) {
-      duplicateNumbers.push(currentValue);
+      if (!duplicateNumbers.includes(currentValue)) {
+        duplicateNumbers.push(currentValue);
+      }
     } else {
       uniqNumbers.push(currentValue);
     }
@@ -349,7 +359,7 @@ function findDuplicates(arr) {
 }
 
 console.log(findDuplicates([1, 2, 3, 4, 5, 2, 4])); // should log [2, 4]
-console.log(findDuplicates([1, 1, 2, 2, 3, 3, 4, 4, 5, 5])); // should log [1, 2, 3, 4, 5]
+console.log(findDuplicates([1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5])); // should log [1, 2, 3, 4, 5]
 console.log(findDuplicates([1, 2, 3, 4, 5])); // should log []
 
 // Problem 12: Capitalize Words
