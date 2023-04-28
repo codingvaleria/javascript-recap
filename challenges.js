@@ -259,12 +259,15 @@ function findMaxNumber(arr) {
 
 function isPalindrome(str) {
   // TODO: Write your solution here
-  lowercasedString = str.toLowerCase();
-  let reversedString = lowercasedString.split("").reverse().join("");
-  if (reversedString === lowercasedString) {
-    console.log("true");
-  } else {
-    console.log("false");
+  str = str.toLowerCase().replace(/\s/g, '');
+
+  let stringReverse = str.split('').reverse().join('');
+
+  if (str === stringReverse) {
+    return true;
+  }
+  else {
+    return false;
   }
 }
 

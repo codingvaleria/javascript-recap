@@ -1,0 +1,7 @@
+RegExp object
+
+A regular expression is a pattern of characters
+The pattern is used to to pattern-matching "search-and-replace" functions on text;
+
+Syntax
+/pattern/modifier(s);
