@@ -45,3 +45,48 @@ for (let key in alien.laptop) {
   console.log(alien.laptop[key]);
 }
 
+// Arrays
+// Accessing elements in an array
+// using bracket notation
+
+
+// Nested arrays
+// Array Methods
+//  Destructive methods
+// push method - end of an array.
+const superheroes = ["Catwoman", "Storm", "Jessica Jones"];
+
+superheroes.push("Wonder Woman");
+// => 4
+
+superheroes;
+// => ["Catwoman", "Storm", "Jessica Jones", "Wonder Woman"]
+
+// unshift - add to the beginning of an array.
+const cities = ["New York", "San Francisco"];
+
+cities.unshift("Boston", "Chicago");
+
+cities;
+// => ["Boston", "Chicago", "New York", "San Francisco"]
+//  Non - destructive methods
+//  Spread operator
+const coolCities = ["New York", "San Francisco"]
+ 
+const copyOfCoolCities = [...coolCities]
+
+// pop - remove last element
+const days = ["Mon", "Tue", "Wed", "Thurs"]
+days.pop()
+
+// shift - remove element from first index
+
+const daysOfTheWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+daysOfTheWeek.shift();
+// => "Mon"
+
+days;
+// => [Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+// Slice 
