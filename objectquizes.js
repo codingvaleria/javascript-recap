@@ -36,3 +36,23 @@ function addAddressProperty(obj, address) {
 
 console.log(addAddressProperty({ name: "John", age: 30 }, "123 Main St.")); // should log { name: "John", age: 30, address: "123 Main St." }
 
+// Problem 3: Access a Property of an Object
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an object and a string representing the name of
+//  * a property. The function should return the value of the property with the given name. Call
+//  * the function with an object of your choice and the name of one of its properties, and log
+//  * the resulting value to the console.
+//  */
+
+function accessObjectProperty(obj, propertyName) {
+  // TODO: Write your solution here
+    return obj[propertyName];
+}
+
+console.log(
+  accessObjectProperty(
+    { name: "John", age: 30, address: "123 Main St." },
+    "name"
+  )
+); // should log "John"
