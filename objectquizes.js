@@ -143,3 +143,34 @@ console.log(
     "occupation"
   )
 ); // should log false
+
+// Problem 7: Merge Two Objects
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in two objects and returns a new object that is the result of
+//  * merging the two objects. If the two objects have a property with the same name, the value in the second
+//  * object should overwrite the value in the first object. Call the function with two objects of your choice.
+//  */
+
+function mergeObjects(obj1, obj2) {
+  // TODO: Write your solution here
+    const mergedObject = { ...obj1, ...obj2 }
+    return mergedObject
+}
+
+console.log(
+  mergeObjects({ name: "John", age: 30 }, { address: "123 Main St.", age: 35 })
+);
+// should log:
+// { name: "John", age: 35, address: "123 Main St." }
+
+//  Solution 2 : Using Object method
+function mergeObjects(obj1, obj2) {
+  // TODO: Write your solution here
+  const mergedObject = Object.assign(obj1,obj2);
+  return mergedObject;
+}
+
+console.log(
+  mergeObjects({ name: "John", age: 30 }, { address: "123 Main St.", age: 35 })
+);
