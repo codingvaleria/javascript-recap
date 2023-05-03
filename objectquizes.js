@@ -118,3 +118,28 @@ logObjectProperties({ name: "John", age: 30, address: "123 Main St." });
 // name: John
 // age: 30
 // address: 123 Main St.
+
+// Problem: Check if an Object Has a Property
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an object and a string representing the name of
+//  * a property. The function should return true if the object has a property with the given
+//  * name, and false otherwise. Call the function with an object of your choice and the name of
+//  * one of its properties.
+//  */
+
+function objectHasProperty(obj, propertyName) {
+  // TODO: Write your solution here
+    const objectKeys = Object.keys(obj);
+    return objectKeys.includes(propertyName) ? true : false
+}
+
+console.log(
+  objectHasProperty({ name: "John", age: 30, address: "123 Main St." }, "name")
+); // should log true
+console.log(
+  objectHasProperty(
+    { name: "John", age: 30, address: "123 Main St." },
+    "occupation"
+  )
+); // should log false
