@@ -82,3 +82,16 @@ const books = ["the bluest eye", "Kindred", "The grass dancer"];
 books.splice(2, 0, "Giovanni's room", "The color purple"); // => []
 
 books; // => ["The Bluest Eye", "Kindred", "Giovanni’s Room", "The Color Purple", "The Grass Dancer"]
+
+// iterating through arrays
+//  for ...of
+
+let booksList = ["Eloquent Javascript", 'Javascript: The Good parts', 'Learn JavaScript Visually', 'You don\t know js', 'JavaScript: The Definitive Guide']
+for (let book of booksList) {
+  console.log(book);
+}
+
+
+
+
+
