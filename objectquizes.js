@@ -9,13 +9,12 @@
 
 function createPersonObject() {
   // TODO: Write your solution here
-  let person = {
-    name: "Valeria",
-    age: 16,
-    email: "valeria.email@example.com",
+    let person = {};
+    person.name = "Valeria";
+    person.age = 16;
+    person["email"] = "valeria.email@example.com";
+    return person;
   };
-  return person;
-}
 
 console.log(createPersonObject()); // should log { name: "Your Name", age: 20, email: "your.email@example.com"}
 
