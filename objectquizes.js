@@ -80,6 +80,24 @@ console.log(
   )
 ); // should log { name: "John", age: 35, address: "123 Main St." }
 
+// solution 2 with destructuring
+function modifyObjectProperty(obj, propertyName, newValue) {
+  // TODO: Write your solution here
+    const modifiedObject = { ...obj };
+    modifiedObject[propertyName] = newValue;
+
+    return modifiedObject
+}
+
+console.log(
+  modifyObjectProperty(
+    { name: "John", age: 30, address: "123 Main St." },
+    "age",
+    35
+  )
+); // should log { name: "John", age: 35, address: "123 Main St." }
+
+
 // Problem 5: Loop Through Object Properties
 //  *
 //  * Description:
