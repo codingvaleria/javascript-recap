@@ -19,3 +19,20 @@ function createPersonObject() {
 
 console.log(createPersonObject()); // should log { name: "Your Name", age: 20, email: "your.email@example.com"}
 
+//  Problem 2 : Add a Property to an Object
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an object and a string. The function should add
+//  * a new property to the object with the name "address" and the value of the string argument
+//  * passed to the function. Return the updated object. Call the function with an object of your
+//  * choice and a string of your choice and log the resulting object to the console.
+//  */
+
+function addAddressProperty(obj, address) {
+  // TODO: Write your solution here
+    obj.address = address;
+    return obj;
+}
+
+console.log(addAddressProperty({ name: "John", age: 30 }, "123 Main St.")); // should log { name: "John", age: 30, address: "123 Main St." }
+
