@@ -56,3 +56,27 @@ console.log(
     "name"
   )
 ); // should log "John"
+
+// Problem 4: Modify a Property of an Object
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an object, a string representing the name of a
+//  * property, and a new value. The function should modify the value of the property with the
+//  * given name to the new value, and return the updated object. Call the function with an object
+//  * of your choice, the name of one of its properties, and a new value, and log the resulting
+//  * object to the console.
+//  */
+
+function modifyObjectProperty(obj, propertyName, newValue) {
+  // TODO: Write your solution here
+    obj[propertyName] = newValue;
+    return obj;
+}
+
+console.log(
+  modifyObjectProperty(
+    { name: "John", age: 30, address: "123 Main St." },
+    "age",
+    35
+  )
+); // should log { name: "John", age: 35, address: "123 Main St." }
