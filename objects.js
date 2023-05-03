@@ -72,6 +72,16 @@ for (let [key, val] of entries) {
   console.log(`${key}: ${val}`);
 }
 
+let oneBook = {
+  title: 'Eloquent JavaScript',
+  author: 'Marijn Haverbeke',
+  publisher : 'No starch press'
+}
+
+for (let key in oneBook){
+  console.log(key)
+}
+
 // Non destructively update objects
 
 let tuesdayMenu = { cheesePlate: { soft: "Chèvre", semiSoft: "Gruyère", hard: "Manchego" }, fries: "Sweet potato", salad: "Caesar" }
