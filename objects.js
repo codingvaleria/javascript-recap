@@ -43,6 +43,34 @@ for (let key in alien.laptop) {
   console.log(alien.laptop[key]);
 }
 
+//  Looping over over Objects
+let user = {
+  name: 'John',
+  age: 20,
+  occupation : 'Teacher',
+}
+// Looping over to get property names
+let propertyNames = Object.keys(user);
+for (let propertyName of propertyNames) {
+  console.log(propertyName);
+}
+
+//  Looping over to get property values
+let propertyValues = Object.values(user);
+for (let propertyValue of propertyValues) {
+  console.log(propertyValue);
+}
+
+// Looping over to get both values and keys
+let entries = Object.entries(user);
+for (let entry of entries) {
+  console.log(`${entry[0]}: ${entry[1]}`);
+}
+
+// or
+for (let [key, val] of entries) {
+  console.log(`${key}: ${val}`);
+}
 // Arrays
 // Accessing elements in an array
 // using bracket notation

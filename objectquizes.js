@@ -80,3 +80,24 @@ console.log(
     35
   )
 ); // should log { name: "John", age: 35, address: "123 Main St." }
+
+// Problem 5: Loop Through Object Properties
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an object and logs each of its property names
+//  * and values to the console in the format "propertyName: propertyValue". Call the function
+//  * with an object of your choice.
+//  */
+
+function logObjectProperties(obj) {
+  // TODO: Write your solution here
+    for (let propertyName in obj) {
+        console.log(`${propertyName}: ${obj[propertyName]}`)
+    }
+}
+
+logObjectProperties({ name: "John", age: 30, address: "123 Main St." });
+// should log:
+// name: John
+// age: 30
+// address: 123 Main St.
