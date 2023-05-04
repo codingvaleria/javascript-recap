@@ -266,3 +266,25 @@ console.log(
 );
 // should log:
 // [{ name: "Jane", age: 25 }, { name: "John", age: 30 }, { name: "Jim", age: 40 }]
+
+// Problem 10: Create an Object Method
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an object and a function. The function should add
+//  * the given function as a method to the object, with the name "myMethod". The method should take
+//  * no arguments, and should simply log the object to the console. Call the function with an object
+//  * of your choice and a function of your choice.
+//   */
+
+function addObjectMethod(obj, method) {
+  // TODO: Write your solution here
+  obj.myMethod = function method() {
+    console.log(obj);
+  }
+}
+
+const myObject = { name: "John", age: 30 };
+addObjectMethod(myObject, function () {
+  console.log(this);
+});
+myObject.myMethod(); // should log { name: "John", age: 30, myMethod: ƒ }
