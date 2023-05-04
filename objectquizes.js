@@ -236,3 +236,33 @@ console.log(
   areObjectsEqual({ name: "John", age: 30 }, { name: "Jane", age: 25 })
 );
 // should log: false
+
+// Problem 9: Sort an Array of Objects
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an array of objects and a string representing the name
+//  * of a property. The function should sort the array of objects in ascending order based on the value
+//  * of the property with the given name, and return the sorted array. Call the function with an array of
+//  * objects of your choice and the name of one of its properties.
+//  */
+
+function sortObjectsByProperty(arr, propertyName) {
+  // TODO: Write your solution here
+  const sortedObject = arr.sort(function (a, b) {
+    return a[propertyName] - b[propertyName]
+  })
+  return sortedObject;
+}
+
+console.log(
+  sortObjectsByProperty(
+    [
+      { name: "John", age: 30 },
+      { name: "Jane", age: 25 },
+      { name: "Jim", age: 40 },
+    ],
+    "age"
+  )
+);
+// should log:
+// [{ name: "Jane", age: 25 }, { name: "John", age: 30 }, { name: "Jim", age: 40 }]
