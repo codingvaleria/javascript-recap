@@ -174,3 +174,33 @@ function mergeObjects(obj1, obj2) {
 console.log(
   mergeObjects({ name: "John", age: 30 }, { address: "123 Main St.", age: 35 })
 );
+
+// Problem 8: Check if Two Objects are Equal
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in two objects and returns true if they are equal,
+//  * meaning they have the same properties with the same values, and false otherwise. Call the
+//  * function with two objects of your choice.
+//  */
+
+function areObjectsEqual(obj1, obj2) {
+  // TODO: Write your solution here
+    let obj1Keys = Object.keys(obj1);
+    let obj2Keys = Object.keys(obj2);
+
+    if (obj1Keys.length === obj2Keys.length) {
+      return obj1Keys.every(key => obj2.hasOwnProperty(key) &&
+        obj2[key] === obj1[key]);
+    };
+    return false;
+}
+
+console.log(
+  areObjectsEqual({ name: "John", age: 30 }, { name: "John", age: 30 })
+);
+// should log: true
+
+console.log(
+  areObjectsEqual({ name: "John", age: 30 }, { name: "Jane", age: 25 })
+);
+// should log: false
