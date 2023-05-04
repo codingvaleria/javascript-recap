@@ -144,6 +144,38 @@ console.log(
   )
 ); // should log false
 
+// solution 2
+function objectHasProperty(obj, propertyName) {
+  // TODO: Write your solution here
+ return obj.hasOwnProperty(propertyName)
+}
+
+console.log(
+  objectHasProperty({ name: "John", age: 30, address: "123 Main St." }, "name")
+); // should log true
+console.log(
+  objectHasProperty(
+    { name: "John", age: 30, address: "123 Main St." },
+    "occupation"
+  )
+); // should log false
+
+//  Solution 3
+function objectHasProperty(obj, propertyName) {
+  // TODO: Write your solution here
+  return propertyName in obj;
+}
+
+console.log(
+  objectHasProperty({ name: "John", age: 30, address: "123 Main St." }, "name")
+); // should log true
+console.log(
+  objectHasProperty(
+    { name: "John", age: 30, address: "123 Main St." },
+    "occupation"
+  )
+); // should log false
+
 // Problem 7: Merge Two Objects
 //  *
 //  * Description:
