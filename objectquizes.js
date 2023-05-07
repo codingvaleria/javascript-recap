@@ -36,7 +36,7 @@ function addAddressProperty(obj, address) {
   return  { ...obj, address: address };
 
   // shortened spreading
-  return { ...obj, address }; 
+  return { ...obj, address };
 
 }
 
@@ -104,7 +104,6 @@ console.log(
     35
   )
 ); // should log { name: "John", age: 35, address: "123 Main St." }
-
 
 // Problem 5: Loop Through Object Properties
 //  *
@@ -196,22 +195,8 @@ console.log(
 
 function mergeObjects(obj1, obj2) {
   // TODO: Write your solution here
-    const mergedObject = { ...obj1, ...obj2 }
-    
-    let obj1 = { 
-      name: "Val", 
-      features: { age: 20, height: 180 },
-      arr: [4, 52, 23]
-    };
-    
-    let obj2 = { 
-      name: "Val", 
-      features: { gender: "female" },
-      arr: [2, 3, 45 ]
-    };
-
-    return mergedObject;
-
+  const mergedObject = { ...obj1, ...obj2 };
+  return mergedObject;
 }
 
 console.log(
