@@ -29,8 +29,15 @@ console.log(createPersonObject()); // should log { name: "Your Name", age: 20, e
 
 function addAddressProperty(obj, address) {
   // TODO: Write your solution here
-    obj.address = address;
-    return obj;
+    // obj.address = address;
+    // return obj;
+  // with destructuring
+
+  return  { ...obj, address: address };
+
+  // shortened spreading
+  return { ...obj, address }; 
+
 }
 
 console.log(addAddressProperty({ name: "John", age: 30 }, "123 Main St.")); // should log { name: "John", age: 30, address: "123 Main St." }
@@ -83,10 +90,11 @@ console.log(
 // solution 2 with destructuring
 function modifyObjectProperty(obj, propertyName, newValue) {
   // TODO: Write your solution here
-    const modifiedObject = { ...obj };
-    modifiedObject[propertyName] = newValue;
+    // const modifiedObject = { ...obj };
+    // modifiedObject[propertyName] = newValue;
+    // // return modifiedObject
 
-    return modifiedObject
+    return {...obj, [propertyName]: newValue };
 }
 
 console.log(
@@ -111,6 +119,7 @@ function logObjectProperties(obj) {
     for (let propertyName in obj) {
         console.log(`${propertyName}: ${obj[propertyName]}`)
     }
+  // also use Object.keys()
 }
 
 logObjectProperties({ name: "John", age: 30, address: "123 Main St." });
@@ -131,7 +140,8 @@ logObjectProperties({ name: "John", age: 30, address: "123 Main St." });
 function objectHasProperty(obj, propertyName) {
   // TODO: Write your solution here
     const objectKeys = Object.keys(obj);
-    return objectKeys.includes(propertyName) ? true : false
+  return objectKeys.includes(propertyName);
+
 }
 
 console.log(
@@ -187,7 +197,21 @@ console.log(
 function mergeObjects(obj1, obj2) {
   // TODO: Write your solution here
     const mergedObject = { ...obj1, ...obj2 }
-    return mergedObject
+    
+    let obj1 = { 
+      name: "Val", 
+      features: { age: 20, height: 180 },
+      arr: [4, 52, 23]
+    };
+    
+    let obj2 = { 
+      name: "Val", 
+      features: { gender: "female" },
+      arr: [2, 3, 45 ]
+    };
+
+    return mergedObject;
+
 }
 
 console.log(
@@ -277,10 +301,7 @@ console.log(
 //   */
 
 function addObjectMethod(obj, method) {
-  // TODO: Write your solution here
-  obj.myMethod = function method() {
-    console.log(obj);
-  }
+  obj.myMethod = method;
 }
 
 const myObject = { name: "John", age: 30 };
