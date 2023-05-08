@@ -88,7 +88,6 @@ let tuesdayMenu = { cheesePlate: { soft: "Chèvre", semiSoft: "Gruyère", hard: 
 
 function nondestructivelyUpdateObject(obj, key, value) {
   const newObj = { ...obj };
-  
   newObj[key] = value;
 
   return newObj;
@@ -122,3 +121,70 @@ console.log(delete cat.owner);
 // => true
 console.log(cat)
 // => { name: 'Rose', age: 6, color: 'white' }
+
+// Copying and Merging Objects
+let developer1 = {};
+developer1.name = "Edward";
+developer1["stack"] = "javaScript";
+console.log(developer1);
+
+let developer2 = { ...developer1, name: "Valeria", experience: 6 };
+console.log(developer2);
+
+let developer3 = Object.assign(developer1, developer2);
+console.log(developer3);
+
+let shallowArr = [123, "bob", true, null, undefined];
+
+let object = { name: "Alice", age: 20, gender: "female" };
+console.log(typeof object);
+let deepArr = [
+  123,
+  "bob",
+  true,
+  ["Hank", "Brent", "Lacy"],
+  { Rouleau: "Dog River", Wilcox: "Woolerton" },
+];
+
+let deepObj = {
+  characters: ["Wanda", "Davis", "Emma", "Karen"],
+  places: ["Corner Gas", "Ruby", "Foo Mart"],
+  grad68: false,
+  seasons: 5,
+};
+
+let s = 'steve';
+let g = s;
+s = 'new value'
+console.log(s,g)
+
+let arr = shallowArr;
+shallowArr[0] = 456;
+console.log(arr, shallowArr);
+
+//  Shallow copy Methods
+// 1. Array.from(arr)
+arr = Array.from(shallowArr);
+shallowArr[0] = 456;
+console.log(shallowArr);
+console.log(arr);
+
+// 2. spread operator
+arr = [...shallowArr];
+console.log(arr);
+
+// 3. concat
+arr = [].concat(shallowArr);
+console.log(arr);
+
+// 4 arr.slice(0)
+arr = shallowArr.slice(0);
+console.log(arr)
+
+// 5. Object.create({}, obj)
+let newObject = Object.create({}, object);
+console.log(newObject);
+
+// 6. Object.assign({}, obj)
+newObject = Object.assign({}, object);
+console.log(newObject);
