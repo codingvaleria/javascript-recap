@@ -146,12 +146,6 @@ let deepArr = [
   { Rouleau: "Dog River", Wilcox: "Woolerton" },
 ];
 
-let deepObj = {
-  characters: ["Wanda", "Davis", "Emma", "Karen"],
-  places: ["Corner Gas", "Ruby", "Foo Mart"],
-  grad68: false,
-  seasons: 5,
-};
 
 let s = 'steve';
 let g = s;
@@ -188,3 +182,29 @@ console.log(newObject);
 // 6. Object.assign({}, obj)
 newObject = Object.assign({}, object);
 console.log(newObject);
+
+// Deep copy methods
+let deepObj = {
+  characters: ["Wanda", "Davis", "Emma", "Karen"],
+  places: ["Corner Gas", "Ruby", "Foo Mart"],
+  grad68: false,
+  seasons: 5,
+};
+
+// 1. JSON.parse(JSON.stringify())
+let object2 = { ...deepObj }
+console.log(deepObj);
+console.log(object2);
+
+//  Reference vs Value
+
+object2.places[0] = 'Ottawa'; // Changes both objects because the array is a reference point in memory.
+object2.places = ['Ottawa', 'calcutta'] // creating a new ref;
+console.log(deepObj);
+console.log(object2);
+
+// solution to above
+
+let otherObj = JSON.parse(JSON.stringify(deepObj));
+otherObj.places[0] = 'Shanghai';
+console.log(otherObj, deepObj);

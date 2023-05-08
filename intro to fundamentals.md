@@ -71,3 +71,8 @@ using the + and - javasript assumes what you are supposed to do and it does the 
 2. do..while
 3. for
 
+# Reference vs value in JS
+### Primitive data types 
+- are parsed by value
+### Non-primitive data types
+ - are parsed by reference
