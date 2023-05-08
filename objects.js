@@ -146,7 +146,6 @@ let deepArr = [
   { Rouleau: "Dog River", Wilcox: "Woolerton" },
 ];
 
-
 let s = 'steve';
 let g = s;
 s = 'new value'
@@ -208,3 +207,47 @@ console.log(object2);
 let otherObj = JSON.parse(JSON.stringify(deepObj));
 otherObj.places[0] = 'Shanghai';
 console.log(otherObj, deepObj);
+
+// Sorting Objects
+
+let array = [
+  {
+    firstName: "Steven",
+    lastName: "Hancock",
+    score: 90,
+  },
+  {
+    firstName: "Lynette",
+    lastName: "Jogensen",
+    score: 100,
+  },
+  {
+    firstName: "Andrew",
+    lastName: "Wilson",
+    score: 81,
+  },
+  {
+    firstName: "Annika",
+    lastName: "Turner",
+    score: 82,
+  },
+];
+//  sorting by lastname
+let sortedObject = array.sort(function (a, b) {
+  if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
+    return -1;
+  } else if (a.lastName.toLowerCase() > b.lastName.toLowerCase()) {
+    return 1;
+  } else {
+    return 0;
+  }
+});
+
+console.log(sortedObject);
+
+// sorting by score
+let sortedbyScore = array.sort(function (a, b) {
+  return a.score - b.score;
+});
+
+console.log(sortedbyScore);
