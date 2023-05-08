@@ -246,6 +246,31 @@ console.log(
 );
 // should log: false
 
+// Solution 2
+function areObjectsEqual(obj1, obj2) {
+  // TODO: Write your solution here
+  let obj1Keys = Object.keys(obj1);
+  let obj2Keys = Object.keys(obj2);
+
+  if (obj1Keys.length === obj2Keys.length) {
+    for (let key of obj1Keys) {
+      if (obj1[key] === obj2[key]) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+console.log(
+  areObjectsEqual({ name: "John", age: 30 }, { name: "John", age: 30 })
+);
+// should log: true
+
+console.log(
+  areObjectsEqual({ name: "John", age: 30 }, { name: "Jane", age: 25 })
+);
+
 // Problem 9: Sort an Array of Objects
 //  *
 //  * Description:
