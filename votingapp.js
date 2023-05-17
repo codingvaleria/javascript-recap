@@ -9,6 +9,13 @@ let savedPassword = "abcd";
 let arrayOfCandidates = ["Alex", "Jane", "Alice", "Mark"];
 let votesCount = [0, 0, 0, 0];
 let isRunning = true;
+let adminMenu = `
+Select action from below:
+        1. Add new candidates
+        2. Display score of each candidate
+        3. Reset your password
+        4. Stop the application
+    `;
 
 function checkPassword() {
   let passwordPrompts = 1;
@@ -41,14 +48,8 @@ function adminLogic() {
   const isPasswordCorrect = checkPassword();
   //   3. Once the admin is logged in, display a menu of options that the admin can choose from.
   if (isPasswordCorrect === true) {
-    console.log(`
-    login successful
-    Here's a list of actions you can take: 
-        1. Add new candidates
-        2. Display score of each candidate
-        3. Reset your password
-        4. Stop the application
-    `);
+    console.log("login successful.");
+    console.log(adminMenu);
     let action = prompt(`Please select actions you would like to perform :`);
     if (action === "1") {
       console.log(`Here's a list of existing candidates`);
@@ -66,7 +67,9 @@ function adminLogic() {
       // let countIndex = 0;
       console.log("The candidates total votes is:");
       while (index <= arrayOfCandidates.length) {
-        console.log(`${index}. ${arrayOfCandidates[index - 1]} : ${votesCount[index-1]}`);
+        console.log(
+          `${index}. ${arrayOfCandidates[index - 1]} : ${votesCount[index - 1]}`
+        );
         index++;
       }
     }
@@ -82,18 +85,20 @@ function adminLogic() {
       }
       // console.log(savedPassword);
       // 11. Implement a command that allows the admin to exit the loop and stop the application.
+      // 12. Display a farewell message to the user when the application is stopped.
     } else if (action === "4") {
       // 10. Add appropriate error handling to handle incorrect input and prevent the application from crashing.
-      // 12. Display a farewell message to the user when the application is stopped.
-     
-      prompt(`Type Yes to confirm you want to quit the application and No otherwise:`)
-
-      prompt()
-
-      if (prompt === 'Yes') {
-        isRunning = false;
+      isRunning = false;
+      console.log("Exiting Application...");
+    } else {
+      let reenteraction = 1;
+      while (reenteraction < 4) {
+        console.log(adminMenu);
+        choice = prompt("> ");
+        reenteraction++;
       }
-       console.log("Stopping the application...bye!!!");
+      console.log("Exiting Application...");
+      isRunning = false;
     }
   }
 }
@@ -147,7 +152,6 @@ function app() {
     } else {
       console.log("Enter a valid choice");
     }
-   
   }
 }
 
