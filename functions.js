@@ -71,7 +71,44 @@ const fn = function () {
 fn(); 
 
 //  Another way is by IIFE - Immediately Invoked Function Expression
-const fn2 = function (name) {
+const fn2 = (function (name) {
   console.log("My name is " + name);
-}('Alice')
+})("Alice");
+
+// Function level scope
+// Means if a function is defined inside another function, the inner function has access to all the paramters and variables defined in the outer function.
+
+function outer(greeting, msg = "It's a fine day to learn") {
+  const innerFunction = function (name, lang = "Python") {
+    return `${greeting}, ${name}! ${msg} ${lang}`;
+  };
+  return innerFunction("student", "JavaScript");
+}
+
+console.log(outer("Hello"));
+
+// can be refactored
+function outer2(greeting, msg = "it's a fine day to learn") {
+  return function (name, lang = "Python") {
+    return `${greeting}, ${name}! ${msg} ${lang}`;
+  };
+}
+
+console.log(outer2("Goodmorning")("Student", "Postgres"));
+
+// Closure
+// An anonymous function that let out the value of variables defined in their parent function
+// Functions inside of other functions
+
+const array = (function (thingToAdd) {
+  const base = 3;
+  return [
+    function () {
+      return base + thingToAdd;
+    },
+    function () {
+      return base;
+    }
+  ];
+})(2);
 
