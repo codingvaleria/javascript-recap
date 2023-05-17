@@ -55,9 +55,8 @@ function adminLogic() {
       console.log(`Here's a list of existing candidates`);
       // listOfCandidates)
       // 4. Implement the ability for the admin to add new candidates to the list of candidates.
-      let newCandidate = prompt(
-        "Please key in the name of candidate you would like to add:"
-      );
+      console.log("Please key in the name of candidate you would like to add:");
+      let newCandidate = prompt("> ");
       arrayOfCandidates.push(newCandidate);
       printCandidates();
     }
@@ -83,7 +82,6 @@ function adminLogic() {
         savedPassword = newPassword;
         console.log("Password changed successfully");
       }
-      // console.log(savedPassword);
       // 11. Implement a command that allows the admin to exit the loop and stop the application.
       // 12. Display a farewell message to the user when the application is stopped.
     } else if (action === "4") {
@@ -91,11 +89,22 @@ function adminLogic() {
       isRunning = false;
       console.log("Exiting Application...");
     } else {
-      let reenteraction = 1;
-      while (reenteraction < 4) {
+      let reEnterAction = 0;
+      while (reEnterAction < 3) {
+        console.log("Please provide correct action");
         console.log(adminMenu);
-        choice = prompt("> ");
-        reenteraction++;
+        action = prompt("> ");
+        // Check if choice is among options
+        if (
+          action !== "1" &&
+          action !== "2" &&
+          action !== "3" &&
+          action !== "4"
+        ) {
+          reEnterAction++;
+        } else {
+          break;
+        }
       }
       console.log("Exiting Application...");
       isRunning = false;
