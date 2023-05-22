@@ -19,3 +19,32 @@ function calculateDiscountedPrice(originalPrice, discountPercentage) {
 console.log(calculateDiscountedPrice(100, 20)); // should log 80
 console.log(calculateDiscountedPrice(50, 10)); // should log 45
 console.log(calculateDiscountedPrice(75.5, 15)); // should log 64.18
+
+// Problem 2 : Calculate Final Price
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in the original price of a product,
+//  * an optional discount percentage, and an optional tax percentage as parameters.
+//  * The function should calculate the final price of the product after applying
+//  * the discount (if provided) and adding the tax (if provided). If no discount is
+//  * provided, the default discount percentage should be 0%. If no tax is provided,
+//  * the default tax percentage should be 0%.
+//  *
+//  * Implement the function calculateFinalPrice(originalPrice, discountPercentage = 0, taxPercentage = 0)
+//  * to calculate the final price of the product. Round the result to two decimal places.
+//  */
+
+function calculateFinalPrice(
+  originalPrice,
+  discountPercentage = 0,
+  taxPercentage = 0
+) {
+  // TODO: Write your solution here
+  let discountedPrice =
+    originalPrice - (originalPrice * (discountPercentage / 100)) + (taxPercentage/100 * originalPrice);
+  return discountedPrice.toFixed(2);
+}
+
+console.log(calculateFinalPrice(100)); // should log 100
+console.log(calculateFinalPrice(100, 10)); // should log 90
+console.log(calculateFinalPrice(100, 10, 8)); // should log 97.2
