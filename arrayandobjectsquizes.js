@@ -148,3 +148,85 @@ for (let i = 0; i < array.length; i++) {
   object[array[i][0]] = array[i][1];
 }
 console.log(object);
+
+  // Problem 5:Object Filter
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an object and a callback function. The callback
+//  * function takes two arguments: the key and the value of the object. The function should
+//  * return a new object that only includes key-value pairs where the value satisfies the
+//  * callback function. For example, if the input object is {a: 1, b: 2, c: 3} and the callback
+//  * function is (key, value) => value > 1, the function should return {b: 2, c: 3}. Call the
+//  * function with an object and a callback function of your choice and log the result to the console.
+//  */
+
+// function objectFilter(obj, callback) {
+//   // TODO: Write your solution here
+// }
+
+// console.log(objectFilter({ a: 1, b: 2, c: 3 }, (key, value) => value > 1));
+// // should log {b: 2, c: 3}
+// //
+
+// /**
+
+// Problem: Array Flattening
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an array of nested arrays and returns a new
+//  * array that is flattened (i.e., all elements are at the top level). For example, if the
+//  * input array is [1, [2, [3, 4], 5], 6], the function should return [1, 2, 3, 4, 5, 6].
+//  * Call the function with an array of your choice and log the result to the console.
+//  */
+
+function flattenArray(arr) {
+  // TODO: Write your solution here
+
+  let flattenedArray = [];
+
+}
+
+console.log(flattenArray([1, [2, [3, 4], 5], 6])); // should log [1, 2, 3, 4, 5, 6]
+console.log(
+  flattenArray([
+    ["a", "b"],
+    ["c", ["d", "e"]],
+  ])
+); // should log ["a", "b", "c", "d", "e"]
+
+// Problem: Array of Objects Filtering
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an array of objects and a key-value pair, and
+//  * returns a new array that includes only the objects that have a matching property-value
+//  * pair. For example, if the input array is [{name: "Alice", age: 30}, {name: "Bob", age: 25},
+//  * {name: "Charlie", age: 40}] and the key-value pair is {age: 30}, the function should
+//  * return [{name: "Alice", age: 30}]. Call the function with an array of your choice and
+//  * a key-value pair of your choice and log the result to the console.
+//  */
+
+function filterArrayOfObjects(arr, keyValue) {
+  // TODO: Write your solution here
+}
+
+console.log(
+  filterArrayOfObjects(
+    [
+      { name: "Alice", age: 30 },
+      { name: "Bob", age: 25 },
+      { name: "Charlie", age: 40 },
+    ],
+    { age: 30 }
+  )
+); // should log [{name: "Alice", age: 30}]
+
+console.log(
+  filterArrayOfObjects(
+    [
+      { name: "John", country: "USA" },
+      { name: "Maria", country: "Brazil" },
+      { name: "Elena", country: "Italy" },
+    ],
+    { country: "Brazil" }
+  )
+); // should log [{name: "Maria", country: "Brazil"}]

@@ -91,7 +91,17 @@ for (let book of booksList) {
   console.log(book);
 }
 
+// //  The every method
 
+// function isPositive(item) {
+//   return item > 0;
+// }
 
+// const numbers = [3, 4, 5, 6, 7];
 
+// const res = numbers.every(isPositive);
+
+// console.log(res);
+
+// // some method
 
