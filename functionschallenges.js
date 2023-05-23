@@ -138,10 +138,16 @@ function hasNumericDigit(password) {
 }
 function validatePassword(password) {
   // TODO: Write your solution here
-  isLengthValid();
-  hasLowercaseLetter();
-  hasUppercaseLetter();
-  hasNumericDigit();
+  if (
+    isLengthValid(password) === true &&
+    hasLowercaseLetter(password) === true &&
+    hasUppercaseLetter(password) === true &&
+    hasNumericDigit(password) === true
+  ) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 console.log(validatePassword("Abcdefg1")); // should log true
