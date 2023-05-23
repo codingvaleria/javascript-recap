@@ -168,25 +168,22 @@ console.log(validatePassword("Password123")); // should log true
 //  */
 
 function isUnique(array, value) {
-  let uniqNumbers = [];
-  let duplicateNumbers = [];
-
-  for (let i = 0; i < arr.length; i++) {
-    let currentValue = arr[i];
-
-    if (uniqNumbers.includes(currentValue)) {
-      if (!duplicateNumbers.includes(currentValue)) {
-        duplicateNumbers.push(currentValue);
-      }
+  let count = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === value) {
+      count++;
+    }
+    if (count === 1) {
+      return true;
     } else {
-      uniqNumbers.push(currentValue);
+      return false;
     }
   }
-  return duplicateNumbers;
 }
 
 function filterUniqueValues(array) {
   // TODO: Write your solution here
+  
 }
 
 const nums = [1, 2, 3, 4, 4, 5, 2, 6, 1];
