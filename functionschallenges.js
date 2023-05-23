@@ -13,12 +13,14 @@ function calculateDiscountedPrice(originalPrice, discountPercentage) {
   // TODO: Write your solution here
   let discountedPrice =
     originalPrice - originalPrice * (discountPercentage / 100);
-  return discountedPrice.toFixed(2);
+  let result = discountedPrice * 100;
+  return (Math.round(result) / 100).toFixed(2); // discountedPrice.toFixed(2);
 }
 
-console.log(calculateDiscountedPrice(100, 20)); // should log 80
-console.log(calculateDiscountedPrice(50, 10)); // should log 45
+console.log(calculateDiscountedPrice(100, 20)); // should log 80.00
+console.log(calculateDiscountedPrice(50, 10)); // should log 45.00
 console.log(calculateDiscountedPrice(75.5, 15)); // should log 64.18
+console.log(calculateDiscountedPrice(100, 33.33333)); // should log 64.18
 
 // Problem 2 : Calculate Final Price
 //  *
@@ -183,7 +185,32 @@ function isUnique(array, value) {
 
 function filterUniqueValues(array) {
   // TODO: Write your solution here
-  
+  let uniqValues = [];
+  let duplicateValues = [];
+
+  for (let i = 0; i < array.length; i++) {
+    let currentValue = array[i];
+    //    check element for these two conditions
+    if (
+      uniqValues.includes(currentValue) &&
+      !duplicateValues.includes(currentValue)
+    ) {
+      duplicateValues.push(currentValue);
+    } else if (
+      !uniqValues.includes(currentValue) &&
+      !duplicateValues.includes(currentValue)
+    ) {
+      uniqValues.push(currentValue);
+    }
+
+    //     if (isUnique() === true) {
+    //       uniqValues.push(currentValue);
+    //     } else {
+    //       duplicateValues.push(currentValue);
+    //     }
+    //   }
+    return uniqValues;
+  }
 }
 
 const nums = [1, 2, 3, 4, 4, 5, 2, 6, 1];
