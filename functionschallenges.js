@@ -123,32 +123,37 @@ console.log(filterProducts(products, "Home")); // should log an array with produ
 //  */
 
 function isLengthValid(password) {
-  if (password.length >= 8) {
-    return true;
-  }
+  return password.length >= 8;
 }
+
 function hasUppercaseLetter(password) {
-  return password !== password.toLowerCase() ? true : false;
+  return password !== password.toLowerCase();
 }
 
 function hasLowercaseLetter(password) {
-  return password !== password.toUpperCase() ? true : false;
+  return password !== password.toUpperCase();
 }
 
 function hasNumericDigit(password) {
   for (let i = 0; i < password.length; i++) {
-    if (password[i] >= "0" && password[i] <= "9") {
+    // if (password[i] >= "0" && password[i] <= "9") {
+    //   }
+    //   checking if the element is a digit
+    // if (parseInt(password[i]) !== isNaN) {
+    if (!isNaN(parseInt(password[i]))) {
       return true;
     }
   }
 }
+
 function validatePassword(password) {
   // TODO: Write your solution here
   if (
-    isLengthValid(password) === true &&
-    hasLowercaseLetter(password) === true &&
-    hasUppercaseLetter(password) === true &&
-    hasNumericDigit(password) === true
+    isLengthValid(password) &&
+    // if (isLengthValid(password)) // consider this as the return value not condition after evaluation
+    hasLowercaseLetter(password) &&
+    hasUppercaseLetter(password) &&
+    hasNumericDigit(password)
   ) {
     return true;
   } else {
