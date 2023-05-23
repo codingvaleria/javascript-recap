@@ -81,6 +81,10 @@ function filterProducts(products, category) {
   return categorizedArray;
 }
 
+// Nested array example
+let nestedArray = [[{ student: ["name"] }]];
+nestedArray[0][0].student[0];
+
 const products = [
   { name: "Product 1", price: 9.99, category: "Electronics" },
   { name: "Product 2", price: 19.99, category: "Clothing" },
