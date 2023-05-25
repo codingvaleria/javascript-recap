@@ -184,42 +184,25 @@ function isUnique(array, value) {
     if (array[i] === value) {
       count++;
     }
-    if (count === 1) {
-      return true;
-    } else {
-      return false;
-    }
+  }
+
+  if (count === 1) {
+    return true; // is unique
+  } else {
+    return false;
   }
 }
 
 function filterUniqueValues(array) {
   // TODO: Write your solution here
-  let uniqValues = [];
-  let duplicateValues = [];
-
+  let uniqueValues = [];
   for (let i = 0; i < array.length; i++) {
-    let currentValue = array[i];
-    //    check element for these two conditions
-    if (
-      uniqValues.includes(currentValue) &&
-      !duplicateValues.includes(currentValue)
-    ) {
-      duplicateValues.push(currentValue);
-    } else if (
-      !uniqValues.includes(currentValue) &&
-      !duplicateValues.includes(currentValue)
-    ) {
-      uniqValues.push(currentValue);
+    let result = isUnique(array, array[i]);
+    if (result === true) {
+      uniqueValues.push(array[i]);
     }
-
-    //     if (isUnique() === true) {
-    //       uniqValues.push(currentValue);
-    //     } else {
-    //       duplicateValues.push(currentValue);
-    //     }
-    //   }
-    return uniqValues;
   }
+  return uniqueValues;
 }
 
 const nums = [1, 2, 3, 4, 4, 5, 2, 6, 1];
@@ -260,3 +243,4 @@ function calculateFactorial(num) {
 console.log(calculateFactorial(5)); // should log 120
 console.log(calculateFactorial(0)); // should log 1
 console.log(calculateFactorial(10)); // should log 3628800
+
