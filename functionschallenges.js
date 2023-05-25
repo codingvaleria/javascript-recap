@@ -244,3 +244,37 @@ console.log(calculateFactorial(5)); // should log 120
 console.log(calculateFactorial(0)); // should log 1
 console.log(calculateFactorial(10)); // should log 3628800
 
+// Problem: Array Transformation
+//  *
+//  * Description:
+//  * Write a JavaScript function that takes in an array of numbers and a
+//  * callback function as parameters. The function should transform each element of the
+//  * array using the callback function and return a new array with the transformed elements.
+//  *
+//  * Implement the function transformArray(array, callback) to transform the array
+//  * by applying the callback function to each element. The callback function
+//  * should accept an element as a parameter and return the transformed value.
+//  */
+
+function transformArray(array, callback) {
+  // TODO: Write your solution here
+  let result2 = [];
+  for (let i = 0; i < array.length; i++) {
+    let callbackResult = callback(array[i]);
+    result2.push(callbackResult);
+  }
+  return result2;
+}
+
+function double(number) {
+  return number * 2;
+}
+
+function square(number) {
+  return number * number;
+}
+
+const numbers = [1, 2, 3, 4, 5];
+
+console.log(transformArray(numbers, double)); // should log [2, 4, 6, 8, 10]
+console.log(transformArray(numbers, square)); // should log [1, 4, 9, 16, 25]
