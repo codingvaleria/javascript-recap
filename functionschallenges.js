@@ -403,3 +403,25 @@ console.log(filterNumbers(nums2, predicates)); // should log [-1, -5]
 
 // console.log(modifiedObjects[0].age); // should log the original age value for person1
 // console.log(modifiedObjects[1].age); // should log the original age value for person2
+
+// Print every number
+let nestedArray = [
+  [0, 1],
+  [2, 3],
+  [4, 5],
+  [6, 7],
+];
+
+for (let i = 0; i < nestedArray.length; i++) {
+  for (let j = 0; j < nestedArray[i].length; j++) {
+    console.log(nestedArray[i][j]);
+  }
+}
+
+// Pair elements in every index
+let student1 = ["Martin", "Alex", "Cyril"];
+let student2 = ["Agnes", "Alice", "Mary"];
+
+for (let i = 0; i < student1.length; i++) {
+  console.log(`${student1[i]} should pair up with ${student2[i]}`);
+}
