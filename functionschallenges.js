@@ -278,3 +278,54 @@ const numbers = [1, 2, 3, 4, 5];
 
 console.log(transformArray(numbers, double)); // should log [2, 4, 6, 8, 10]
 console.log(transformArray(numbers, square)); // should log [1, 4, 9, 16, 25]
+
+//  Problem: Filter Numbers
+//  *
+//  * Description:
+//  * Write a JavaScript function called `filterNumbers` that takes in an array of
+//  * numbers and an array of predicate functions as parameters. The function should
+//  * filter the numbers based on the predicate functions and return a new array
+//  * containing only the numbers for which all predicates return false.
+//  *
+//  * Implement the function `filterNumbers(numbers, predicates)` to filter the
+//  * numbers array using the predicate functions. The predicate functions should
+//  * accept a number as a parameter and return a boolean value indicating whether
+//  * the number satisfies the predicate condition.
+//  */
+
+function filterNumbers(numbers, predicates) {
+  // TODO: Write your solution here
+  // access the array of numbers
+  // pick out a number and passit to every function in the predicate array
+  //  if the number returns false in both predicate tests, the number should be pushed to the resultisFalse array.
+
+  let i = 0;
+  let resultisFalse = [];
+
+  while (i < numbers.length) {
+    // Do a predicate check
+    let currentNumber = numbers[i];
+    console.log(currentNumber);
+    i++;
+    let j = 0;
+
+    while (j < predicates.length) {
+      console.log(predicates[j](currentNumber));
+      j++;
+    }
+  }
+}
+
+function isEven(number) {
+  return number % 2 === 0;
+}
+
+function isPositive(number) {
+  return number > 0;
+}
+
+const nums2 = [-1, 2, 3, 4, -5, 6, 7, -8];
+const predicates = [isEven, isPositive];
+
+filterNumbers(nums2, predicates); // should log [-1, -5]
+
