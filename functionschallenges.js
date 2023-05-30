@@ -462,4 +462,26 @@ let person = {
 
 console.log(person.getAge()); // 20
 console.log(person.setAge(45)); 
-console.log(person.printAge()) // 45
+console.log(person.printAge()); // 45
+
+function sumToZeroA(number) {
+  let sum = 0;
+  for (let i = 0; i <= number; ++i) {
+    sum += i;
+  }
+  return sum;
+}
+
+function sumToZeroB(number) {
+  if (number <= 1) {
+    return number;
+  }
+  return number + sumToZeroB(number - 1);
+}
+
+sumToZeroB(4);
+
+// 4 + sumToZeroB(3) = 10
+// 3 + sumToZeroB(2) = 6
+// 2 + sumToZeroB(1) = 3
+// sumToZeroB(1); = 1
