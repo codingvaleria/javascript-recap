@@ -226,18 +226,14 @@ console.log(filterUniqueValues(fruits)); // should log ["orange", "grape"]
 //  */
 
 function calculateFactorial(num) {
-  let factorial = 1;
   // TODO: Write your solution here
   if (num < 0) {
     return false;
   } else if (num === 0) {
     return 1;
   } else {
-    for (let i = 1; i <= num; i++) {
-      factorial = factorial * i;
-    }
+    return num * calculateFactorial(num - 1);
   }
-  return factorial;
 }
 
 console.log(calculateFactorial(5)); // should log 120
@@ -427,6 +423,9 @@ for (let i = 0; i < student1.length; i++) {
 }
 
 // Recursion - function calling itself
+// the condition
+// the recursive call
+
 function test(shouldCallTest) {
   if (shouldCallTest === true) {
     console.log("calling");
