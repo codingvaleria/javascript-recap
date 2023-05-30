@@ -354,21 +354,20 @@ function modifyAgeAndUndo(objects) {
   let modifiedObjects = [];
 
   for (let i = 0; i < objects.length; i++) {
-    // console.log(objects[i]);
-    objects.modifyAge = function newAge(newAge) {
+    let currentObject = objects[i];
+    let originalAge = currentObject.age;
+
+    currentObject.modifyAge = function newAge(newAge) {
       this.age = newAge;
-      console.log(objects.modifyAge);
-      objects.undoModify = function undoModifyAge() {
-        this.age = objects.age;
-      };
-      console.log(objects.undoModify);
-      // modifiedObjects.push(objects);
-      modifiedObjects.push(objects[i]);
     };
 
-    console.log(modifiedObjects);
+    currentObject.undoModify = function undoModify() {
+      this.age = originalAge;
+    };
+
+    modifiedObjects.push(currentObject);
   }
-  // return modifiedObjects;
+  return modifiedObjects;
 }
 
 const person1 = {
@@ -410,7 +409,7 @@ let nestedArray2 = [
 
 for (let i = 0; i < nestedArray2.length; i++) {
   for (let j = 0; j < nestedArray2[i].length; j++) {
-    console.log(nestedArray[i][j]);
+    console.log(nestedArray2[i][j]);
   }
 }
 
