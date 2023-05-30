@@ -447,3 +447,20 @@ function countDown(number) {
   }
 }
 countDown(3);
+
+let person = {
+  age: 20,
+  getAge: function () {
+    return this.age;
+  },
+  setAge: function (age) {
+    this.age = age;
+  },
+  printAge: function () {
+    console.log(this.age);
+  },
+};
+
+console.log(person.getAge()); // 20
+console.log(person.setAge(45)); 
+console.log(person.printAge()) // 45
