@@ -150,3 +150,32 @@ console.log(analytics);
 //   highestGrade: 95,
 //   lowestGrade: 75
 // }
+
+//  * Description:
+//  * Write a JavaScript function called `isPalindrome` that takes in a string as a parameter and returns
+//  * true if the string is a palindrome, and false otherwise. A palindrome is a word, phrase, number, or
+//  * other sequence of characters that reads the same forward and backward, ignoring spaces, punctuation, and capitalization.
+//  *
+//  * Implement the function `isPalindrome(str)` recursively to check if the given string is a palindrome.
+//  * The function should return true if it is a palindrome, and false otherwise.
+//  */
+
+function isPalindrome(str) {
+  // TODO: Implement the recursive palindrome checker
+  str = str.replace(/[^\w]/g, "").toLowerCase();
+  if (str.length <= 1) {
+    return true;
+    //   compare strings form both sides till middle
+  } else if (str[0] === str[str.length - 1]) {
+    for (let i = 0; i < parseInt(str.length / 2); i++) {
+      for (let i = str.length - 1; i > parseInt((str.length - 1) / 2); i--) {
+        
+      }
+    }
+  }
+}
+
+console.log(isPalindrome("level")); // should log true
+console.log(isPalindrome("Hello")); // should log false
+console.log(isPalindrome("A man, a plan, a canal: Panama")); // should log true
+console.log(isPalindrome("race car")); // should log true
