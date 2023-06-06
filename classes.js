@@ -27,3 +27,22 @@ console.log(morgan.sayAge());
 console.log(morgan.haveBirthday());
 console.log(morgan.sayAge());
 console.log(morgan);
+
+// class instances are unique
+// this acts a reference to the object it is inside
+// we can access instance properties using the variable object
+
+class Square {
+  constructor(sideLength) {
+    this.sideLength = sideLength;
+  }
+
+  area() {
+    return this.sideLength * this.sideLength;
+  }
+}
+
+const square1 = new Square(5);
+square1; // Square { sideLength: 5 }
+square1.area(); // 25
+
