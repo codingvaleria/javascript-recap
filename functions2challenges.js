@@ -168,9 +168,7 @@ function isPalindrome(str) {
     //   compare strings form both sides till middle
   } else if (str[0] === str[str.length - 1]) {
     for (let i = 0; i < parseInt(str.length / 2); i++) {
-      for (let i = str.length - 1; i > parseInt((str.length - 1) / 2); i--) {
-        
-      }
+      for (let i = str.length - 1; i > parseInt((str.length - 1) / 2); i--) {}
     }
   }
 }
@@ -179,3 +177,82 @@ console.log(isPalindrome("level")); // should log true
 console.log(isPalindrome("Hello")); // should log false
 console.log(isPalindrome("A man, a plan, a canal: Panama")); // should log true
 console.log(isPalindrome("race car")); // should log true
+
+//  Problem: Number Publisher with Subscribers
+//  *
+//  * Description:
+//  * Implement a number publisher that allows subscribers to register callbacks for numbers being published.
+//  * Whenever a number is published, each registered callback should be called with the published number as
+//  * an argument, and the callback should print out an operation being done on the number.
+//  *
+//  * Implement the following functions:
+//  *
+//  * 1. `subscribe(callback)`: Takes in a callback function and subscribes it to the number publisher. The
+//  *     callback function will be called whenever a number is published.
+//  *
+//  * 2. `publish(number)`: Takes in a number and publishes it to all the subscribed callbacks. Each callback
+//  *     should print out an operation being done on the number.
+//  *
+//  * 3. unsubscribe(callback)`: Takes in a callback function and unsubscribes it from the number publisher.
+//  *    The callback function will no longer be called when numbers are published.
+//  *
+//  * Implement the above functions to create a number publisher and demonstrate its usage with different callbacks.
+//  */
+
+const callbacks = [];
+
+function subscribe(callback) {
+  // TODO: Write your solution here
+}
+
+function publish(number) {
+  // TODO: Write your solution here
+}
+
+function unsubscribe(callback) {
+  // TODO: Write your solution here
+}
+
+// Example callback functions
+function doubleNumber(number) {
+  console.log(`Double of ${number} is ${number * 2}`);
+}
+
+function squareNumber(number) {
+  console.log(`Square of ${number} is ${number * number}`);
+}
+
+function tripleNumber(number) {
+  console.log(`Triple of ${number} is ${number * 3}`);
+}
+
+function halfNumber(number) {
+  console.log(`Half of ${number} is ${number / 2}`);
+}
+
+subscribe(doubleNumber);
+subscribe(squareNumber);
+// TODO: Subscribe two more callback functions of your choice
+
+publish(5);
+// should log:
+// Double of 5 is 10
+// Square of 5 is 25
+// Operation 1 of 5 is 15
+// Operation 2 of 5 is 2.5
+
+publish(8);
+// should log:
+// Double of 8 is 16
+// Square of 8 is 64
+// Operation 1 of 8 is 24
+// Operation 2 of 8 is 4
+
+unsubscribe(doubleNumber);
+publish(8);
+// should log:
+// Square of 8 is 64
+// Operation 1 of 8 is 24
+// Operation 2 of 8 is 4
+
+// TODO: Publish additional numbers and check if all subscribed callbacks are called
