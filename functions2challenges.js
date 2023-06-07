@@ -12,8 +12,8 @@
 
 function calculateAverageGrade(students) {
   // TODO: Write your solution here
-
   // pick out each individual object,
+  let averageArray = [];
   for (let i = 0; i < students.length; i++) {
     let student = students[i];
     //   Access the grades of student
@@ -24,15 +24,10 @@ function calculateAverageGrade(students) {
     for (let j = 0; j < studentGrade.length; j++) {
       sumofGrades = sumofGrades + studentGrade[j];
     }
-
-    //  update the value of grades array to the average value;
     averageGrade = sumofGrades / studentGrade.length;
-    studentGrade = averageGrade;
-    student.grades = studentGrade;
+    averageArray.push({ name: student.name, averageGrade: averageGrade });
   }
-
-  // return the original array with the updated value of objects
-  return students;
+  return averageArray;
 }
 
 const students = [
