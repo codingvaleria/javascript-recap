@@ -197,14 +197,23 @@ const callbacks = [];
 
 function subscribe(callback) {
   // TODO: Write your solution here
+  callbacks.push(callback);
 }
 
 function publish(number) {
   // TODO: Write your solution here
+  for (let i = 0; i < callbacks.length; i++) {
+    callbacks[i](number);
+  }
 }
 
 function unsubscribe(callback) {
   // TODO: Write your solution here
+  let indexofCallback = callbacks.indexOf(callback);
+  if (indexofCallback >= 0) {
+    callbacks.splice(indexofCallback, 1);
+  }
+  return callbacks;
 }
 
 // Example callback functions
@@ -224,9 +233,19 @@ function halfNumber(number) {
   console.log(`Half of ${number} is ${number / 2}`);
 }
 
+function operation1(number) {
+  console.log(`Operation 1 of ${number} is ${number * 3}`);
+}
+
+function operation2(number) {
+  console.log(`Operation 2 of ${number} is ${number / 2}`);
+}
+
 subscribe(doubleNumber);
 subscribe(squareNumber);
 // TODO: Subscribe two more callback functions of your choice
+subscribe(operation1);
+subscribe(operation2);
 
 publish(5);
 // should log:
@@ -250,3 +269,4 @@ publish(8);
 // Operation 2 of 8 is 4
 
 // TODO: Publish additional numbers and check if all subscribed callbacks are called
+publish(17);
