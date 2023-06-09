@@ -86,3 +86,71 @@ class Rectangle {
 const rectangle = new Rectangle(5, 10);
 console.log(rectangle.getArea()); // should log 50
 console.log(rectangle.getPerimeter()); // should log 30
+
+// Problem: Student and Course Classes
+//  *
+//  * Description:
+//  * Create a Student class and a Course class to represent students and courses. The classes should have the following properties and methods:
+//  *
+//  * Student Class:
+//  * - name: the name of the student
+//  * - age: the age of the student
+//  * - courses: an array to store the courses the student is enrolled in
+//  *
+//  * The Student class should also have the following methods:
+//  * - enroll(course): takes in a Course object and enrolls the student in that course by adding it to the courses array
+//  * - getCourseCount(): returns the number of courses the student is enrolled in
+//  * - checkIsEnrolled(courseName): takes in a course name and returns true if the student is enrolled in that course, false otherwise
+//  *
+//  * Course Class:
+//  * - name: the name of the course
+//  * - instructor: the name of the course instructor
+//  *
+//  * Create instances of the Student and Course classes. Enroll the student in multiple courses using the enroll() method and then call the getCourseCount() method to log the number of courses the student is enrolled in. Finally, use the checkIsEnrolled() method to check if the student is enrolled in a specific course.
+//  */
+
+class Student {
+  // TODO: Implement the Student class
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.courses = [];
+  }
+
+  enroll(course) {
+    this.courses.push(course);
+  }
+
+  getCourseCount() {
+    return this.courses.length;
+  }
+
+  checkIsEnrolled(courseName) {
+    if (this.courses.includes(courseName)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+class Course {
+  // TODO: Implement the Course class
+  constructor(name, instructor) {
+    this.name = name;
+    this.instructor = instructor;
+  }
+}
+
+const student = new Student("John Doe", 20);
+const course1 = new Course("Math", "Professor Smith");
+const course2 = new Course("English", "Professor Johnson");
+const course3 = new Course("Science", "Professor Brown");
+
+student.enroll(course1);
+student.enroll(course2);
+student.enroll(course3);
+
+console.log(student.getCourseCount()); // should log the number of courses the student is enrolled in
+console.log(student.checkIsEnrolled("Math")); // should log true
+console.log(student.checkIsEnrolled("History")); // should log false
