@@ -183,3 +183,25 @@ const square2 = new Square2(5);
 console.log(square2.sideLength);
 square2.area(); // TypeError; area is no longer a method but a property
 square2.area; // 25 ;
+
+// setter - used to create a reassignabble pseudo-property.
+class square5 {
+  constructor(sideLength) {
+    this.sideLength = sideLength;
+  }
+
+  get area() {
+    return this.sideLength * this.sideLength;
+  }
+
+  set area(newArea) {
+    this.sideLength = Math.sqrt(newArea);
+  }
+}
+
+const square4 = new square5(5);
+square4.sideLength; // => 5
+square4.area; // => 25
+square4.area = 64;
+square4.sideLength; // => 8
+square4.area; // => 64
