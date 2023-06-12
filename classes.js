@@ -150,3 +150,23 @@ class Bird {
     }
   }
 }
+
+// Method Types
+// instance methods- Ara available to every instance of a class and act as behaviours of each instance.
+// static - class level methods; only accessible to the class itself
+
+class CommonMath {
+  static triple(number) {
+    return number * number * number
+  }
+
+  static findHypotenuse(a, b) {
+    return Math.sqrt(a * a + b * b)
+  }
+}
+
+const num = CommonMath.triple(3)
+
+// getter
+// setter
+
