@@ -166,5 +166,20 @@ class CommonMath {
 }
 
 const num = CommonMath.triple(3);
-num.findHypotenuse(6, 5); //TypeError
 CommonMath.findHypotenuse(5, 4);
+
+// getter
+class Square2 {
+  constructor(sideLength) {
+    this.sideLength = sideLength;
+  }
+  // get keyword converts a method to a pseudo-property
+  get area() {
+    return this.sideLength * this.sideLength;
+  }
+}
+
+const square2 = new Square2(5);
+console.log(square2.sideLength);
+square2.area(); // TypeError; area is no longer a method but a property
+square2.area; // 25 ;
