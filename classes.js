@@ -205,3 +205,27 @@ square4.area; // => 25
 square4.area = 64;
 square4.sideLength; // => 8
 square4.area; // => 64
+
+// Using get and set with private fields
+class Square6 {
+  #sideLength;
+  constructor(sideLength) {
+    if (sideLength > 0) {
+      this.#sideLength = sideLength;
+    } else {
+      throw new Error("A square's side length must be a positive value");
+    }
+  }
+
+  get sideLength() {
+    this.#sideLength;
+  }
+
+  set sideLength(sideLength) {
+    if (sideLength > 0) {
+      this.#sideLength = sideLength;
+    } else {
+      throw new Error("A square's side length must be a positive value");
+    }
+  }
+}
