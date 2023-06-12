@@ -157,16 +157,14 @@ class Bird {
 
 class CommonMath {
   static triple(number) {
-    return number * number * number
+    return number * number * number;
   }
 
   static findHypotenuse(a, b) {
-    return Math.sqrt(a * a + b * b)
+    return Math.sqrt(a * a + b * b);
   }
 }
 
-const num = CommonMath.triple(3)
-
-// getter
-// setter
-
+const num = CommonMath.triple(3);
+num.findHypotenuse(6, 5); //TypeError
+CommonMath.findHypotenuse(5, 4);
