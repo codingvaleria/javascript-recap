@@ -285,8 +285,8 @@ console.log(boofer);
 
 class Bird extends Animal {
   // adopting special properties on instatiation
-  constructor(name, breed, age) {
-    super(name, breed, age);
+  constructor(...args) {
+    super(...args);
     this.canFly = true;
   }
 }
