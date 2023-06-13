@@ -229,3 +229,47 @@ class Square6 {
     }
   }
 }
+
+// Inheritance
+// Allows to have a base class where other classes can inherit from
+// Reduces duplicate code.
+
+class Animal {
+  constructor(name, breed, age) {
+    this["name"] = name;
+    this.breed = breed;
+    this.age = age;
+    this.favFood = [];
+  }
+
+  introduce() {
+    return `Hi my name is ${this.name}`;
+  }
+
+  addFood = (food) => {
+    this.favFood.push(food);
+  };
+
+  loopThroughFoods() {
+    console.log(this);
+    this.favFood.forEach(this.logFood);
+  }
+
+  logFood = (food) => {
+    console.log(this);
+    console.log(`Hi my name is ${this.name} and I love to eat ${food}`);
+  };
+}
+class Cat extends Animal {}
+
+let rose = new Cat("rose", "domestic longhair", 9);
+let loci = new Cat("loci", "Birman", 5);
+rose.addFood("Fish");
+rose.addFood("chicken");
+rose.addFood("houseplants");
+console.log(rose);
+
+class Dog extends Animal {}
+
+let boofer = new Dog("boofer", "Bulldog", 5);
+console.log(boofer);
