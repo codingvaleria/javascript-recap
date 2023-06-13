@@ -250,3 +250,25 @@
 //Define a Polygon class. Polygon will accept an Array of integers as a parameter, which will represent each side of a shape.
 // Use the get keyword to make a getter method countSides that counts the number of sides (each index in the array).
 // Use the get keyword to make a getter method perimeter that calculates the sum of each side (each index in the array) of the polygon. This method will become accessible to its child classes.
+
+class Polygon {
+  constructor(sides) {
+    this.sides = sides;
+  }
+
+  get countSides() {
+    return this.sides.length;
+  }
+
+  get perimeter() {
+    let sum = 0;
+    for (let i = 0; i < this.sides.length; i++) {
+      sum = sum + this.sides[i];
+    }
+    return sum;
+  }
+}
+
+const square = new Polygon([4, 4, 4, 4]);
+console.log(square.countSides);
+console.log(square.perimeter);
