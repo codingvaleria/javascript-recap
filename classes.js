@@ -260,7 +260,12 @@ class Animal {
     console.log(`Hi my name is ${this.name} and I love to eat ${food}`);
   };
 }
-class Cat extends Animal {}
+
+class Cat extends Animal {
+  speak() {
+    return "meow";
+  }
+}
 
 let rose = new Cat("rose", "domestic longhair", 9);
 let loci = new Cat("loci", "Birman", 5);
@@ -269,7 +274,11 @@ rose.addFood("chicken");
 rose.addFood("houseplants");
 console.log(rose);
 
-class Dog extends Animal {}
+class Dog extends Animal {
+  speak() {
+    return "woof";
+  }
+}
 
 let boofer = new Dog("boofer", "Bulldog", 5);
 console.log(boofer);
