@@ -272,3 +272,25 @@ class Polygon {
 const square = new Polygon([4, 4, 4, 4]);
 console.log(square.countSides);
 console.log(square.perimeter);
+
+// Define a Triangle class that inherits from Polygon.
+// It will automatically have access to count and perimeter inherited from Polygon.
+// Use the get keyword to make a getter method isValid that checks if the given 3 sides for a triangle is valid.
+class Triangle extends Polygon {
+  get isValid() {
+    if (this.countSides != 3) {
+      return "Number of sides not equal to three";
+    } else {
+      const [a, b, c] = this.sides;
+      if (a + b > c && a + c > b && b + c > a) {
+        return true;
+      }
+      return false;
+    }
+  }
+}
+
+const isosceles = new Triangle([4, 5]);
+console.log(isosceles.countSides);
+console.log(isosceles.perimeter);
+console.log(isosceles.isValid);
