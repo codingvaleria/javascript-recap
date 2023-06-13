@@ -294,3 +294,37 @@ const isosceles = new Triangle([4, 5]);
 console.log(isosceles.countSides);
 console.log(isosceles.perimeter);
 console.log(isosceles.isValid);
+
+class Square extends Polygon {
+  get isValid() {
+    if (this.countSides !== 4) {
+      return false; // A square must have exactly 4 sides
+    }
+
+    const side = this.sides[0];
+    for (let i = 1; i < this.sides.length; i++) {
+      if (this.sides[i] !== side) {
+        return false; // Not all sides are equal
+      }
+    }
+
+    return true;
+  }
+
+  get area() {
+    if (!this.isValid) {
+      return null; // If the square is not valid, area cannot be calculated
+    }
+
+    const side = this.sides[0];
+    return side * side;
+  }
+}
+
+const square1 = new Square([4, 4, 4, 4]);
+console.log(square1.isValid); // Output: true
+console.log(square1.area); // Output: 16
+
+const square2 = new Square([5, 5, 6, 5]);
+console.log(square2.isValid); // Output: false
+console.log(square2.area); // Output: null
