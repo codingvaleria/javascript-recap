@@ -282,3 +282,15 @@ class Dog extends Animal {
 
 let boofer = new Dog("boofer", "Bulldog", 5);
 console.log(boofer);
+
+class Bird extends Animal {
+  // adopting special properties on instatiation
+  constructor(name, breed, age) {
+    super(name, breed, age);
+    this.canFly = true;
+  }
+}
+
+const bird = new Bird("bubbles", "chicken", "2");
+bird.addFood("chickmash");
+console.log(bird);
