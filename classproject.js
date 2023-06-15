@@ -17,14 +17,29 @@ Steps:
    - `update(data)`: Update the book's attributes with the provided data.
    - `save(data)`: Save the book to the database.
 
-   Book attributes:
+ Book attributes:
    - `id` (number): The unique identifier of the book.
    - `title` (string): The title of the book.
    - `author` (string): The author of the book.
    - `isBorrowed` (boolean): Whether the book is borrowed or not.
    - `createdAt` (Date): When this entry was created
    - `updatedAt` (Date): When this entry was last updated
+  
+*/
 
+class Book {
+  constructor(db, id, title, author, isBorrowed, createdAt, updatedAt) {
+    this.db = db;
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.isBorrowed = isBorrowed;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
+  }
+}
+
+/*
 2. Implement the Student class:
    - `constructor(db)`: Initialize the Student instance.
    - `findById(id)`: Query the database to retrieve the student with the given id.
