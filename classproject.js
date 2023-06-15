@@ -15,7 +15,7 @@ Steps:
    - `findById(id)`: Query the database to retrieve the book with the given id.
    - `findAll()`: Retrieve all saved books from the database.
    - `update(data)`: Update the book's attributes with the provided data.
-   - `save(data)`: Save the book to the database.
+   - `save()`: Save the book to the database.
 
  Book attributes:
    - `id` (number): The unique identifier of the book.
@@ -28,14 +28,52 @@ Steps:
 */
 
 class Book {
-  constructor(db, id, title, author, isBorrowed, createdAt, updatedAt) {
+  constructor(db, obj) {
     this.db = db;
+    this.id = obj.id;
+    this.title = obj.title;
+    this.author = obj.author;
+    this.isBorrowed = obj.isBorrowed;
+    this.createdAt = obj.createdAt;
+    this.updatedAt = obj.updatedAt;
+  }
+
+  findById(id) {
+    let bookObj = this.db.selectById("books", id);
+    //   So to get the instance of Book rather than just an object
+    let book = new Book(
+      this.db, // the instance of previous /existing objects
+      bookObj
+    );
+    return book;
+  }
+
+  findAll() {
+    let booksObjects = this.db.select("books");
+    let books = [];
+    for (let i = 0; i < booksObjects.length; i++) {
+      let book = new Book(this.db, booksObjects[i]);
+      books.push(book);
+    }
+    return books;
+  }
+
+  update(data) {
+    let isUpdated = this.db.update("books", this.id, data);
+    if (isUpdated === true) {
+      return this.findById(this.id);
+    } else {
+      return null;
+    }
+  }
+
+  save() {
+    let id = this.db.insert("books", {
+      title: this.title,
+      author: this.author,
+      isBorrowed: this.isBorrowed,
+    });
     this.id = id;
-    this.title = title;
-    this.author = author;
-    this.isBorrowed = isBorrowed;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
   }
 }
 
