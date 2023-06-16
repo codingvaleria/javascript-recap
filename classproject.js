@@ -118,6 +118,15 @@ class Student {
     }
     return students;
   }
+
+  update(data) {
+    let studentIsUpdated = this.db.update("students", this.id, data);
+    if (studentIsUpdated === true) {
+      return this.findById(this.id);
+    } else {
+      return null;
+    }
+  }
 }
 
 /*
