@@ -83,7 +83,7 @@ class Book {
    - `findById(id)`: Query the database to retrieve the student with the given id.
    - `findAll()`: Retrieve all saved students from the database.
    - `update(data)`: Update the student's attributes with the provided data.
-   - `save(data)`: Save the student to the database.
+   - `save()`: Save the student to the database.
 
 
    Student attributes:
@@ -126,7 +126,7 @@ class Student {
    - `findById(id)`: Query the database to retrieve the admin with the given id.
    - `findAll()`: Retrieve all saved admins from the database.
    - `update(data)`: Update the admin's attributes with the provided data.
-   - `save(data)`: Save the admin to the database.
+   - `save()`: Save the admin to the database.
    - `checkPassword(name, password)`: Check if the provided name and password match the admin's credentials. Return `true` if they match, and `false` otherwise.
 
    Admin attributes:
