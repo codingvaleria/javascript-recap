@@ -108,6 +108,16 @@ class Student {
     let student = new Student(this.db, studentObj);
     return student;
   }
+
+  findAll() {
+    let studentsObj = this.db.select("students");
+    let students = [];
+    for (let i = 0; i < studentsObj.length; i++) {
+      let student = new Student(this.db, studentsObj[i]);
+      students.push(student);
+    }
+    return students;
+  }
 }
 
 /*
