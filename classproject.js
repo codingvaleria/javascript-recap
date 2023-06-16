@@ -92,7 +92,19 @@ class Book {
    - `grade` (string): The grade of the student.
    - `createdAt` (Date): When this entry was created
    - `updatedAt` (Date): When this entry was last updated
+*/
 
+class Student {
+  constructor(db, obj) {
+    this.db = db;
+    this.name = obj.name;
+    this.grade = obj.name;
+    this.createdAt = obj.createdAt;
+    this.updatedAt = obj.updatedAt;
+  }
+}
+
+/*
 3. Implement the Admin class:
    - `constructor(db)`: Initialize the Admin instance.
    - `findById(id)`: Query the database to retrieve the admin with the given id.
