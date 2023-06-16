@@ -127,6 +127,14 @@ class Student {
       return null;
     }
   }
+
+  save() {
+    let id = this.db.insert("students", {
+      title: this.name,
+      author: this.grade,
+    });
+    this.id = id;
+  }
 }
 
 /*
