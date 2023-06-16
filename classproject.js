@@ -102,6 +102,12 @@ class Student {
     this.createdAt = obj.createdAt;
     this.updatedAt = obj.updatedAt;
   }
+
+  findById(id) {
+    let studentObj = this.db.selectById("students", id);
+    let student = new Student(this.db, studentObj);
+    return student;
+  }
 }
 
 /*
