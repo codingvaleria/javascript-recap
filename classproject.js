@@ -97,8 +97,9 @@ class Book {
 class Student {
   constructor(db, obj) {
     this.db = db;
+    this.id = obj.id;
     this.name = obj.name;
-    this.grade = obj.name;
+    this.grade = obj.grade;
     this.createdAt = obj.createdAt;
     this.updatedAt = obj.updatedAt;
   }
@@ -109,11 +110,11 @@ class Student {
     return student;
   }
 
-  findAll() {
-    let studentsObj = this.db.select("students");
+  static findAll(db) {
+    let studentsObjects = db.select("students");
     let students = [];
-    for (let i = 0; i < studentsObj.length; i++) {
-      let student = new Student(this.db, studentsObj[i]);
+    for (let i = 0; i < studentsObjects.length; i++) {
+      let student = new Student(db, studentsObjects[i]);
       students.push(student);
     }
     return students;
@@ -130,8 +131,8 @@ class Student {
 
   save() {
     let id = this.db.insert("students", {
-      title: this.name,
-      author: this.grade,
+      name: this.name,
+      grade: this.grade,
     });
     this.id = id;
   }
@@ -217,7 +218,6 @@ class InMemoryDatabase {
 
 // Create a database instance
 const db = new InMemoryDatabase();
-console.log(db);
 
 // Create and save some books
 const book1 = new Book(db, {
@@ -226,7 +226,6 @@ const book1 = new Book(db, {
   isBorrowed: false,
 });
 book1.save();
-console.log(db);
 
 const book2 = new Book(db, {
   title: "Book 2",
@@ -236,10 +235,33 @@ const book2 = new Book(db, {
 book2.save();
 
 const book3 = new Book(db, {
-  id: 3,
   title: "Book 3",
   author: "Author 3",
   isBorrowed: false,
 });
 book3.save();
 console.log(Book.findAll(db));
+
+// Create and save some students
+const student1 = new Student(db, {
+  id: 1,
+  name: "Student 1",
+  grade: "Grade 1",
+});
+student1.save();
+
+const student2 = new Student(db, {
+  id: 2,
+  name: "Student 2",
+  grade: "Grade 2",
+});
+student2.save();
+
+const student3 = new Student(db, {
+  id: 3,
+  name: "Student 3",
+  grade: "Grade 3",
+});
+student3.save();
+
+console.log(Student.findAll(db));
