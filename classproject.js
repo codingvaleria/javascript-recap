@@ -187,6 +187,15 @@ class Admin {
     }
     return admins;
   }
+
+  update(data) {
+    let adminIsUpdated = this.db.update("admins", this.id, data);
+    if (adminIsUpdated === true) {
+      return this.findById(this.id);
+    } else {
+      return null;
+    }
+  }
 }
 
 /*
@@ -276,7 +285,7 @@ const book3 = new Book(db, {
   isBorrowed: false,
 });
 book3.save();
-console.log(Book.findAll(db));
+// console.log(Book.findAll(db));
 
 // Create and save some students
 const student1 = new Student(db, {
@@ -300,7 +309,7 @@ const student3 = new Student(db, {
 });
 student3.save();
 
-console.log(Student.findAll(db));
+// console.log(Student.findAll(db));
 
 // Create and save some admins
 const admin1 = new Admin(db, {
@@ -310,7 +319,6 @@ const admin1 = new Admin(db, {
 });
 
 admin1.save();
-console.log(admin1.findById(1));
 
 const admin2 = new Admin(db, {
   id: 2,
@@ -319,4 +327,8 @@ const admin2 = new Admin(db, {
 });
 
 admin2.save();
-console.log(Admin.findAll(db));
+
+// make changes to the admin
+admin1.name = "John Doe";
+//update the admin
+const updatedAdmin = admin1.update({ name: admin1.name });
