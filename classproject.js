@@ -153,7 +153,33 @@ class Student {
    - `password` (string): The password of the admin.
    - `createdAt` (Date): When this entry was created
    - `updatedAt` (Date): When this entry was last updated
+*/
 
+class Admin {
+  constructor(db, obj) {
+    this.db = db;
+    this.name = obj.name;
+    this.password = obj.password;
+    this.createdAt = obj.createdAt;
+    this.updatedAt = obj.updatedAt;
+  }
+
+  save() {
+    let id = this.db.insert("admins", {
+      name: this.name,
+      password: this.password,
+    });
+    this.id = id;
+  }
+
+  findById(id) {
+    let adminObj = this.db.selectById("admins", id);
+    let admin = new Admin(this.db, adminObj);
+    return admin;
+  }
+}
+
+/*
 4. Implement the LibraryApp class:
    - `constructor(db, id, name, location)`: Initialize the LibraryApp instance.
    - `addBook(bookData)`: Add a new book to the library. The `bookData` parameter should be an object with Book properties.
@@ -265,3 +291,13 @@ const student3 = new Student(db, {
 student3.save();
 
 console.log(Student.findAll(db));
+
+// Create and save some admins
+const admin1 = new Admin(db, {
+  id: 1,
+  name: "admin 1",
+  password: "admin123",
+});
+
+admin1.save();
+console.log(admin1.findById(1));
