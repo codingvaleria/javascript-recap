@@ -48,11 +48,11 @@ class Book {
     return book;
   }
 
-  findAll() {
-    let booksObjects = this.db.select("books");
+  static findAll(db) {
+    let booksObjects = db.select("books");
     let books = [];
     for (let i = 0; i < booksObjects.length; i++) {
-      let book = new Book(this.db, booksObjects[i]);
+      let book = new Book(db, booksObjects[i]);
       books.push(book);
     }
     return books;
@@ -214,3 +214,32 @@ class InMemoryDatabase {
     return nextId;
   }
 }
+
+// Create a database instance
+const db = new InMemoryDatabase();
+console.log(db);
+
+// Create and save some books
+const book1 = new Book(db, {
+  title: "Book 1",
+  author: "Author 1",
+  isBorrowed: false,
+});
+book1.save();
+console.log(db);
+
+const book2 = new Book(db, {
+  title: "Book 2",
+  author: "Author 2",
+  isBorrowed: true,
+});
+book2.save();
+
+const book3 = new Book(db, {
+  id: 3,
+  title: "Book 3",
+  author: "Author 3",
+  isBorrowed: false,
+});
+book3.save();
+console.log(Book.findAll(db));
