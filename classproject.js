@@ -177,6 +177,16 @@ class Admin {
     let admin = new Admin(this.db, adminObj);
     return admin;
   }
+
+  static findAll(db) {
+    let adminsObjects = db.select("admins");
+    let admins = [];
+    for (let i = 0; i < adminsObjects.length; i++) {
+      let admin = new Admin(db, adminsObjects[i]);
+      admins.push(admin);
+    }
+    return admins;
+  }
 }
 
 /*
@@ -296,8 +306,17 @@ console.log(Student.findAll(db));
 const admin1 = new Admin(db, {
   id: 1,
   name: "admin 1",
-  password: "admin123",
+  password: "admin1",
 });
 
 admin1.save();
 console.log(admin1.findById(1));
+
+const admin2 = new Admin(db, {
+  id: 2,
+  name: "admin 2",
+  password: "admin2",
+});
+
+admin2.save();
+console.log(Admin.findAll(db));
