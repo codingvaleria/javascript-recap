@@ -9,7 +9,132 @@ Requirements:
 5. The InMemoryDatabase class should receive the name of the table and the required data to run queries, updates, or selects.
 6. Use the InMemoryDatabase implementation provided for this challenge.
 
-Steps:
+*/
+class InMemoryDatabase {
+  constructor() {
+    this.tables = {};
+    this.lastIds = {};
+  }
+
+  select(tableName) {
+    if (this.tables[tableName]) {
+      return this.tables[tableName];
+    } else {
+      return [];
+    }
+  }
+
+  selectById(tableName, id) {
+    const table = this.tables[tableName];
+    if (table) {
+      return table.find((entry) => entry.id === id) || null;
+    } else {
+      return null;
+    }
+  }
+
+  update(tableName, id, data) {
+    const table = this.tables[tableName];
+    if (table) {
+      const entry = table.find((entry) => entry.id === id);
+      if (entry) {
+        Object.assign(entry, data);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  insert(tableName, data) {
+    if (!this.tables[tableName]) {
+      this.tables[tableName] = [];
+      this.lastIds[tableName] = 0;
+    }
+    const nextId = this.lastIds[tableName] + 1;
+    const entry = { id: nextId, ...data };
+    this.tables[tableName].push(entry);
+    this.lastIds[tableName] = nextId;
+    return nextId;
+  }
+}
+
+// Create a database instance
+const db = new InMemoryDatabase();
+
+// Create and save some books
+const book1 = new Book(db, {
+  title: "Book 1",
+  author: "Author 1",
+  isBorrowed: false,
+});
+book1.save();
+
+const book2 = new Book(db, {
+  title: "Book 2",
+  author: "Author 2",
+  isBorrowed: true,
+});
+book2.save();
+
+const book3 = new Book(db, {
+  title: "Book 3",
+  author: "Author 3",
+  isBorrowed: false,
+});
+book3.save();
+// console.log(Book.findAll(db));
+
+// Create and save some students
+const student1 = new Student(db, {
+  id: 1,
+  name: "Student 1",
+  grade: "Grade 1",
+});
+student1.save();
+
+const student2 = new Student(db, {
+  id: 2,
+  name: "Student 2",
+  grade: "Grade 2",
+});
+student2.save();
+
+const student3 = new Student(db, {
+  id: 3,
+  name: "Student 3",
+  grade: "Grade 3",
+});
+student3.save();
+
+// console.log(Student.findAll(db));
+
+// Create and save some admins
+const admin1 = new Admin(db, {
+  id: 1,
+  name: "admin 1",
+  password: "admin1",
+});
+
+admin1.save();
+
+const admin2 = new Admin(db, {
+  id: 2,
+  name: "admin 2",
+  password: "admin2",
+});
+
+admin2.save();
+
+// make changes to the admin
+admin1.name = "John Doe";
+//update the admin
+const updatedAdmin = admin1.update({ name: admin1.name });
+
+// console.log(db.tables);
+console.log(admin1.checkPassword("admin 2", "admin1"));
+console.log(admin1.checkPassword("admin 1", "admin1"));
+
+/*Steps:
 1. Implement the Book class:
    - `constructor(db)`: Initialize the Book instance.
    - `findById(id)`: Query the database to retrieve the book with the given id.
@@ -26,7 +151,6 @@ Steps:
    - `updatedAt` (Date): When this entry was last updated
   
 */
-
 class Book {
   constructor(db, obj) {
     this.db = db;
@@ -234,126 +358,4 @@ class Admin {
 Note: Feel free to add any additional methods or functionalities to enhance the models or the overall project.
 */
 
-class InMemoryDatabase {
-  constructor() {
-    this.tables = {};
-    this.lastIds = {};
-  }
 
-  select(tableName) {
-    if (this.tables[tableName]) {
-      return this.tables[tableName];
-    } else {
-      return [];
-    }
-  }
-
-  selectById(tableName, id) {
-    const table = this.tables[tableName];
-    if (table) {
-      return table.find((entry) => entry.id === id) || null;
-    } else {
-      return null;
-    }
-  }
-
-  update(tableName, id, data) {
-    const table = this.tables[tableName];
-    if (table) {
-      const entry = table.find((entry) => entry.id === id);
-      if (entry) {
-        Object.assign(entry, data);
-        return true;
-      }
-    }
-    return false;
-  }
-
-  insert(tableName, data) {
-    if (!this.tables[tableName]) {
-      this.tables[tableName] = [];
-      this.lastIds[tableName] = 0;
-    }
-    const nextId = this.lastIds[tableName] + 1;
-    const entry = { id: nextId, ...data };
-    this.tables[tableName].push(entry);
-    this.lastIds[tableName] = nextId;
-    return nextId;
-  }
-}
-
-// Create a database instance
-const db = new InMemoryDatabase();
-
-// Create and save some books
-const book1 = new Book(db, {
-  title: "Book 1",
-  author: "Author 1",
-  isBorrowed: false,
-});
-book1.save();
-
-const book2 = new Book(db, {
-  title: "Book 2",
-  author: "Author 2",
-  isBorrowed: true,
-});
-book2.save();
-
-const book3 = new Book(db, {
-  title: "Book 3",
-  author: "Author 3",
-  isBorrowed: false,
-});
-book3.save();
-// console.log(Book.findAll(db));
-
-// Create and save some students
-const student1 = new Student(db, {
-  id: 1,
-  name: "Student 1",
-  grade: "Grade 1",
-});
-student1.save();
-
-const student2 = new Student(db, {
-  id: 2,
-  name: "Student 2",
-  grade: "Grade 2",
-});
-student2.save();
-
-const student3 = new Student(db, {
-  id: 3,
-  name: "Student 3",
-  grade: "Grade 3",
-});
-student3.save();
-
-// console.log(Student.findAll(db));
-
-// Create and save some admins
-const admin1 = new Admin(db, {
-  id: 1,
-  name: "admin 1",
-  password: "admin1",
-});
-
-admin1.save();
-
-const admin2 = new Admin(db, {
-  id: 2,
-  name: "admin 2",
-  password: "admin2",
-});
-
-admin2.save();
-
-// make changes to the admin
-admin1.name = "John Doe";
-//update the admin
-const updatedAdmin = admin1.update({ name: admin1.name });
-
-// console.log(db.tables);
-console.log(admin1.checkPassword("admin 2", "admin1"));
-console.log(admin1.checkPassword("admin 1", "admin1"));
