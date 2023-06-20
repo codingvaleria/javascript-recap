@@ -61,79 +61,6 @@ class InMemoryDatabase {
 // Create a database instance
 const db = new InMemoryDatabase();
 
-// Create and save some books
-const book1 = new Book(db, {
-  title: "Book 1",
-  author: "Author 1",
-  isBorrowed: false,
-});
-book1.save();
-
-const book2 = new Book(db, {
-  title: "Book 2",
-  author: "Author 2",
-  isBorrowed: true,
-});
-book2.save();
-
-const book3 = new Book(db, {
-  title: "Book 3",
-  author: "Author 3",
-  isBorrowed: false,
-});
-book3.save();
-// console.log(Book.findAll(db));
-
-// Create and save some students
-const student1 = new Student(db, {
-  id: 1,
-  name: "Student 1",
-  grade: "Grade 1",
-});
-student1.save();
-
-const student2 = new Student(db, {
-  id: 2,
-  name: "Student 2",
-  grade: "Grade 2",
-});
-student2.save();
-
-const student3 = new Student(db, {
-  id: 3,
-  name: "Student 3",
-  grade: "Grade 3",
-});
-student3.save();
-
-// console.log(Student.findAll(db));
-
-// Create and save some admins
-const admin1 = new Admin(db, {
-  id: 1,
-  name: "admin 1",
-  password: "admin1",
-});
-
-admin1.save();
-
-const admin2 = new Admin(db, {
-  id: 2,
-  name: "admin 2",
-  password: "admin2",
-});
-
-admin2.save();
-
-// make changes to the admin
-admin1.name = "John Doe";
-//update the admin
-const updatedAdmin = admin1.update({ name: admin1.name });
-
-// console.log(db.tables);
-console.log(admin1.checkPassword("admin 2", "admin1"));
-console.log(admin1.checkPassword("admin 1", "admin1"));
-
 /*Steps:
 1. Implement the Book class:
    - `constructor(db)`: Initialize the Book instance.
@@ -200,6 +127,28 @@ class Book {
     this.id = id;
   }
 }
+// Create and save some books
+const book1 = new Book(db, {
+  title: "Book 1",
+  author: "Author 1",
+  isBorrowed: false,
+});
+book1.save();
+
+const book2 = new Book(db, {
+  title: "Book 2",
+  author: "Author 2",
+  isBorrowed: true,
+});
+book2.save();
+
+const book3 = new Book(db, {
+  title: "Book 3",
+  author: "Author 3",
+  isBorrowed: false,
+});
+book3.save();
+// console.log(Book.findAll(db));
 
 /*
 2. Implement the Student class:
@@ -261,6 +210,29 @@ class Student {
     this.id = id;
   }
 }
+// Create and save some students
+const student1 = new Student(db, {
+  id: 1,
+  name: "Student 1",
+  grade: "Grade 1",
+});
+student1.save();
+
+const student2 = new Student(db, {
+  id: 2,
+  name: "Student 2",
+  grade: "Grade 2",
+});
+student2.save();
+
+const student3 = new Student(db, {
+  id: 3,
+  name: "Student 3",
+  grade: "Grade 3",
+});
+student3.save();
+
+// console.log(Student.findAll(db));
 
 /*
 3. Implement the Admin class:
@@ -343,7 +315,33 @@ class Admin {
   }
 }
 
+// Create and save some admins
+const admin1 = new Admin(db, {
+  id: 1,
+  name: "admin 1",
+  password: "admin1",
+});
+
+admin1.save();
+
+const admin2 = new Admin(db, {
+  id: 2,
+  name: "admin 2",
+  password: "admin2",
+});
+
+admin2.save();
+
+// make changes to the admin
+admin1.name = "John Doe";
+//update the admin
+const updatedAdmin = admin1.update({ name: admin1.name });
+
+// console.log(db.tables);
+// console.log(admin1.checkPassword("admin 2", "admin1"));
+// console.log(admin1.checkPassword("admin 1", "admin1"));
 /*
+
 4. Implement the LibraryApp class:
    - `constructor(db, id, name, location)`: Initialize the LibraryApp instance.
    - `addBook(bookData)`: Add a new book to the library. The `bookData` parameter should be an object with Book properties.
@@ -358,11 +356,26 @@ class Admin {
 Note: Feel free to add any additional methods or functionalities to enhance the models or the overall project.
 */
 
-class Library {
+class LibraryApp {
   constructor(db, id, name, location) {
     this.db = db;
     this.id = id;
     this.name = name;
     this.location = location;
   }
+
+  addBook(bookData) {
+    let newBook = new Book(this.db, bookData);
+    newBook.save();
+  }
 }
+
+const book4 = new Book(db, {
+  title: "Book 4",
+  author: "Author 4",
+  isBorrowed: false,
+});
+
+let library1 = new LibraryApp(db, 1, "library1", "Kenya");
+library1.addBook(book4);
+console.log(db);
