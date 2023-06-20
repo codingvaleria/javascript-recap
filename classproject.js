@@ -358,4 +358,11 @@ class Admin {
 Note: Feel free to add any additional methods or functionalities to enhance the models or the overall project.
 */
 
-
+class Library {
+  constructor(db, id, name, location) {
+    this.db = db;
+    this.id = id;
+    this.name = name;
+    this.location = location;
+  }
+}
