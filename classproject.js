@@ -196,6 +196,27 @@ class Admin {
       return null;
     }
   }
+
+  checkPassword(name, password) {
+    // select admin table
+    let adminTable = this.db.select("admins");
+
+    // identify admin with name
+    if (!adminTable) {
+      return "invalid admin";
+    } else {
+      for (let i = 0; i < adminTable.length; i++) {
+        let admin = adminTable[i];
+
+        // check password and name
+        if (admin.name === name && admin.password === password) {
+          return true;
+        }
+      }
+    }
+    // No match found
+    return false;
+  }
 }
 
 /*
@@ -332,3 +353,7 @@ admin2.save();
 admin1.name = "John Doe";
 //update the admin
 const updatedAdmin = admin1.update({ name: admin1.name });
+
+// console.log(db.tables);
+console.log(admin1.checkPassword("admin 2", "admin1"));
+console.log(admin1.checkPassword("admin 1", "admin1"));
