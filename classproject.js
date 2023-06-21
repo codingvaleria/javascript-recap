@@ -348,6 +348,7 @@ console.log(Admin.findById(2));
 /*4; Implement the LibraryApp class:
    - `constructor(db, id, name, location)`: Initialize the LibraryApp instance.
    - `addBook(bookData)`: Add a new book to the library. The `bookData` parameter should be an object with Book properties.
+   - `addStudent(studentData)`: Add a new student to the library. The `studentData` parameter should be an object with student properties.
    - `borrowBook(studentId, bookId)`: Allow a student to borrow a book. The `studentId` and `bookId` parameters represent the IDs of the student and the book, respectively.
    - `getBorrowedBooks()`: Retrieve an array of books that are currently borrowed from the library.
    - `getAvailableBooks()`: Retrieve an array of books that are currently available in the library.
@@ -358,6 +359,17 @@ console.log(Admin.findById(2));
 
 Note: Feel free to add any additional methods or functionalities to enhance the models or the overall project.
 */
+// getBooks(studentId) : return instances of the model;, have them as static methods.
+// getStudent(bookId)  return instances of the model;, have them as static methods.
+
+class StudentBook {
+  constructor(db, studentId, bookId, isBorrowed) {
+    this.db = db;
+    this.studentId = studentId;
+    this.bookId = bookId;
+    this.isBorrowed = isBorrowed;
+  }
+}
 
 class LibraryApp {
   constructor(db, id, name, location) {
