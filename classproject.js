@@ -89,11 +89,11 @@ class Book {
     this.updatedAt = obj.updatedAt;
   }
 
-  findById(id) {
-    let bookObj = this.db.selectById("books", id);
+  static findById(id) {
+    let bookObj = db.selectById("books", id);
     //   So to get the instance of Book rather than just an object
     let book = new Book(
-      this.db, // the instance of previous /existing objects
+      db, // the instance of previous /existing objects
       bookObj
     );
     return book;
@@ -149,7 +149,7 @@ const book3 = new Book(db, {
 });
 book3.save();
 // console.log(Book.findAll(db));
-
+// console.log(Book.findById(3));
 /*
 2. Implement the Student class:
    - `constructor(db)`: Initialize the Student instance.
@@ -177,9 +177,9 @@ class Student {
     this.updatedAt = obj.updatedAt;
   }
 
-  findById(id) {
-    let studentObj = this.db.selectById("students", id);
-    let student = new Student(this.db, studentObj);
+  static findById(id) {
+    let studentObj = db.selectById("students", id);
+    let student = new Student(db, studentObj);
     return student;
   }
 
@@ -233,7 +233,7 @@ const student3 = new Student(db, {
 student3.save();
 
 // console.log(Student.findAll(db));
-
+console.log(Student.findById(3));
 /*
 3. Implement the Admin class:
    - `constructor(db)`: Initialize the Admin instance.
@@ -268,9 +268,9 @@ class Admin {
     this.id = id;
   }
 
-  findById(id) {
-    let adminObj = this.db.selectById("admins", id);
-    let admin = new Admin(this.db, adminObj);
+  static findById(id) {
+    let adminObj = db.selectById("admins", id);
+    let admin = new Admin(db, adminObj);
     return admin;
   }
 
@@ -287,7 +287,7 @@ class Admin {
   update(data) {
     let adminIsUpdated = this.db.update("admins", this.id, data);
     if (adminIsUpdated === true) {
-      return this.findById(this.id);
+      return Admin.findById(this.id);
     } else {
       return null;
     }
@@ -336,13 +336,15 @@ admin2.save();
 admin1.name = "John Doe";
 //update the admin
 const updatedAdmin = admin1.update({ name: admin1.name });
+console.log(admin1);
 
 // console.log(db.tables);
 // console.log(admin1.checkPassword("admin 2", "admin1"));
 // console.log(admin1.checkPassword("admin 1", "admin1"));
-/*
 
-4. Implement the LibraryApp class:
+console.log(Admin.findById(2));
+
+4; /*Implement the LibraryApp class:
    - `constructor(db, id, name, location)`: Initialize the LibraryApp instance.
    - `addBook(bookData)`: Add a new book to the library. The `bookData` parameter should be an object with Book properties.
    - `borrowBook(studentId, bookId)`: Allow a student to borrow a book. The `studentId` and `bookId` parameters represent the IDs of the student and the book, respectively.
@@ -378,4 +380,4 @@ const book4 = new Book(db, {
 
 let library1 = new LibraryApp(db, 1, "library1", "Kenya");
 library1.addBook(book4);
-console.log(db);
+// console.log(db);
