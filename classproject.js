@@ -89,7 +89,7 @@ class Book {
     this.updatedAt = obj.updatedAt;
   }
 
-  static findById(id) {
+  static findById(db, id) {
     let bookObj = db.selectById("books", id);
     //   So to get the instance of Book rather than just an object
     let book = new Book(
@@ -112,7 +112,7 @@ class Book {
   update(data) {
     let isUpdated = this.db.update("books", this.id, data);
     if (isUpdated === true) {
-      return this.findById(this.id);
+      return Book.findById(this.db, this.id);
     } else {
       return null;
     }
@@ -177,7 +177,7 @@ class Student {
     this.updatedAt = obj.updatedAt;
   }
 
-  static findById(id) {
+  static findById(db, id) {
     let studentObj = db.selectById("students", id);
     let student = new Student(db, studentObj);
     return student;
@@ -196,7 +196,7 @@ class Student {
   update(data) {
     let studentIsUpdated = this.db.update("students", this.id, data);
     if (studentIsUpdated === true) {
-      return this.findById(this.id);
+      return Student.findById(this.db, this.id);
     } else {
       return null;
     }
@@ -254,6 +254,7 @@ console.log(Student.findById(3));
 class Admin {
   constructor(db, obj) {
     this.db = db;
+    this.id = obj.id;
     this.name = obj.name;
     this.password = obj.password;
     this.createdAt = obj.createdAt;
@@ -268,7 +269,7 @@ class Admin {
     this.id = id;
   }
 
-  static findById(id) {
+  static findById(db, id) {
     let adminObj = db.selectById("admins", id);
     let admin = new Admin(db, adminObj);
     return admin;
@@ -287,7 +288,7 @@ class Admin {
   update(data) {
     let adminIsUpdated = this.db.update("admins", this.id, data);
     if (adminIsUpdated === true) {
-      return Admin.findById(this.id);
+      return Admin.findById(this.db, this.id);
     } else {
       return null;
     }
@@ -344,7 +345,7 @@ console.log(admin1);
 
 console.log(Admin.findById(2));
 
-4; /*Implement the LibraryApp class:
+/*4; Implement the LibraryApp class:
    - `constructor(db, id, name, location)`: Initialize the LibraryApp instance.
    - `addBook(bookData)`: Add a new book to the library. The `bookData` parameter should be an object with Book properties.
    - `borrowBook(studentId, bookId)`: Allow a student to borrow a book. The `studentId` and `bookId` parameters represent the IDs of the student and the book, respectively.
