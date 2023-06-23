@@ -87,10 +87,43 @@ let db = new InMemoryDatabase();
 class Book {
   constructor(db, id, title, author, isBorrowed, createdAt, updatedAt) {
     this.db = db;
+    this.id = id;
     this.title = title;
     this.author = author;
     this.isBorrowed = isBorrowed;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
+
+  save() {
+    let newBookObj = this.db.insert("books", {
+      title: this.title,
+      author: this.author,
+      isBorrowed: this.isBorrowed,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    });
+    return newBookObj;
+  }
 }
+
+let newBook = {
+  id: 1,
+  title: "Book 1",
+  author: "book1author",
+  isBorrowed: "false",
+  createdAt: null,
+  updatedAt: null,
+};
+
+let book1 = new Book(
+  db,
+  newBook.id,
+  newBook.title,
+  newBook.author,
+  newBook.isBorrowed,
+  newBook.createdAt,
+  newBook.updatedAt
+);
+book1.save();
+console.log(book1);
