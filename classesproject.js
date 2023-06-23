@@ -53,7 +53,15 @@ class InMemoryDatabase {
     const nextId = this.lastIds[tableName] + 1;
     const entry = { id: nextId, ...data };
     this.tables[tableName].push(entry);
+    console.log(entry);
     this.lastIds[tableName] = nextId;
     return nextId;
   }
 }
+
+let db = new InMemoryDatabase();
+console.log(db);
+console.log(db.select(1));
+console.log(db.selectById(2));
+console.log(db.update());
+console.log(db.insert());
