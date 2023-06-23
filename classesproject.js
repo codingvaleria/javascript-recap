@@ -60,8 +60,37 @@ class InMemoryDatabase {
 }
 
 let db = new InMemoryDatabase();
-console.log(db);
-console.log(db.select(1));
-console.log(db.selectById(2));
-console.log(db.update());
-console.log(db.insert());
+// console.log(db);
+// console.log(db.select(1));
+// console.log(db.selectById(2));
+// console.log(db.update());
+// console.log(db.insert());
+
+/*Steps:
+1. Implement the Book class:
+   - `constructor(db)`: Initialize the Book instance.
+   - `findById(id)`: Query the database to retrieve the book with the given id.
+   - `findAll()`: Retrieve all saved books from the database.
+   - `update(data)`: Update the book's attributes with the provided data.
+   - `save()`: Save the book to the database.
+
+ Book attributes:
+   - `id` (number): The unique identifier of the book.
+   - `title` (string): The title of the book.
+   - `author` (string): The author of the book.
+   - `isBorrowed` (boolean): Whether the book is borrowed or not.
+   - `createdAt` (Date): When this entry was created
+   - `updatedAt` (Date): When this entry was last updated
+  
+*/
+
+class Book {
+  constructor(db, id, title, author, isBorrowed, createdAt, updatedAt) {
+    this.db = db;
+    this.title = title;
+    this.author = author;
+    this.isBorrowed = isBorrowed;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
+  }
+}
