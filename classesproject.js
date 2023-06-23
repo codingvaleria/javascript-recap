@@ -53,7 +53,7 @@ class InMemoryDatabase {
     const nextId = this.lastIds[tableName] + 1;
     const entry = { id: nextId, ...data };
     this.tables[tableName].push(entry);
-    console.log(entry);
+    // console.log(entry);
     this.lastIds[tableName] = nextId;
     return nextId;
   }
@@ -110,6 +110,20 @@ class Book {
     let bookObj = db.selectById("books", id);
     return bookObj;
   }
+
+  static findAll(db) {
+    let booksObjects = db.select("books");
+    return booksObjects;
+  }
+
+  update(data) {
+    let updatedBook = this.db.update("books", data.id, data);
+    if (updatedBook === true) {
+      return Book.findById(db, data.id);
+    } else {
+      return null;
+    }
+  }
 }
 
 let newBook = {
@@ -130,6 +144,39 @@ let book1 = new Book(
   newBook.createdAt,
   newBook.updatedAt
 );
+
+let newBook2 = {
+  id: 2,
+  title: "Book 2",
+  author: "book2author",
+  isBorrowed: true,
+  createdAt: null,
+  updatedAt: null,
+};
+
+let book2 = new Book(
+  db,
+  newBook2.id,
+  newBook2.title,
+  newBook2.author,
+  newBook2.isBorrowed,
+  newBook2.createdAt,
+  newBook2.updatedAt
+);
+
+let data = {
+  id: 2,
+  title: "Rich dad, poor dad",
+  author: "Michael Jensen",
+  isBorrowed: false,
+  createdAt: null,
+  updatedAt: null,
+};
+
 book1.save();
-console.log(book1);
-console.log(Book.findById(db, 1));
+book2.save();
+console.log(book2);
+console.log(Book.findById(db, 2));
+console.log(db);
+console.log(Book.findAll(db));
+console.log(book.update(data));
