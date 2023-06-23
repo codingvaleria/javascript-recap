@@ -105,6 +105,11 @@ class Book {
     });
     return newBookObj;
   }
+
+  static findById(db, id) {
+    let bookObj = db.selectById("books", id);
+    return bookObj;
+  }
 }
 
 let newBook = {
@@ -127,3 +132,4 @@ let book1 = new Book(
 );
 book1.save();
 console.log(book1);
+console.log(Book.findById(db, 1));
