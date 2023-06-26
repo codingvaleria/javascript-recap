@@ -224,13 +224,71 @@ class Student {
     this.createdAt = studentObj.createdAt;
     this.updatedAt = studentObj.updatedAt;
   }
+
+  save() {
+    const newStudentId = this.db.insert("students", {
+      name: this.name,
+      grade: this.grade,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    });
+
+    const savedStudent = Student.findById(this.db, newStudentId);
+    if (savedStudent) {
+      return savedStudent;
+    }
+    return null;
+  }
+
+  static findById(db, id) {
+    const studentObj = db.selectById("students", id);
+    if (studentObj) {
+      const student = new Student(db, studentObj);
+      return student;
+    }
+    return null;
+  }
+
+  static findAll(db) {
+    const studentObjects = db.select("students");
+    const students = [];
+
+    for (let i = 0; i < studentObjects.length; i++) {
+      const studentObj = studentObjects[i];
+      const student = new Student(db, studentObj);
+      students.push(student);
+    }
+    return students;
+  }
+
+  update(data) {
+    const updated = this.db.update("students", this.id, data);
+    if (updated) {
+      const updatedStudent = Student.findById(this.db, this.id);
+      this.db = updatedStudent.db;
+      return updatedStudent;
+    }
+    return null;
+  }
 }
 
-let student = {
+let student = new Student(db, {
   id: 1,
   name: "student1",
   grade: "grade1",
-};
+  createdAt: null,
+  updatedAt: null,
+});
 
-let student1 = new Student(db, student);
-console.log(student1);
+let student2 = new Student(db, {
+  id: 2,
+  name: "student2",
+  grade: "grade2",
+  createdAt: null,
+  updatedAt: null,
+});
+
+student.save();
+student2.save();
+student2.update({ name: "Valeria" });
+console.log(Student.findAll(db));
