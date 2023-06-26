@@ -1,3 +1,15 @@
+/*
+Challenge: JavaScript Library Project
+
+Requirements:
+1. Implement the following models: Book, Student, Admin, and LibraryApp.
+2. Each model should have an id attribute along with other relevant attributes.
+3. Each model's constructor should receive the database instance as the first parameter and it should be named `db`.
+4. Each model should use the `db` parameter for querying by id or retrieving all saved entries, updating data, and saving data.
+5. The InMemoryDatabase class should receive the name of the table and the required data to run queries, updates, or selects.
+6. Use the InMemoryDatabase implementation provided for this challenge.
+
+*/
 class InMemoryDatabase {
   constructor() {
     this.tables = {};
@@ -47,7 +59,23 @@ class InMemoryDatabase {
 }
 
 let db = new InMemoryDatabase();
+/*Steps:
+1. Implement the Book class:
+   - `constructor(db)`: Initialize the Book instance.
+   - `findById(id)`: Query the database to retrieve the book with the given id.
+   - `findAll()`: Retrieve all saved books from the database.
+   - `update(data)`: Update the book's attributes with the provided data.
+   - `save()`: Save the book to the database.
 
+ Book attributes:
+   - `id` (number): The unique identifier of the book.
+   - `title` (string): The title of the book.
+   - `author` (string): The author of the book.
+   - `isBorrowed` (boolean): Whether the book is borrowed or not.
+   - `createdAt` (Date): When this entry was created
+   - `updatedAt` (Date): When this entry was last updated
+  
+*/
 class Book {
   constructor(db, id, title, author, isBorrowed, createdAt, updatedAt) {
     this.db = db;
