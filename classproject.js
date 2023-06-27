@@ -233,6 +233,7 @@ const student3 = new Student(db, {
 student3.save();
 
 // console.log(Student.findAll(db));
+console.log(db);
 console.log(Student.findById(3));
 /*
 3. Implement the Admin class:
@@ -369,6 +370,35 @@ class StudentBook {
     this.bookId = bookId;
     this.isBorrowed = isBorrowed;
   }
+
+  static findById(db, id) {
+    let studentBookObject = db.selectById("studentbooks", id);
+    let studentBook = new StudentBook(db, studentBookObject);
+    return studentBook;
+  }
+
+  save() {
+    let id = this.db.insert("studentbooks", {
+      studentId: this.studentId,
+      bookId: this.bookId,
+      isBorrowed: this.isBorrowed,
+    });
+    this.id = id;
+  }
+
+  static findAll(db) {
+    let studentBookObjects = db.select("studentbooks");
+    let studentBookObject = [];
+    for (let i = 0; i < studentBookObjects; i++) {
+      let studentBook = new StudentBook(db, studentBookObjects[i]);
+      studentBookObject.push(studentBook);
+    }
+    return studentBookObject;
+  }
+
+  getBooks(studentId) {
+    
+  }
 }
 
 class LibraryApp {
@@ -382,6 +412,16 @@ class LibraryApp {
   addBook(bookData) {
     let newBook = new Book(this.db, bookData);
     newBook.save();
+  }
+
+  borrowBook(studentId, bookId) {
+    //get the book the student wants to borrow
+    let booktobeBorrowed = Book.findById(db, id);
+    // get id of the student borrowing
+
+    // link the id of the student to that of the book
+    // save this entry to the database
+    // add the book id to a table of borrowed books.
   }
 }
 
