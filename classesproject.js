@@ -215,80 +215,113 @@ let db = new InMemoryDatabase();
 //    - `createdAt` (Date): When this entry was created
 //    - `updatedAt` (Date): When this entry was last updated
 
-class Student {
-  constructor(db, studentObj) {
+// class Student {
+//   constructor(db, studentObj) {
+//     this.db = db;
+//     this.id = studentObj.id;
+//     this.name = studentObj.name;
+//     this.grade = studentObj.grade;
+//     this.createdAt = studentObj.createdAt;
+//     this.updatedAt = studentObj.updatedAt;
+//   }
+
+//   save() {
+//     const newStudentId = this.db.insert("students", {
+//       name: this.name,
+//       grade: this.grade,
+//       createdAt: this.createdAt,
+//       updatedAt: this.updatedAt,
+//     });
+
+//     const savedStudent = Student.findById(this.db, newStudentId);
+//     if (savedStudent) {
+//       return savedStudent;
+//     }
+//     return null;
+//   }
+
+//   static findById(db, id) {
+//     const studentObj = db.selectById("students", id);
+//     if (studentObj) {
+//       const student = new Student(db, studentObj);
+//       return student;
+//     }
+//     return null;
+//   }
+
+//   static findAll(db) {
+//     const studentObjects = db.select("students");
+//     const students = [];
+
+//     for (let i = 0; i < studentObjects.length; i++) {
+//       const studentObj = studentObjects[i];
+//       const student = new Student(db, studentObj);
+//       students.push(student);
+//     }
+//     return students;
+//   }
+
+//   update(data) {
+//     const updated = this.db.update("students", this.id, data);
+//     if (updated) {
+//       const updatedStudent = Student.findById(this.db, this.id);
+//       this.db = updatedStudent.db;
+//       return updatedStudent;
+//     }
+//     return null;
+//   }
+// }
+
+// let student = new Student(db, {
+//   id: 1,
+//   name: "student1",
+//   grade: "grade1",
+//   createdAt: null,
+//   updatedAt: null,
+// });
+
+// let student2 = new Student(db, {
+//   id: 2,
+//   name: "student2",
+//   grade: "grade2",
+//   createdAt: null,
+//   updatedAt: null,
+// });
+
+// student.save();
+// student2.save();
+// student2.update({ name: "Valeria" });
+// console.log(Student.findAll(db));
+
+/*3. Implement the Admin class:
+   - `constructor(db)`: Initialize the Admin instance.
+   - `findById(id)`: Query the database to retrieve the admin with the given id.
+   - `findAll()`: Retrieve all saved admins from the database.
+   - `update(data)`: Update the admin's attributes with the provided data.
+   - `save()`: Save the admin to the database.
+   - `checkPassword(name, password)`: Check if the provided name and password match the admin's credentials. Return `true` if they match, and `false` otherwise.
+
+   Admin attributes:
+   - `id` (number): The unique identifier of the admin.
+   - `name` (string): The name of the admin.
+   - `password` (string): The password of the admin.
+   - `createdAt` (Date): When this entry was created
+   - `updatedAt` (Date): When this entry was last updated
+*/
+class Admin {
+  constructor(db, obj) {
     this.db = db;
-    this.id = studentObj.id;
-    this.name = studentObj.name;
-    this.grade = studentObj.grade;
-    this.createdAt = studentObj.createdAt;
-    this.updatedAt = studentObj.updatedAt;
-  }
-
-  save() {
-    const newStudentId = this.db.insert("students", {
-      name: this.name,
-      grade: this.grade,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
-    });
-
-    const savedStudent = Student.findById(this.db, newStudentId);
-    if (savedStudent) {
-      return savedStudent;
-    }
-    return null;
-  }
-
-  static findById(db, id) {
-    const studentObj = db.selectById("students", id);
-    if (studentObj) {
-      const student = new Student(db, studentObj);
-      return student;
-    }
-    return null;
-  }
-
-  static findAll(db) {
-    const studentObjects = db.select("students");
-    const students = [];
-
-    for (let i = 0; i < studentObjects.length; i++) {
-      const studentObj = studentObjects[i];
-      const student = new Student(db, studentObj);
-      students.push(student);
-    }
-    return students;
-  }
-
-  update(data) {
-    const updated = this.db.update("students", this.id, data);
-    if (updated) {
-      const updatedStudent = Student.findById(this.db, this.id);
-      this.db = updatedStudent.db;
-      return updatedStudent;
-    }
-    return null;
+    this.id = obj.id;
+    this.name = obj.name;
+    this.password = obj.password;
+    this.createdAt = obj.createdAt;
+    this.updatedAt = obj.updatedAt;
   }
 }
 
-let student = new Student(db, {
+const admin1 = new Admin(db, {
   id: 1,
-  name: "student1",
-  grade: "grade1",
-  createdAt: null,
-  updatedAt: null,
+  name: "admin 1",
+  password: "admin1",
 });
-
-let student2 = new Student(db, {
-  id: 2,
-  name: "student2",
-  grade: "grade2",
-  createdAt: null,
-  updatedAt: null,
-});
-
-student.save();
-student2.save();
-student2.update({ name: "Valeria" });
-console.log(Student.findAll(db));
+console.log(admin1);
