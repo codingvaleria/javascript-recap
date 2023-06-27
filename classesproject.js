@@ -317,6 +317,39 @@ class Admin {
     this.createdAt = obj.createdAt;
     this.updatedAt = obj.updatedAt;
   }
+
+  save() {
+    let id = this.db.insert("admins", {
+      name: this.name,
+      password: this.password,
+    });
+    this.id = id;
+  }
+
+  static findById(db, id) {
+    let adminObj = db.selectById("admins", id);
+    let admin = new Admin(db, adminObj);
+    return admin;
+  }
+
+  static findAll(db) {
+    let adminsObjects = db.select("admins");
+    let admins = [];
+    for (let i = 0; i < adminsObjects.length; i++) {
+      let admin = new Admin(db, adminsObjects[i]);
+      admins.push(admin);
+    }
+    return admins;
+  }
+
+  update(data) {
+    let adminIsUpdated = this.db.update("admins", this.id, data);
+    if (adminIsUpdated === true) {
+      return Admin.findById(this.db, this.id);
+    } else {
+      return null;
+    }
+  }
 }
 
 const admin1 = new Admin(db, {
@@ -324,4 +357,19 @@ const admin1 = new Admin(db, {
   name: "admin 1",
   password: "admin1",
 });
+admin1.save();
+
+const admin2 = new Admin(db, {
+  id: 2,
+  name: "admin 2",
+  password: "admin2",
+});
+
+admin2.save();
+console.log(Admin.findAll(db));
+
+// make changes to the admin
+admin1.name = "John Doe";
+//update the admin
+const updatedAdmin = admin1.update({ name: admin1.name });
 console.log(admin1);
