@@ -395,6 +395,14 @@ class LibraryApp {
     this.name = name;
     this.location = location;
   }
+
+  addBook(bookData) {
+    this.db.insert("books", bookData);
+  }
+
+  addStudent(studentData) {
+    this.db.insert("students", studentData);
+  }
 }
 
 const library = new LibraryApp(db, 1, "library1", "location1");
