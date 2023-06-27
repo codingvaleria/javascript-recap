@@ -308,68 +308,94 @@ let db = new InMemoryDatabase();
    - `createdAt` (Date): When this entry was created
    - `updatedAt` (Date): When this entry was last updated
 */
-class Admin {
-  constructor(db, obj) {
+// class Admin {
+//   constructor(db, obj) {
+//     this.db = db;
+//     this.id = obj.id;
+//     this.name = obj.name;
+//     this.password = obj.password;
+//     this.createdAt = obj.createdAt;
+//     this.updatedAt = obj.updatedAt;
+//   }
+
+//   save() {
+//     let id = this.db.insert("admins", {
+//       name: this.name,
+//       password: this.password,
+//     });
+//     this.id = id;
+//   }
+
+//   static findById(db, id) {
+//     let adminObj = db.selectById("admins", id);
+//     let admin = new Admin(db, adminObj);
+//     return admin;
+//   }
+
+//   static findAll(db) {
+//     let adminsObjects = db.select("admins");
+//     let admins = [];
+//     for (let i = 0; i < adminsObjects.length; i++) {
+//       let admin = new Admin(db, adminsObjects[i]);
+//       admins.push(admin);
+//     }
+//     return admins;
+//   }
+
+//   update(data) {
+//     let adminIsUpdated = this.db.update("admins", this.id, data);
+//     if (adminIsUpdated === true) {
+//       return Admin.findById(this.db, this.id);
+//     } else {
+//       return null;
+//     }
+//   }
+// }
+
+// const admin1 = new Admin(db, {
+//   id: 1,
+//   name: "admin 1",
+//   password: "admin1",
+// });
+// admin1.save();
+
+// const admin2 = new Admin(db, {
+//   id: 2,
+//   name: "admin 2",
+//   password: "admin2",
+// });
+
+// admin2.save();
+// console.log(Admin.findAll(db));
+
+// // make changes to the admin
+// admin1.name = "John Doe";
+// //update the admin
+// const updatedAdmin = admin1.update({ name: admin1.name });
+// console.log(admin1);
+
+/*4; Implement the LibraryApp class:
+   - `constructor(db, id, name, location)`: Initialize the LibraryApp instance.
+   - `addBook(bookData)`: Add a new book to the library. The `bookData` parameter should be an object with Book properties.
+   - `addStudent(studentData)`: Add a new student to the library. The `studentData` parameter should be an object with student properties.
+   - `borrowBook(studentId, bookId)`: Allow a student to borrow a book. The `studentId` and `bookId` parameters represent the IDs of the student and the book, respectively.
+   - `getBorrowedBooks()`: Retrieve an array of books that are currently borrowed from the library.
+   - `getAvailableBooks()`: Retrieve an array of books that are currently available in the library.
+   - `getBooksBorrowedByStudent(studentId)`: Retrieve an array of books borrowed by a specific student. The `studentId` parameter represents the ID of the student.
+   - `checkIfBookIsAvailable(bookId)`: Check if a book with the given ID is available in the library. Return `true` if available, and `false` otherwise.
+
+5. Use the provided InMemory Database implementation to store and retrieve data.
+
+*/
+
+class LibraryApp {
+  constructor(db, id, name, location) {
     this.db = db;
-    this.id = obj.id;
-    this.name = obj.name;
-    this.password = obj.password;
-    this.createdAt = obj.createdAt;
-    this.updatedAt = obj.updatedAt;
-  }
-
-  save() {
-    let id = this.db.insert("admins", {
-      name: this.name,
-      password: this.password,
-    });
     this.id = id;
-  }
-
-  static findById(db, id) {
-    let adminObj = db.selectById("admins", id);
-    let admin = new Admin(db, adminObj);
-    return admin;
-  }
-
-  static findAll(db) {
-    let adminsObjects = db.select("admins");
-    let admins = [];
-    for (let i = 0; i < adminsObjects.length; i++) {
-      let admin = new Admin(db, adminsObjects[i]);
-      admins.push(admin);
-    }
-    return admins;
-  }
-
-  update(data) {
-    let adminIsUpdated = this.db.update("admins", this.id, data);
-    if (adminIsUpdated === true) {
-      return Admin.findById(this.db, this.id);
-    } else {
-      return null;
-    }
+    this.name = name;
+    this.location = location;
   }
 }
 
-const admin1 = new Admin(db, {
-  id: 1,
-  name: "admin 1",
-  password: "admin1",
-});
-admin1.save();
-
-const admin2 = new Admin(db, {
-  id: 2,
-  name: "admin 2",
-  password: "admin2",
-});
-
-admin2.save();
-console.log(Admin.findAll(db));
-
-// make changes to the admin
-admin1.name = "John Doe";
-//update the admin
-const updatedAdmin = admin1.update({ name: admin1.name });
-console.log(admin1);
+const library = new LibraryApp(db, 1, "library1", "location1");
+console.log(library);
