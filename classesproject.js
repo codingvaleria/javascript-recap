@@ -183,158 +183,157 @@ let db = new InMemoryDatabase();
 //    - `createdAt` (Date): When this entry was created
 //    - `updatedAt` (Date): When this entry was last updated
 
-class Student {
-  constructor(db, studentObj) {
+// class Student {
+//   constructor(db, studentObj) {
+//     this.db = db;
+//     this.id = studentObj.id;
+//     this.name = studentObj.name;
+//     this.grade = studentObj.grade;
+//     this.createdAt = studentObj.createdAt;
+//     this.updatedAt = studentObj.updatedAt;
+//   }
+
+//   static save(db, studentObj) {
+//     const newStudentId = db.insert("students", {
+//       name: studentObj.name,
+//       grade: studentObj.grade,
+//     });
+
+//     const savedStudent = Student.findById(db, newStudentId);
+//     if (savedStudent) {
+//       return savedStudent;
+//     }
+//     return null;
+//   }
+
+//   static findById(db, id) {
+//     const studentObj = db.selectById("students", id);
+//     if (studentObj) {
+//       const student = new Student(db, studentObj);
+//       return student;
+//     }
+//     return null;
+//   }
+
+//   static findAll(db) {
+//     const studentObjects = db.select("students");
+//     const students = [];
+
+//     for (let i = 0; i < studentObjects.length; i++) {
+//       const studentObj = studentObjects[i];
+//       const student = new Student(db, studentObj);
+//       students.push(student);
+//     }
+//     return students;
+//   }
+
+//   update(data) {
+//     const updated = this.db.update("students", this.id, data);
+//     if (updated) {
+//       const updatedStudent = Student.findById(this.db, this.id);
+//       this.name = updatedStudent.name;
+//       this.grade = updatedStudent.grade;
+//       this.updatedAt = updatedStudent.updatedAt;
+//       return updatedStudent;
+//     }
+//     return null;
+//   }
+// }
+
+// let student1 = Student.save(db, {
+//   name: "student1",
+//   grade: "grade1",
+// });
+
+// let student2 = Student.save(db, {
+//   name: "student2",
+//   grade: "grade2",
+// });
+
+// console.log(student1);
+// console.log(Student.findById(db, 2))
+// student2.update({ name: "Valeria" });
+// console.log(Student.findAll(db));
+
+/*3. Implement the Admin class:
+   - `constructor(db)`: Initialize the Admin instance.
+   - `findById(id)`: Query the database to retrieve the admin with the given id.
+   - `findAll()`: Retrieve all saved admins from the database.
+   - `update(data)`: Update the admin's attributes with the provided data.
+   - `save()`: Save the admin to the database.
+   - `checkPassword(name, password)`: Check if the provided name and password match the admin's credentials. Return `true` if they match, and `false` otherwise.
+
+   Admin attributes:
+   - `id` (number): The unique identifier of the admin.
+   - `name` (string): The name of the admin.
+   - `password` (string): The password of the admin.
+   - `createdAt` (Date): When this entry was created
+   - `updatedAt` (Date): When this entry was last updated
+*/
+class Admin {
+  constructor(db, obj) {
     this.db = db;
-    this.id = studentObj.id;
-    this.name = studentObj.name;
-    this.grade = studentObj.grade;
-    this.createdAt = studentObj.createdAt;
-    this.updatedAt = studentObj.updatedAt;
+    this.id = obj.id;
+    this.name = obj.name;
+    this.password = obj.password;
+    this.createdAt = obj.createdAt;
+    this.updatedAt = obj.updatedAt;
   }
 
-  static save(db, studentObj) {
-    const newStudentId = db.insert("students", {
-      name: studentObj.name,
-      grade: studentObj.grade,
+  static save(db, obj) {
+    let id = db.insert("admins", {
+      name: obj.name,
+      password: obj.password,
     });
-
-    const savedStudent = Student.findById(db, newStudentId);
-    if (savedStudent) {
-      return savedStudent;
+    const savedAdmin = Admin.findById(db, id);
+    if (savedAdmin) {
+      return savedAdmin;
     }
     return null;
   }
 
   static findById(db, id) {
-    const studentObj = db.selectById("students", id);
-    if (studentObj) {
-      const student = new Student(db, studentObj);
-      return student;
-    }
-    return null;
+    let adminObj = db.selectById("admins", id);
+    let admin = new Admin(db, adminObj);
+    return admin;
   }
 
   static findAll(db) {
-    const studentObjects = db.select("students");
-    const students = [];
-
-    for (let i = 0; i < studentObjects.length; i++) {
-      const studentObj = studentObjects[i];
-      const student = new Student(db, studentObj);
-      students.push(student);
+    let adminsObjects = db.select("admins");
+    let admins = [];
+    for (let i = 0; i < adminsObjects.length; i++) {
+      let admin = new Admin(db, adminsObjects[i]);
+      admins.push(admin);
     }
-    return students;
+    return admins;
   }
 
   update(data) {
-    const updated = this.db.update("students", this.id, data);
-    if (updated) {
-      const updatedStudent = Student.findById(this.db, this.id);
-      this.name = updatedStudent.name;
-      this.grade = updatedStudent.grade;
-      this.updatedAt = updatedStudent.updatedAt;
-      return updatedStudent;
+    let adminIsUpdated = this.db.update("admins", this.id, data);
+    if (adminIsUpdated === true) {
+      const updatedAdmin = Admin.findById(this.db, this.id);
+      this.name = updatedAdmin.name;
+      this.password = updatedAdmin.password;
+      return updatedAdmin;
+    } else {
+      return null;
     }
-    return null;
   }
 }
 
-let student1 = Student.save(db, {
-  name: "student1",
-  grade: "grade1",
+const admin1 = Admin.save(db, {
+  name: "admin 1",
+  password: "admin1",
 });
 
-let student2 = Student.save(db, {
-  name: "student2",
-  grade: "grade2",
+const admin2 = Admin.save(db, {
+  name: "admin 2",
+  password: "admin2",
 });
 
-console.log(student1);
-console.log(Student.findById(db, 2))
-student2.update({ name: "Valeria" });
-console.log(Student.findAll(db));
-
-// /*3. Implement the Admin class:
-//    - `constructor(db)`: Initialize the Admin instance.
-//    - `findById(id)`: Query the database to retrieve the admin with the given id.
-//    - `findAll()`: Retrieve all saved admins from the database.
-//    - `update(data)`: Update the admin's attributes with the provided data.
-//    - `save()`: Save the admin to the database.
-//    - `checkPassword(name, password)`: Check if the provided name and password match the admin's credentials. Return `true` if they match, and `false` otherwise.
-
-//    Admin attributes:
-//    - `id` (number): The unique identifier of the admin.
-//    - `name` (string): The name of the admin.
-//    - `password` (string): The password of the admin.
-//    - `createdAt` (Date): When this entry was created
-//    - `updatedAt` (Date): When this entry was last updated
-// */
-// class Admin {
-//   constructor(db, obj) {
-//     this.db = db;
-//     this.id = obj.id;
-//     this.name = obj.name;
-//     this.password = obj.password;
-//     this.createdAt = obj.createdAt;
-//     this.updatedAt = obj.updatedAt;
-//   }
-
-//   save() {
-//     let id = this.db.insert("admins", {
-//       name: this.name,
-//       password: this.password,
-//     });
-//     this.id = id;
-//   }
-
-//   static findById(db, id) {
-//     let adminObj = db.selectById("admins", id);
-//     let admin = new Admin(db, adminObj);
-//     return admin;
-//   }
-
-//   static findAll(db) {
-//     let adminsObjects = db.select("admins");
-//     let admins = [];
-//     for (let i = 0; i < adminsObjects.length; i++) {
-//       let admin = new Admin(db, adminsObjects[i]);
-//       admins.push(admin);
-//     }
-//     return admins;
-//   }
-
-//   update(data) {
-//     let adminIsUpdated = this.db.update("admins", this.id, data);
-//     if (adminIsUpdated === true) {
-//       return Admin.findById(this.db, this.id);
-//     } else {
-//       return null;
-//     }
-//   }
-// }
-
-// const admin1 = new Admin(db, {
-//   id: 1,
-//   name: "admin 1",
-//   password: "admin1",
-// });
-// admin1.save();
-
-// const admin2 = new Admin(db, {
-//   id: 2,
-//   name: "admin 2",
-//   password: "admin2",
-// });
-
-// admin2.save();
-// console.log(Admin.findAll(db));
-
-// // make changes to the admin
-// admin1.name = "John Doe";
-// //update the admin
-// const updatedAdmin = admin1.update({ name: admin1.name });
-// console.log(admin1);
+//update the admin
+admin1.update({ password: "xyz" });
+console.log(admin1);
 
 // /*4; Implement the LibraryApp class:
 //    - `constructor(db, id, name, location)`: Initialize the LibraryApp instance.
