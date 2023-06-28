@@ -81,185 +81,179 @@ let db = new InMemoryDatabase();
    - `updatedAt` (Date): When this entry was last updated
 
 */
-class Book {
-  constructor(db, id, title, author, isBorrowed, createdAt, updatedAt) {
-    this.db = db;
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.isBorrowed = isBorrowed;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-  }
-
-  static save(db, title, author, isBorrowed) {
-    const newBookId = db.insert("books", {
-      title, //shorthand for property name and value being equal.
-      author: author,
-      isBorrowed: isBorrowed,
-    });
-
-    const savedBook = Book.findById(db, newBookId);
-    if (savedBook) {
-      return savedBook;
-    }
-
-    return null;
-  }
-
-  static findById(db, id) {
-    const bookObj = db.selectById("books", id);
-    if (bookObj) {
-      const book = new Book(
-        db,
-        bookObj.id,
-        bookObj.title,
-        bookObj.author,
-        bookObj.isBorrowed,
-        bookObj.createdAt,
-        bookObj.updatedAt
-      );
-      return book;
-    }
-    return null;
-  }
-
-  static findAll(db) {
-    const bookObjects = db.select("books");
-    return bookObjects.map(
-      (bookObj) =>
-        new Book(
-          db,
-          bookObj.id,
-          bookObj.title,
-          bookObj.author,
-          bookObj.isBorrowed,
-          bookObj.createdAt,
-          bookObj.updatedAt
-        )
-    );
-  }
-
-  update(data) {
-    const updated = this.db.update("books", this.id, data);
-
-    if (updated) {
-      const updatedBook = Book.findById(this.db, this.id);
-      this.title = updatedBook.title;
-      this.isBorrowed = updatedBook.isBorrowed;
-      this.author = updatedBook.author;
-      this.updatedAt = updatedBook.updatedAt;
-      return updatedBook;
-    }
-    return null;
-  }
-}
-
-let book1 = Book.save(db, "book1", "book1author", true);
-let book2 = Book.save(db, "book2", "book2author", false);
-let book3 = Book.save(db, "book3", "book3author", false);
-
-const data = {
-  title: "Rich dad, poor dad",
-};
-
-console.log(book1);
-console.log(Book.findById(db, 2));
-console.log(Book.findAll(db));
-book1.update(data);
-console.log(book1);
-
-// // 2. Implement the Student class:
-// //    - `constructor(db)`: Initialize the Student instance.
-// //    - `findById(id)`: Query the database to retrieve the student with the given id.
-// //    - `findAll()`: Retrieve all saved students from the database.
-// //    - `update(data)`: Update the student's attributes with the provided data.
-// //    - `save()`: Save the student to the database.
-
-// //    Student attributes:
-// //    - `id` (number): The unique identifier of the student.
-// //    - `name` (string): The name of the student.
-// //    - `grade` (string): The grade of the student.
-// //    - `createdAt` (Date): When this entry was created
-// //    - `updatedAt` (Date): When this entry was last updated
-
-// class Student {
-//   constructor(db, studentObj) {
+// class Book {
+//   constructor(db, id, title, author, isBorrowed, createdAt, updatedAt) {
 //     this.db = db;
-//     this.id = studentObj.id;
-//     this.name = studentObj.name;
-//     this.grade = studentObj.grade;
-//     this.createdAt = studentObj.createdAt;
-//     this.updatedAt = studentObj.updatedAt;
+//     this.id = id;
+//     this.title = title;
+//     this.author = author;
+//     this.isBorrowed = isBorrowed;
+//     this.createdAt = createdAt;
+//     this.updatedAt = updatedAt;
 //   }
 
-//   save() {
-//     const newStudentId = this.db.insert("students", {
-//       name: this.name,
-//       grade: this.grade,
-//       createdAt: this.createdAt,
-//       updatedAt: this.updatedAt,
+//   static save(db, title, author, isBorrowed) {
+//     const newBookId = db.insert("books", {
+//       title, //shorthand for property name and value being equal.
+//       author: author,
+//       isBorrowed: isBorrowed,
 //     });
 
-//     const savedStudent = Student.findById(this.db, newStudentId);
-//     if (savedStudent) {
-//       return savedStudent;
+//     const savedBook = Book.findById(db, newBookId);
+//     if (savedBook) {
+//       return savedBook;
 //     }
+
 //     return null;
 //   }
 
 //   static findById(db, id) {
-//     const studentObj = db.selectById("students", id);
-//     if (studentObj) {
-//       const student = new Student(db, studentObj);
-//       return student;
+//     const bookObj = db.selectById("books", id);
+//     if (bookObj) {
+//       const book = new Book(
+//         db,
+//         bookObj.id,
+//         bookObj.title,
+//         bookObj.author,
+//         bookObj.isBorrowed,
+//         bookObj.createdAt,
+//         bookObj.updatedAt
+//       );
+//       return book;
 //     }
 //     return null;
 //   }
 
 //   static findAll(db) {
-//     const studentObjects = db.select("students");
-//     const students = [];
-
-//     for (let i = 0; i < studentObjects.length; i++) {
-//       const studentObj = studentObjects[i];
-//       const student = new Student(db, studentObj);
-//       students.push(student);
-//     }
-//     return students;
+//     const bookObjects = db.select("books");
+//     return bookObjects.map(
+//       (bookObj) =>
+//         new Book(
+//           db,
+//           bookObj.id,
+//           bookObj.title,
+//           bookObj.author,
+//           bookObj.isBorrowed,
+//           bookObj.createdAt,
+//           bookObj.updatedAt
+//         )
+//     );
 //   }
 
 //   update(data) {
-//     const updated = this.db.update("students", this.id, data);
+//     const updated = this.db.update("books", this.id, data);
+
 //     if (updated) {
-//       const updatedStudent = Student.findById(this.db, this.id);
-//       this.db = updatedStudent.db;
-//       return updatedStudent;
+//       const updatedBook = Book.findById(this.db, this.id);
+//       this.title = updatedBook.title;
+//       this.isBorrowed = updatedBook.isBorrowed;
+//       this.author = updatedBook.author;
+//       this.updatedAt = updatedBook.updatedAt;
+//       return updatedBook;
 //     }
 //     return null;
 //   }
 // }
 
-// let student = new Student(db, {
-//   id: 1,
-//   name: "student1",
-//   grade: "grade1",
-//   createdAt: null,
-//   updatedAt: null,
-// });
+// let book1 = Book.save(db, "book1", "book1author", true);
+// let book2 = Book.save(db, "book2", "book2author", false);
+// let book3 = Book.save(db, "book3", "book3author", false);
 
-// let student2 = new Student(db, {
-//   id: 2,
-//   name: "student2",
-//   grade: "grade2",
-//   createdAt: null,
-//   updatedAt: null,
-// });
+// const data = {
+//   title: "Rich dad, poor dad",
+// };
 
-// student.save();
-// student2.save();
-// student2.update({ name: "Valeria" });
-// console.log(Student.findAll(db));
+// console.log(book1);
+// console.log(Book.findById(db, 2));
+// console.log(Book.findAll(db));
+// book1.update(data);
+// console.log(book1);
+
+// 2. Implement the Student class:
+//    - `constructor(db)`: Initialize the Student instance.
+//    - `findById(id)`: Query the database to retrieve the student with the given id.
+//    - `findAll()`: Retrieve all saved students from the database.
+//    - `update(data)`: Update the student's attributes with the provided data.
+//    - `save()`: Save the student to the database.
+
+//    Student attributes:
+//    - `id` (number): The unique identifier of the student.
+//    - `name` (string): The name of the student.
+//    - `grade` (string): The grade of the student.
+//    - `createdAt` (Date): When this entry was created
+//    - `updatedAt` (Date): When this entry was last updated
+
+class Student {
+  constructor(db, studentObj) {
+    this.db = db;
+    this.id = studentObj.id;
+    this.name = studentObj.name;
+    this.grade = studentObj.grade;
+    this.createdAt = studentObj.createdAt;
+    this.updatedAt = studentObj.updatedAt;
+  }
+
+  static save(db, studentObj) {
+    const newStudentId = db.insert("students", {
+      name: studentObj.name,
+      grade: studentObj.grade,
+    });
+
+    const savedStudent = Student.findById(db, newStudentId);
+    if (savedStudent) {
+      return savedStudent;
+    }
+    return null;
+  }
+
+  static findById(db, id) {
+    const studentObj = db.selectById("students", id);
+    if (studentObj) {
+      const student = new Student(db, studentObj);
+      return student;
+    }
+    return null;
+  }
+
+  static findAll(db) {
+    const studentObjects = db.select("students");
+    const students = [];
+
+    for (let i = 0; i < studentObjects.length; i++) {
+      const studentObj = studentObjects[i];
+      const student = new Student(db, studentObj);
+      students.push(student);
+    }
+    return students;
+  }
+
+  update(data) {
+    const updated = this.db.update("students", this.id, data);
+    if (updated) {
+      const updatedStudent = Student.findById(this.db, this.id);
+      this.name = updatedStudent.name;
+      this.grade = updatedStudent.grade;
+      this.updatedAt = updatedStudent.updatedAt;
+      return updatedStudent;
+    }
+    return null;
+  }
+}
+
+let student1 = Student.save(db, {
+  name: "student1",
+  grade: "grade1",
+});
+
+let student2 = Student.save(db, {
+  name: "student2",
+  grade: "grade2",
+});
+
+console.log(student1);
+console.log(Student.findById(db, 2))
+student2.update({ name: "Valeria" });
+console.log(Student.findAll(db));
 
 // /*3. Implement the Admin class:
 //    - `constructor(db)`: Initialize the Admin instance.
