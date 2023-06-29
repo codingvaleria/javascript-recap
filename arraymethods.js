@@ -54,4 +54,15 @@ Filter Method
 const massGreaterThan100 = characters.filter(
   (character) => character.mass > 100
 );
-console.log(massGreaterThan100)
+
+/* Every
+executes a callback function on every element of an array and returns true if all elements in the array return true
+*/
+
+//All blue eyes
+const allBlueEyes = characters.every(
+  (character) => character.eye_color === "blue"
+);
+
+
+
