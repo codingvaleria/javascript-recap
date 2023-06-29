@@ -64,5 +64,7 @@ const allBlueEyes = characters.every(
   (character) => character.eye_color === "blue"
 );
 
-
+/* Some
+Executes a callback function on every element of an array and returns true if at least one element returns true. if all elements return false then will return false.
+*/
 
