@@ -18,17 +18,24 @@ const characters = [
     gender: "male",
   },
   {
-    name: "Leila Organa",
+    name: "Leia Organa",
     height: "150",
     mass: "49",
-    eye_color: "black",
+    eye_color: "brown",
     gender: "female",
+  },
+  {
+    name: "Anakin Skywalker",
+    height: "188",
+    mass: "84",
+    eye_color: "blue",
+    gender: "male",
   },
 ];
 
 // return an array of all names
 let names = characters.map((character) => character.name);
-console.log(names);
+
 // return an array of name and height for every character
 let minifiedCharacters = characters.map((character) => ({
   name: character.name,
@@ -37,4 +44,14 @@ let minifiedCharacters = characters.map((character) => ({
 
 // get an array of all the first names
 let firstNames = characters.map((character) => character.name.split(" ")[0]);
-console.log(firstNames);
+
+/* 
+Filter Method
+-Creates a new array by removing all the elements which return a falsy value.
+*/
+
+// Mass > 100
+const massGreaterThan100 = characters.filter(
+  (character) => character.mass > 100
+);
+console.log(massGreaterThan100)
