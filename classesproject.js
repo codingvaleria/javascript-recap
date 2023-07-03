@@ -475,3 +475,4 @@ console.log(admin1);
 
 // // check if a book is available
 // library.checkIfBookIsAvailable(3);
+console.log(db)
