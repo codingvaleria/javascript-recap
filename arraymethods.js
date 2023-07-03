@@ -6,28 +6,28 @@ const characters = [
   {
     name: "Luke Skywalker",
     height: "172",
-    mass: "77",
+    mass: 77,
     eye_color: "blue",
     gender: "male",
   },
   {
     name: "Darth Vader",
     height: "202",
-    mass: "136",
+    mass: 136,
     eye_color: "yellow",
     gender: "male",
   },
   {
     name: "Leia Organa",
     height: "150",
-    mass: "49",
+    mass: 49,
     eye_color: "brown",
     gender: "female",
   },
   {
     name: "Anakin Skywalker",
     height: "188",
-    mass: "84",
+    mass: 84,
     eye_color: "blue",
     gender: "male",
   },
@@ -68,3 +68,9 @@ const allBlueEyes = characters.every(
 Executes a callback function on every element of an array and returns true if at least one element returns true. if all elements return false then will return false.
 */
 
+/* Reduce
+iterate through each to get a total. must include an accumulator
+*/
+
+const totalMass = characters.reduce((acc, curr) => acc + curr.mass, 0);
+console.log(totalMass);
