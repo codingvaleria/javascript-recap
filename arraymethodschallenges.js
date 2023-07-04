@@ -73,13 +73,30 @@
  * with two arrays of your choice and log the result to the console.
  */
 
-function checkArrayInclusion(mainArray, subArray) {
+// function checkArrayInclusion(mainArray, subArray) {
+//   // TODO: Write your solution here
+//   return mainArray.some((e) => subArray.includes(e));
+// }
+
+// console.log(checkArrayInclusion([1, 2, 3, 4, 5], [2, 3])); // should log true
+// console.log(checkArrayInclusion([1, 2, 3, 4, 5], [6, 7])); // should log false
+// console.log(
+//   checkArrayInclusion(["apple", "banana", "orange"], ["banana", "orange"])
+// ); // should log true
+
+/* Problem: Check Even Number Presence
+ *
+ * Description:
+ * Write a JavaScript function that takes in an array of numbers and returns true
+ * if at least one of the numbers is an even number, and false otherwise. Call the function with
+ * an array of your choice and log the result to the console.
+ */
+
+function checkEvenNumberPresence(numbers) {
   // TODO: Write your solution here
-  return mainArray.some((e) => subArray.includes(e));
+  return numbers.some((number) => number % 2 === 0);
 }
 
-console.log(checkArrayInclusion([1, 2, 3, 4, 5], [2, 3])); // should log true
-console.log(checkArrayInclusion([1, 2, 3, 4, 5], [6, 7])); // should log false
-console.log(
-  checkArrayInclusion(["apple", "banana", "orange"], ["banana", "orange"])
-); // should log true
+console.log(checkEvenNumberPresence([1, 3, 5, 7, 9])); // should log false
+console.log(checkEvenNumberPresence([1, 2, 3, 4, 5])); // should log true
+console.log(checkEvenNumberPresence([2, 4, 6, 8, 10])); // should log true
