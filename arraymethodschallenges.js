@@ -110,17 +110,37 @@
  * an object of your choice and log the result to the console.
  */
 
-function calculateTotalValue(items) {
+// function calculateTotalValue(items) {
+//   // TODO: Write your solution here
+//   const itemValues = Object.values(items);
+//   let totalValue = itemValues.reduce((acc, value) => acc + value);
+//   return totalValue;
+// }
+
+// const items = {
+//   apple: 0.5,
+//   banana: 0.3,
+//   orange: 0.7,
+// };
+
+// console.log(calculateTotalValue(items)); // should log 1.5
+
+/* Problem: Calculate Average
+ *
+ * Description:
+ * Write a JavaScript function that takes in an array of numbers and calculates
+ * the average value. The function should use the `reduce` method to sum all the
+ * numbers in the array and then divide the sum by the number of elements to obtain
+ * the average. Call the function with an array of your choice and log the result to
+ * the console.
+ */
+
+function calculateAverage(numbers) {
   // TODO: Write your solution here
-  const itemValues = Object.values(items);
-  let totalValue = itemValues.reduce((acc, value) => acc + value);
-  return totalValue;
+    let sum = numbers.reduce((acc, number) => acc + number);
+    return sum / numbers.length;
 }
 
-const items = {
-  apple: 0.5,
-  banana: 0.3,
-  orange: 0.7,
-};
-
-console.log(calculateTotalValue(items)); // should log 1.5
+console.log(calculateAverage([1, 2, 3, 4, 5])); // should log 3
+console.log(calculateAverage([10, 20, 30, 40, 50])); // should log 30
+console.log(calculateAverage([2, 4, 6, 8, 10])); // should log 6
