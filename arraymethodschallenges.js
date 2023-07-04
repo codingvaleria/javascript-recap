@@ -135,12 +135,37 @@
  * the console.
  */
 
-function calculateAverage(numbers) {
+// function calculateAverage(numbers) {
+//   // TODO: Write your solution here
+//     let sum = numbers.reduce((acc, number) => acc + number);
+//     return sum / numbers.length;
+// }
+
+// console.log(calculateAverage([1, 2, 3, 4, 5])); // should log 3
+// console.log(calculateAverage([10, 20, 30, 40, 50])); // should log 30
+// console.log(calculateAverage([2, 4, 6, 8, 10])); // should log 6
+
+/* Problem: Sum of Even Numbers
+ *
+ * Description:
+ * Write a JavaScript function that takes in an array of numbers and returns
+ * the sum of all the even numbers in the array. For example, if the input array is
+ * [1, 2, 3, 4, 5, 6], the function should return 12 (2 + 4 + 6). Call the function
+ * with an array of your choice and log the result to the console.
+ */
+
+function sumOfEvenNumbers(numbers) {
   // TODO: Write your solution here
-    let sum = numbers.reduce((acc, number) => acc + number);
-    return sum / numbers.length;
+  const evenNumbers = [];
+  numbers.map((number) => {
+    if (number % 2 === 0) {
+      evenNumbers.push(number);
+    }
+  });
+
+  return evenNumbers.reduce((acc, num) => acc + num, 0);
 }
 
-console.log(calculateAverage([1, 2, 3, 4, 5])); // should log 3
-console.log(calculateAverage([10, 20, 30, 40, 50])); // should log 30
-console.log(calculateAverage([2, 4, 6, 8, 10])); // should log 6
+console.log(sumOfEvenNumbers([1, 2, 3, 4, 5, 6])); // should log 12
+console.log(sumOfEvenNumbers([2, 4, 6, 8, 10])); // should log 30
+console.log(sumOfEvenNumbers([1, 3, 5, 7, 9])); // should log 0
