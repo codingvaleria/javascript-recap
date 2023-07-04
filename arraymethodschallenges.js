@@ -54,11 +54,32 @@
  * to the console.
  */
 
-function checkPassFailStatus(scores, passingThreshold) {
+// function checkPassFailStatus(scores, passingThreshold) {
+//   // TODO: Write your solution here
+//   return scores.every((score) => score > passingThreshold);
+// }
+
+// console.log(checkPassFailStatus([80, 90, 75, 85], 70)); // should log true
+// console.log(checkPassFailStatus([60, 55, 70, 65], 65)); // should log false
+// console.log(checkPassFailStatus([90, 95, 88, 92], 90)); // should log false
+
+/* Problem: Check Array Inclusion
+ *
+ * Description:
+ * Write a JavaScript function that takes in two arrays, `mainArray` and `subArray`,
+ * and checks if all the elements of `subArray` are included in `mainArray`. The function
+ * should return true if `mainArray` includes all the elements of `subArray`, and false
+ * otherwise. Use the `includes` method for array elements comparison. Call the function
+ * with two arrays of your choice and log the result to the console.
+ */
+
+function checkArrayInclusion(mainArray, subArray) {
   // TODO: Write your solution here
-  return scores.every((score) => score > passingThreshold);
+  return mainArray.some((e) => subArray.includes(e));
 }
 
-console.log(checkPassFailStatus([80, 90, 75, 85], 70)); // should log true
-console.log(checkPassFailStatus([60, 55, 70, 65], 65)); // should log false
-console.log(checkPassFailStatus([90, 95, 88, 92], 90)); // should log false
+console.log(checkArrayInclusion([1, 2, 3, 4, 5], [2, 3])); // should log true
+console.log(checkArrayInclusion([1, 2, 3, 4, 5], [6, 7])); // should log false
+console.log(
+  checkArrayInclusion(["apple", "banana", "orange"], ["banana", "orange"])
+); // should log true
