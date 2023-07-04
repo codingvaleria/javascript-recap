@@ -92,11 +92,35 @@
  * an array of your choice and log the result to the console.
  */
 
-function checkEvenNumberPresence(numbers) {
+// function checkEvenNumberPresence(numbers) {
+//   // TODO: Write your solution here
+//   return numbers.some((number) => number % 2 === 0);
+// }
+
+// console.log(checkEvenNumberPresence([1, 3, 5, 7, 9])); // should log false
+// console.log(checkEvenNumberPresence([1, 2, 3, 4, 5])); // should log true
+// console.log(checkEvenNumberPresence([2, 4, 6, 8, 10])); // should log true
+
+/*Problem: Calculate Total Value
+ *
+ * Description:
+ * Write a JavaScript function that takes in an object where the keys represent
+ * item names and the values represent item prices. The function should calculate
+ * and return the total value of all items in the object. Call the function with
+ * an object of your choice and log the result to the console.
+ */
+
+function calculateTotalValue(items) {
   // TODO: Write your solution here
-  return numbers.some((number) => number % 2 === 0);
+  const itemValues = Object.values(items);
+  let totalValue = itemValues.reduce((acc, value) => acc + value);
+  return totalValue;
 }
 
-console.log(checkEvenNumberPresence([1, 3, 5, 7, 9])); // should log false
-console.log(checkEvenNumberPresence([1, 2, 3, 4, 5])); // should log true
-console.log(checkEvenNumberPresence([2, 4, 6, 8, 10])); // should log true
+const items = {
+  apple: 0.5,
+  banana: 0.3,
+  orange: 0.7,
+};
+
+console.log(calculateTotalValue(items)); // should log 1.5
