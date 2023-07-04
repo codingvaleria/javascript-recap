@@ -188,12 +188,25 @@
 function groupStudentsByTotalScore(students) {
   // TODO: Write your solution here
   //initialize the group object
-
   const groups = {
     high: [],
     moderate: [],
     low: [],
   };
+  // Calculate the total and push to group object
+  students.forEach((student) => {
+    const totalScore = student.subjects.reduce(
+      (sum, subject) => sum + subject.score,
+      0
+    );
+    if (totalScore >= 240) {
+      groups.high.push(student);
+    } else if (totalScore >= 150) {
+      groups.moderate.push(student);
+    } else {
+      groups.low.push(student);
+    }
+  });
   return groups;
 }
 
