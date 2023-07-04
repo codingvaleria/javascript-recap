@@ -154,18 +154,98 @@
  * with an array of your choice and log the result to the console.
  */
 
-function sumOfEvenNumbers(numbers) {
-  // TODO: Write your solution here
-  const evenNumbers = [];
-  numbers.map((number) => {
-    if (number % 2 === 0) {
-      evenNumbers.push(number);
-    }
-  });
+// function sumOfEvenNumbers(numbers) {
+//   // TODO: Write your solution here
+//   const evenNumbers = [];
+//   numbers.map((number) => {
+//     if (number % 2 === 0) {
+//       evenNumbers.push(number);
+//     }
+//   });
 
-  return evenNumbers.reduce((acc, num) => acc + num, 0);
+//   return evenNumbers.reduce((acc, num) => acc + num, 0);
+// }
+
+// console.log(sumOfEvenNumbers([1, 2, 3, 4, 5, 6])); // should log 12
+// console.log(sumOfEvenNumbers([2, 4, 6, 8, 10])); // should log 30
+// console.log(sumOfEvenNumbers([1, 3, 5, 7, 9])); // should log 0
+
+/* Problem: Group Students by Total Score
+ *
+ * Description:
+ * Write a JavaScript function that takes in an array of student objects. Each student
+ * object contains a name and an array of subjects. Each subject object contains a name
+ * and a score. The function should group the students into three groups based on their
+ * total score on different subjects. The groups should be "high" for students
+ * with a total score greater than or equal to 240, "moderate" for students
+ * with a total score greater than or equal to 150 but less than 240, and "low"
+ * for students with a total score less than 150. The function should return an object with
+ * three properties: "high", "moderate", and "low". Each property should contain an array of
+ * student objects sorted in descending order by their total score. Call the function with an
+ * array of student objects of your choice and log the result to the console.
+ */
+
+function groupStudentsByTotalScore(students) {
+  // TODO: Write your solution here
+  //initialize the group object
+
+  const groups = {
+    high: [],
+    moderate: [],
+    low: [],
+  };
+  return groups;
 }
 
-console.log(sumOfEvenNumbers([1, 2, 3, 4, 5, 6])); // should log 12
-console.log(sumOfEvenNumbers([2, 4, 6, 8, 10])); // should log 30
-console.log(sumOfEvenNumbers([1, 3, 5, 7, 9])); // should log 0
+const students = [
+  {
+    name: "John",
+    subjects: [
+      { name: "Math", score: 85 },
+      { name: "Science", score: 90 },
+      { name: "History", score: 95 },
+    ],
+  },
+  {
+    name: "Judy",
+    subjects: [
+      { name: "Math", score: 95 },
+      { name: "Science", score: 90 },
+      { name: "History", score: 95 },
+    ],
+  },
+  {
+    name: "Emily",
+    subjects: [
+      { name: "Math", score: 55 },
+      { name: "Science", score: 50 },
+      { name: "History", score: 45 },
+    ],
+  },
+  {
+    name: "David",
+    subjects: [
+      { name: "Math", score: 70 },
+      { name: "Science", score: 65 },
+      { name: "History", score: 80 },
+    ],
+  },
+  {
+    name: "Sarah",
+    subjects: [
+      { name: "Math", score: 80 },
+      { name: "Science", score: 25 },
+      { name: "History", score: 50 },
+    ],
+  },
+  {
+    name: "Ken",
+    subjects: [
+      { name: "Math", score: 20 },
+      { name: "Science", score: 25 },
+      { name: "History", score: 30 },
+    ],
+  },
+];
+
+console.log(groupStudentsByTotalScore(students));
