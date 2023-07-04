@@ -30,13 +30,35 @@
  * `maxLength` of your choice and log the result to the console.
  */
 
-function filterLongWords(words, maxLength) {
+// function filterLongWords(words, maxLength) {
+//   // TODO: Write your solution here
+//   return words.filter((word) => word.length <= maxLength);
+// }
+
+// console.log(filterLongWords(["apple", "banana", "grape", "kiwi"], 5)); // should log ["apple", "grape", "kiwi"]
+// console.log(
+//   filterLongWords(["programming", "javascript", "code", "developer"], 7)
+// ); // should log ["code"]
+// console.log(filterLongWords(["hello", "world"], 10)); // should log ["hello", "world"]
+
+/**
+ * Date: 2023-07-03
+ *
+ * Problem: Check Pass/Fail Status
+ *
+ * Description:
+ * Write a JavaScript function that takes in an array of exam scores and a passing
+ * threshold. The function should return true if all the scores in the array are
+ * equal to or greater than the passing threshold, and false otherwise. Call the
+ * function with an array of your choice and a passing threshold, and log the result
+ * to the console.
+ */
+
+function checkPassFailStatus(scores, passingThreshold) {
   // TODO: Write your solution here
-  return words.filter((word) => word.length <= maxLength);
+  return scores.every((score) => score > passingThreshold);
 }
 
-console.log(filterLongWords(["apple", "banana", "grape", "kiwi"], 5)); // should log ["apple", "grape", "kiwi"]
-console.log(
-  filterLongWords(["programming", "javascript", "code", "developer"], 7)
-); // should log ["code"]
-console.log(filterLongWords(["hello", "world"], 10)); // should log ["hello", "world"]
+console.log(checkPassFailStatus([80, 90, 75, 85], 70)); // should log true
+console.log(checkPassFailStatus([60, 55, 70, 65], 65)); // should log false
+console.log(checkPassFailStatus([90, 95, 88, 92], 90)); // should log false
