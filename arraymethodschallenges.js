@@ -10,16 +10,36 @@
 
 function convertCelsiusToFahrenheit(celsiusTemperatures) {
   // TODO: Write your solution here
-  return celsiusTemperatures.map(
-    (celsiusTemperature) => (celsiusTemperature * 9) / 5 + 32
-  );
+  const convertor = function (celsiusTemperature) {
+    return (celsiusTemperature * 9) / 5 + 32;
+  };
+
+  const converted = celsiusTemperatures.map(convertor);
+  return converted;
 }
 
 console.log(convertCelsiusToFahrenheit([0, 10, 25, 30])); // should log [32, 50, 77, 86]
 console.log(convertCelsiusToFahrenheit([-40, 0, 100])); // should log [-40, 32, 212]
 console.log(convertCelsiusToFahrenheit([15, 20, 35, 40])); // should log [59, 68, 95, 104]
 
-/*Problem: Filter Long Words
+/* Multiplier
+odd multiplied by 2, even by 3
+*/
+
+function multiplier(array) {
+  return array.map((element, index) => {
+    if (index % 2 === 0) {
+      return element * 3;
+    } else {
+      return element * 2;
+    }
+  });
+}
+console.log(multiplier([0, 10, 25, 30]));
+console.log(multiplier([-40, 0, 100]));
+console.log(multiplier([15, 20, 35, 40]));
+
+/*/*Problem: Filter Long Words
  *
  * Description:
  * Write a JavaScript function that takes in an array of words and a number
