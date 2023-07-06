@@ -76,7 +76,7 @@ console.log(filterLongWords(["hello", "world"], 10)); // should log ["hello", "w
 
 function checkPassFailStatus(scores, passingThreshold) {
   // TODO: Write your solution here
-  return scores.every((score) => score > passingThreshold);
+  return scores.every((score) => score >= passingThreshold);
 }
 
 console.log(checkPassFailStatus([80, 90, 75, 85], 70)); // should log true
@@ -95,7 +95,7 @@ console.log(checkPassFailStatus([90, 95, 88, 92], 90)); // should log false
 
 function checkArrayInclusion(mainArray, subArray) {
   // TODO: Write your solution here
-  return mainArray.some((e) => subArray.includes(e));
+  return subArray.every((e) => mainArray.includes(e));
 }
 
 console.log(checkArrayInclusion([1, 2, 3, 4, 5], [2, 3])); // should log true
@@ -176,14 +176,13 @@ console.log(calculateAverage([2, 4, 6, 8, 10])); // should log 6
 
 function sumOfEvenNumbers(numbers) {
   // TODO: Write your solution here
-  const evenNumbers = [];
-  numbers.map((number) => {
-    if (number % 2 === 0) {
-      evenNumbers.push(number);
+  return numbers.reduce((acc, num) => {
+    if (num % 2 === 0) {
+      return acc + num;
+    } else {
+      return acc;
     }
-  });
-
-  return evenNumbers.reduce((acc, num) => acc + num, 0);
+  }, 0);
 }
 
 console.log(sumOfEvenNumbers([1, 2, 3, 4, 5, 6])); // should log 12
