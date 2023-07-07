@@ -183,77 +183,76 @@ let db = new InMemoryDatabase();
 //    - `createdAt` (Date): When this entry was created
 //    - `updatedAt` (Date): When this entry was last updated
 
-// class Student {
-//   constructor(db, studentObj) {
-//     this.db = db;
-//     this.id = studentObj.id;
-//     this.name = studentObj.name;
-//     this.grade = studentObj.grade;
-//     this.createdAt = studentObj.createdAt;
-//     this.updatedAt = studentObj.updatedAt;
-//   }
+class Student {
+  constructor(db, studentObj) {
+    this.db = db;
+    this.id = studentObj.id;
+    this.name = studentObj.name;
+    this.grade = studentObj.grade;
+    this.createdAt = studentObj.createdAt;
+    this.updatedAt = studentObj.updatedAt;
+  }
 
-//   static save(db, studentObj) {
-//     const newStudentId = db.insert("students", {
-//       name: studentObj.name,
-//       grade: studentObj.grade,
-//     });
+  static save(db, studentObj) {
+    const newStudentId = db.insert("students", {
+      name: studentObj.name,
+      grade: studentObj.grade,
+    });
 
-//     const savedStudent = Student.findById(db, newStudentId);
-//     if (savedStudent) {
-//       return savedStudent;
-//     }
-//     return null;
-//   }
+    const savedStudent = Student.findById(db, newStudentId);
+    if (savedStudent) {
+      return savedStudent;
+    }
+    return null;
+  }
 
-//   static findById(db, id) {
-//     const studentObj = db.selectById("students", id);
-//     if (studentObj) {
-//       const student = new Student(db, studentObj);
-//       return student;
-//     }
-//     return null;
-//   }
+  static findById(db, id) {
+    const studentObj = db.selectById("students", id);
+    if (studentObj) {
+      const student = new Student(db, studentObj);
+      return student;
+    }
+    return null;
+  }
 
-//   static findAll(db) {
-//     const studentObjects = db.select("students");
-//     const students = [];
+  static findAll(db) {
+    const studentObjects = db.select("students");
 
-//     for (let i = 0; i < studentObjects.length; i++) {
-//       const studentObj = studentObjects[i];
-//       const student = new Student(db, studentObj);
-//       students.push(student);
-//     }
-//     return students;
-//   }
+    const students = studentObjects.map((studentObject) => {
+      let student = new Student(db, studentObject);
+      return student;
+    });
 
-//   update(data) {
-//     const updated = this.db.update("students", this.id, data);
-//     if (updated) {
-//       const updatedStudent = Student.findById(this.db, this.id);
-//       this.name = updatedStudent.name;
-//       this.grade = updatedStudent.grade;
-//       this.updatedAt = updatedStudent.updatedAt;
-//       return updatedStudent;
-//     }
-//     return null;
-//   }
-// }
+    return students;
+  }
 
-// let student1 = Student.save(db, {
-//   name: "student1",
-//   grade: "grade1",
-// });
+  update(data) {
+    const updated = this.db.update("students", this.id, data);
+    if (updated) {
+      const updatedStudent = Student.findById(this.db, this.id);
+      this.name = updatedStudent.name;
+      this.grade = updatedStudent.grade;
+      this.updatedAt = updatedStudent.updatedAt;
+      return updatedStudent;
+    }
+    return null;
+  }
+}
 
-// let student2 = Student.save(db, {
-//   name: "student2",
-//   grade: "grade2",
-// });
+let student1 = Student.save(db, {
+  name: "student1",
+  grade: "grade1",
+});
+
+let student2 = Student.save(db, {
+  name: "student2",
+  grade: "grade2",
+});
 
 // console.log(student1);
 // console.log(Student.findById(db, 2))
 // student2.update({ name: "Valeria" });
-// console.log(Student.findAll(db));
+console.log(Student.findAll(db));
 
 /*3. Implement the Admin class:
    - `constructor(db)`: Initialize the Admin instance.
@@ -300,11 +299,10 @@ class Admin {
 
   static findAll(db) {
     let adminsObjects = db.select("admins");
-    let admins = [];
-    for (let i = 0; i < adminsObjects.length; i++) {
-      let admin = new Admin(db, adminsObjects[i]);
-      admins.push(admin);
-    }
+    let admins = adminsObjects.map((adminObject) => {
+      let admin = new Admin(db, adminObject);
+      return admin;
+    });
     return admins;
   }
 
@@ -331,9 +329,9 @@ const admin2 = Admin.save(db, {
   password: "admin2",
 });
 
-//update the admin
+// update the admin
 admin1.update({ password: "xyz" });
-console.log(admin1);
+console.log(Admin.findAll(db));
 
 // /*4; Implement the LibraryApp class:
 //    - `constructor(db, id, name, location)`: Initialize the LibraryApp instance.
@@ -475,4 +473,4 @@ console.log(admin1);
 
 // // check if a book is available
 // library.checkIfBookIsAvailable(3);
-console.log(db)
+// console.log(db);
