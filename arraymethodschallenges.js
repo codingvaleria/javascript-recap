@@ -207,27 +207,29 @@ console.log(sumOfEvenNumbers([1, 3, 5, 7, 9])); // should log 0
 function groupStudentsByTotalScore(students) {
   // TODO: Write your solution here
   // Initialize the group object
-  const groups = {
-    high: [],
-    moderate: [],
-    low: [],
-  };
-  // Calculate the total and push to group object
-  students.forEach((student) => {
-    const totalScore = student.subjects.reduce(
-      (sum, subject) => sum + subject.score,
-      0
-    );
-    //   Store totalscore as property
-    student.totalScore = totalScore;
-    if (totalScore >= 240) {
-      groups.high.push(student);
-    } else if (totalScore >= 150) {
-      groups.moderate.push(student);
-    } else {
-      groups.low.push(student);
+  const groups = students.reduce(
+    (acc, student) => {
+      const totalScore = student.subjects.reduce((sum, subject) => {
+        return sum + subject.score;
+      }, 0);
+      //   Store totalscore as property
+      student.totalScore = totalScore;
+      if (totalScore >= 240) {
+        acc.high.push(student);
+      } else if (totalScore >= 150) {
+        acc.moderate.push(student);
+      } else {
+        acc.low.push(student);
+      }
+      return acc;
+    },
+    {
+      high: [],
+      moderate: [],
+      low: [],
     }
-  });
+  );
+
   // Sort the groups by total score
   groups.high.sort((a, b) => b.totalScore - a.totalScore);
   groups.moderate.sort((a, b) => b.totalScore - a.totalScore);
