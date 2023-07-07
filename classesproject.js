@@ -81,93 +81,93 @@ let db = new InMemoryDatabase();
    - `updatedAt` (Date): When this entry was last updated
 
 */
-// class Book {
-//   constructor(db, id, title, author, isBorrowed, createdAt, updatedAt) {
-//     this.db = db;
-//     this.id = id;
-//     this.title = title;
-//     this.author = author;
-//     this.isBorrowed = isBorrowed;
-//     this.createdAt = createdAt;
-//     this.updatedAt = updatedAt;
-//   }
+class Book {
+  constructor(db, id, title, author, isBorrowed, createdAt, updatedAt) {
+    this.db = db;
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.isBorrowed = isBorrowed;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
+  }
 
-//   static save(db, title, author, isBorrowed) {
-//     const newBookId = db.insert("books", {
-//       title, //shorthand for property name and value being equal.
-//       author: author,
-//       isBorrowed: isBorrowed,
-//     });
+  static save(db, title, author, isBorrowed) {
+    const newBookId = db.insert("books", {
+      title, //shorthand for property name and value being equal.
+      author: author,
+      isBorrowed: isBorrowed,
+    });
 
-//     const savedBook = Book.findById(db, newBookId);
-//     if (savedBook) {
-//       return savedBook;
-//     }
+    const savedBook = Book.findById(db, newBookId);
+    if (savedBook) {
+      return savedBook;
+    }
 
-//     return null;
-//   }
+    return null;
+  }
 
-//   static findById(db, id) {
-//     const bookObj = db.selectById("books", id);
-//     if (bookObj) {
-//       const book = new Book(
-//         db,
-//         bookObj.id,
-//         bookObj.title,
-//         bookObj.author,
-//         bookObj.isBorrowed,
-//         bookObj.createdAt,
-//         bookObj.updatedAt
-//       );
-//       return book;
-//     }
-//     return null;
-//   }
+  static findById(db, id) {
+    const bookObj = db.selectById("books", id);
+    if (bookObj) {
+      const book = new Book(
+        db,
+        bookObj.id,
+        bookObj.title,
+        bookObj.author,
+        bookObj.isBorrowed,
+        bookObj.createdAt,
+        bookObj.updatedAt
+      );
+      return book;
+    }
+    return null;
+  }
 
-//   static findAll(db) {
-//     const bookObjects = db.select("books");
-//     return bookObjects.map(
-//       (bookObj) =>
-//         new Book(
-//           db,
-//           bookObj.id,
-//           bookObj.title,
-//           bookObj.author,
-//           bookObj.isBorrowed,
-//           bookObj.createdAt,
-//           bookObj.updatedAt
-//         )
-//     );
-//   }
+  static findAll(db) {
+    const bookObjects = db.select("books");
+    return bookObjects.map(
+      (bookObj) =>
+        new Book(
+          db,
+          bookObj.id,
+          bookObj.title,
+          bookObj.author,
+          bookObj.isBorrowed,
+          bookObj.createdAt,
+          bookObj.updatedAt
+        )
+    );
+  }
 
-//   update(data) {
-//     const updated = this.db.update("books", this.id, data);
+  update(data) {
+    const updated = this.db.update("books", this.id, data);
 
-//     if (updated) {
-//       const updatedBook = Book.findById(this.db, this.id);
-//       this.title = updatedBook.title;
-//       this.isBorrowed = updatedBook.isBorrowed;
-//       this.author = updatedBook.author;
-//       this.updatedAt = updatedBook.updatedAt;
-//       return updatedBook;
-//     }
-//     return null;
-//   }
-// }
+    if (updated) {
+      const updatedBook = Book.findById(this.db, this.id);
+      this.title = updatedBook.title;
+      this.isBorrowed = updatedBook.isBorrowed;
+      this.author = updatedBook.author;
+      this.updatedAt = updatedBook.updatedAt;
+      return updatedBook;
+    }
+    return null;
+  }
+}
 
-// let book1 = Book.save(db, "book1", "book1author", true);
-// let book2 = Book.save(db, "book2", "book2author", false);
-// let book3 = Book.save(db, "book3", "book3author", false);
+let book1 = Book.save(db, "book1", "book1author", true);
+let book2 = Book.save(db, "book2", "book2author", false);
+let book3 = Book.save(db, "book3", "book3author", false);
 
-// const data = {
-//   title: "Rich dad, poor dad",
-// };
+const data = {
+  title: "Rich dad, poor dad",
+};
 
-// console.log(book1);
-// console.log(Book.findById(db, 2));
-// console.log(Book.findAll(db));
-// book1.update(data);
-// console.log(book1);
+console.log(book1);
+console.log(Book.findById(db, 2));
+console.log(Book.findAll(db));
+book1.update(data);
+console.log(book1);
 
 // 2. Implement the Student class:
 //    - `constructor(db)`: Initialize the Student instance.
@@ -346,131 +346,131 @@ console.log(Admin.findAll(db));
 // 5. Use the provided InMemory Database implementation to store and retrieve data.
 
 // */
-// class LibraryApp {
-//   constructor(db, id, name, location) {
-//     this.db = db;
-//     this.id = id;
-//     this.name = name;
-//     this.location = location;
-//   }
+class LibraryApp {
+  constructor(db, id, name, location) {
+    this.db = db;
+    this.id = id;
+    this.name = name;
+    this.location = location;
+  }
 
-//   addBook(bookData) {
-//     const book = new Book(
-//       this.db,
-//       bookData.id,
-//       bookData.title,
-//       bookData.author,
-//       bookData.isBorrowed,
-//       bookData.createdAt,
-//       bookData.updatedAt
-//     );
-//     book.save();
-//   }
+  addBook(bookData) {
+    const book = new Book(
+      this.db,
+      bookData.id,
+      bookData.title,
+      bookData.author,
+      bookData.isBorrowed,
+      bookData.createdAt,
+      bookData.updatedAt
+    );
+    Book.save(db, book);
+  }
 
-//   addStudent(studentData) {
-//     const student = new Student(this.db, studentData);
-//     student.save();
-//   }
+  addStudent(studentData) {
+    const student = new Student(this.db, studentData);
+    Student.save(db, student);
+  }
 
-//   borrowBook(studentId, bookId) {
-//     const student = Student.findById(this.db, studentId);
-//     const book = Book.findById(this.db, bookId);
+  borrowBook(studentId, bookId) {
+    const student = Student.findById(this.db, studentId);
+    const book = Book.findById(this.db, bookId);
 
-//     if (student && book && !book.isBorrowed) {
-//       book.update({ isBorrowed: true });
-//       console.log(
-//         `Book "${book.title}" is borrowed by student "${student.name}".`
-//       );
-//     } else {
-//       console.log(
-//         "Unable to borrow the book. Please check the student and book IDs."
-//       );
-//     }
-//   }
+    if (student && book && !book.isBorrowed) {
+      book.update({ isBorrowed: true });
+      console.log(
+        `Book "${book.title}" is borrowed by student "${student.name}".`
+      );
+    } else {
+      console.log(
+        "Unable to borrow the book. Please check the student and book IDs."
+      );
+    }
+  }
 
-//   getBorrowedBooks() {
-//     const books = Book.findAll(this.db);
-//     const borrowedBooks = books.filter((book) => book.isBorrowed);
-//     return borrowedBooks;
-//   }
+  getBorrowedBooks() {
+    const books = Book.findAll(this.db);
+    const borrowedBooks = books.filter((book) => book.isBorrowed);
+    return borrowedBooks;
+  }
 
-//   getAvailableBooks() {
-//     const books = Book.findAll(this.db);
-//     const availableBooks = books.filter((book) => !book.isBorrowed);
-//     return availableBooks;
-//   }
+  getAvailableBooks() {
+    const books = Book.findAll(this.db);
+    const availableBooks = books.filter((book) => !book.isBorrowed);
+    return availableBooks;
+  }
 
-//   getBooksBorrowedByStudent(studentId) {
-//     const student = Student.findById(this.db, studentId);
+  getBooksBorrowedByStudent(studentId) {
+    const student = Student.findById(this.db, studentId);
 
-//     if (student) {
-//       const books = Book.findAll(this.db);
-//       const borrowedBooks = books.filter(
-//         (book) => book.isBorrowed && book.borrowerId === studentId
-//       );
-//       return borrowedBooks;
-//     } else {
-//       console.log("Student not found.");
-//       return [];
-//     }
-//   }
+    if (student) {
+      const books = Book.findAll(this.db);
+      const borrowedBooks = books.filter(
+        (book) => book.isBorrowed && book.borrowerId === studentId
+      );
+      return borrowedBooks;
+    } else {
+      console.log("Student not found.");
+      return [];
+    }
+  }
 
-//   checkIfBookIsAvailable(bookId) {
-//     const book = Book.findById(this.db, bookId);
+  checkIfBookIsAvailable(bookId) {
+    const book = Book.findById(this.db, bookId);
 
-//     if (book) {
-//       if (book.isBorrowed) {
-//         console.log(`Book "${book.title}" is currently not available.`);
-//         return false;
-//       } else {
-//         console.log(`Book "${book.title}" is available.`);
-//         return true;
-//       }
-//     } else {
-//       console.log("Book not found.");
-//       return false;
-//     }
-//   }
-// }
+    if (book) {
+      if (book.isBorrowed) {
+        console.log(`Book "${book.title}" is currently not available.`);
+        return false;
+      } else {
+        console.log(`Book "${book.title}" is available.`);
+        return true;
+      }
+    } else {
+      console.log("Book not found.");
+      return false;
+    }
+  }
+}
 
-// // create library instance
-// const library = new LibraryApp(db, 1, "library1", "location1");
+// create library instance
+const library = new LibraryApp(db, 1, "library1", "location1");
 
-// // add book
-// const newBook3 = {
-//   id: 3,
-//   title: "Book 3",
-//   author: "book3author",
-//   isBorrowed: false,
-//   createdAt: null,
-//   updatedAt: null,
-// };
+// add book
+const newBook3 = {
+  id: 3,
+  title: "Book 3",
+  author: "book3author",
+  isBorrowed: false,
+  createdAt: null,
+  updatedAt: null,
+};
 
-// library.addBook(newBook3);
+library.addBook(newBook3);
 
-// // add student
-// const student3 = {
-//   id: 3,
-//   name: "student3",
-//   grade: "grade3",
-//   createdAt: null,
-//   updatedAt: null,
-// };
+// add student
+const student3 = {
+  id: 3,
+  name: "student3",
+  grade: "grade3",
+  createdAt: null,
+  updatedAt: null,
+};
 
-// library.addStudent(student3);
+library.addStudent(student3);
 
-// // borrow book
-// library.borrowBook(3, 3);
+// borrow book
+library.borrowBook(3, 3);
 
-// // get borrowed books
-// console.log(library.getBorrowedBooks());
+// get borrowed books
+console.log(library.getBorrowedBooks());
 
-// // get available books
-// console.log(library.getAvailableBooks());
+// get available books
+console.log(library.getAvailableBooks());
 
-// // get books borrowed by student
-// console.log(library.getBooksBorrowedByStudent(3));
+// get books borrowed by student
+console.log(library.getBooksBorrowedByStudent(3));
 
-// // check if a book is available
-// library.checkIfBookIsAvailable(3);
-// console.log(db);
+// check if a book is available
+library.checkIfBookIsAvailable(3);
+console.log(db);
