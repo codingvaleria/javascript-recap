@@ -230,10 +230,13 @@ function groupStudentsByTotalScore(students) {
     }
   );
 
+  function sortDescending(a, b) {
+    return b.totalScore - a.totalScore;
+  }
   // Sort the groups by total score
-  groups.high.sort((a, b) => b.totalScore - a.totalScore);
-  groups.moderate.sort((a, b) => b.totalScore - a.totalScore);
-  groups.low.sort((a, b) => b.totalScore - a.totalScore);
+  groups.high.sort(sortDescending);
+  groups.moderate.sort(sortDescending);
+  groups.low.sort(sortDescending);
 
   return groups;
 }
