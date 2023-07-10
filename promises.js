@@ -68,3 +68,15 @@ let task2 = new Promise(function (resolve, reject) {
   .catch(function errorValue(result) {
     console.log(result);
   });
+
+// The finally method ; disconnect connection to a database; executes irrevelant of result of promise
+let newValue = new Promise(function (resolve, reject) {
+  resolve("promise resolved");
+});
+
+newValue
+  .then((success) => {})
+  .catch((error) => {})
+  .finally(function greet() {
+    console.log("This code is executed");
+  });
