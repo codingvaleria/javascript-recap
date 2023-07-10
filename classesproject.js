@@ -346,6 +346,78 @@ console.log(Admin.findAll(db));
 // 5. Use the provided InMemory Database implementation to store and retrieve data.
 
 // */
+class StudentBook {
+  constructor(db, id, studentId, bookId, borrowedAt, returnedAt) {
+    this.db = db;
+    this.id = id;
+    this.studentId = studentId;
+    this.bookId = bookId;
+    this.borrowedAt = borrowedAt;
+    this.returnedAt = returnedAt;
+  }
+
+  static save(db, studentId, bookId) {
+    const borrowedAt = new Date();
+    const newStudentBookId = db.insert("studentBooks", {
+      studentId,
+      bookId,
+      borrowedAt,
+      returnedAt: null,
+    });
+
+    const savedStudentBook = StudentBook.findById(db, newStudentBookId);
+    if (savedStudentBook) {
+      return savedStudentBook;
+    }
+    return null;
+  }
+
+  static findById(db, id) {
+    const studentBookObj = db.selectById("studentBooks", id);
+    if (studentBookObj) {
+      const studentBook = new StudentBook(
+        db,
+        studentBookObj.id,
+        studentBookObj.studentId,
+        studentBookObj.bookId,
+        studentBookObj.borrowedAt,
+        studentBookObj.returnedAt
+      );
+      return studentBook;
+    }
+    return null;
+  }
+
+  static findAll(db) {
+    const studentBookObjects = db.select("studentBooks");
+    return studentBookObjects.map(
+      (studentBookObj) =>
+        new StudentBook(
+          db,
+          studentBookObj.id,
+          studentBookObj.studentId,
+          studentBookObj.bookId,
+          studentBookObj.borrowedAt,
+          studentBookObj.returnedAt
+        )
+    );
+  }
+
+  returnBook() {
+    const returnedAt = new Date();
+    const updated = this.db.update("studentBooks", this.id, {
+      returnedAt,
+    });
+
+    if (updated) {
+      const updatedStudentBook = StudentBook.findById(this.db, this.id);
+      this.returnedAt = updatedStudentBook.returnedAt;
+      return updatedStudentBook;
+    }
+    return null;
+  }
+}
+
 class LibraryApp {
   constructor(db, id, name, location) {
     this.db = db;
@@ -375,16 +447,11 @@ class LibraryApp {
   borrowBook(studentId, bookId) {
     const student = Student.findById(this.db, studentId);
     const book = Book.findById(this.db, bookId);
-
     if (student && book && !book.isBorrowed) {
       book.update({ isBorrowed: true });
-      console.log(
-        `Book "${book.title}" is borrowed by student "${student.name}".`
-      );
+      return true;
     } else {
-      console.log(
-        "Unable to borrow the book. Please check the student and book IDs."
-      );
+      return false;
     }
   }
 
