@@ -498,6 +498,39 @@ class LibraryApp {
       return false;
     }
   }
+
+  borrowBook(studentId, bookId) {
+    const student = Student.findById(this.db, studentId);
+    const book = Book.findById(this.db, bookId);
+    if (student && book && !book.isBorrowed) {
+      book.update({ isBorrowed: true });
+      StudentBook.save(this.db, studentId, bookId);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  returnBook(studentId, bookId) {
+    const studentBook = this.getStudentBook(studentId, bookId);
+    if (studentBook) {
+      const book = Book.findById(this.db, bookId);
+      if (book) {
+        book.update({ isBorrowed: false });
+        studentBook.returnBook();
+        return true;
+      }
+    }
+    return false;
+  }
+
+  getStudentBook(studentId, bookId) {
+    const studentBooks = StudentBook.findAll(this.db);
+    return studentBooks.find(
+      (studentBook) =>
+        studentBook.studentId === studentId && studentBook.bookId === bookId
+    );
+  }
 }
 
 // create library instance
