@@ -35,10 +35,24 @@ let promise3 = new Promise(function (resolve, reject) {
 });
 
 // Promise Chaining; then, catch, finally
-const promise4 = doSomething();
+// const promise4 = doSomething();
 
-const promise5 = promise4.then(successCallback, failureCallback);
+// const promise5 = promise4.then(successCallback, failureCallback);
 
 // then() syntax
-promiseObject.then(onFulfilled, onRejected);
+// promiseObject.then(onFulfilled, onRejected);
 
+//Example
+// return a promise
+let task = new Promise(function (resolve, reject) {
+  resolve("Promise resolved");
+});
+
+// execute when promise is resolved successfully
+task
+  .then(function successValue1(result) {
+    console.log(result);
+  })
+  .then(function sucessValue2() {
+    console.log("call this multiple times");
+  });
