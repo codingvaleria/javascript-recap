@@ -80,3 +80,39 @@ newValue
   .finally(function greet() {
     console.log("This code is executed");
   });
+
+// Nested promises
+function testAsync() {
+  let promise3 = new Promise(function (resolve, reject) {
+    console.log("promise");
+    // setTimeout(() => reject(new Error("Whoops!")), 0);
+    setTimeout(() => {
+      console.log("promise 3");
+      resolve(0);
+    }, 3000);
+  })
+    .then((x) => {
+      console.log(x);
+      return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+          console.log("promise 4");
+          resolve(x + 1);
+        }, 1000);
+      }).then((x) => {
+        return x + 1;
+      });
+    })
+    .then((x) => {
+      console.log("x2", x);
+      return x * 2;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  console.log("Here");
+  return promise3;
+}
+
+testAsync().then((x) => {
+  console.log(x);
+});
