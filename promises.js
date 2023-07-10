@@ -39,7 +39,7 @@ let promise3 = new Promise(function (resolve, reject) {
 
 // const promise5 = promise4.then(successCallback, failureCallback);
 
-// then() syntax
+// // then() syntax
 // promiseObject.then(onFulfilled, onRejected);
 
 //Example
@@ -55,4 +55,16 @@ task
   })
   .then(function sucessValue2() {
     console.log("call this multiple times");
+  });
+
+// The catch() method
+let task2 = new Promise(function (resolve, reject) {
+  reject("Promise rejected");
+})
+  .then(function successValue(result) {
+    console.log(result);
+  })
+  // executes if there is an error
+  .catch(function errorValue(result) {
+    console.log(result);
   });
