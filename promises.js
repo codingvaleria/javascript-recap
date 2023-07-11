@@ -116,3 +116,26 @@ function testAsync() {
 testAsync().then((x) => {
   console.log(x);
 });
+
+// Async/Await
+function getData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(46);
+    }, 1000);
+  });
+}
+// to read the value of promise
+async function start() {
+  const result = await getData();
+  console.log(result);
+}
+
+start();
+// another way.
+async function start2() {
+  getData().then((result) => {
+    console.log(result);
+  });
+}
+start2()
