@@ -90,32 +90,58 @@ function testAsync() {
       console.log("promise 3");
       resolve(0);
     }, 3000);
-  })
-    .then((x) => {
-      console.log(x);
-      return new Promise(function (resolve, reject) {
-        setTimeout(() => {
-          console.log("promise 4");
-          resolve(x + 1);
-        }, 1000);
-      }).then((x) => {
-        return x + 1;
-      });
-    })
-    .then((x) => {
-      console.log("x2", x);
-      return x * 2;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  });
+  //     .then((x) => {
+  //       console.log(x);
+  //       return new Promise(function (resolve, reject) {
+  //         setTimeout(() => {
+  //           console.log("promise 4");
+  //           resolve(x + 1);
+  //         }, 1000);
+  //       }).then((x) => {
+  //         return x + 1;
+  //       });
+  //     })
+  //     .then((x) => {
+  //       console.log("x2", x);
+  //       return x * 2;
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
   console.log("Here");
   return promise3;
 }
 
-testAsync().then((x) => {
+// testAsync().then((x) => {
+//   console.log(x);
+// });
+
+function testAsync2() {
+  return new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      console.log("promise 4");
+      resolve(x + 1);
+    }, 1000);
+  });
+}
+
+async function logTestAsync() {
+  try {
+    const x = await testAsync();
+    console.log(x);
+    x = await testAsync2();
+    x = x + 1;
+    console.log("x2", x);
+    x = x * 2;
+  } catch (err) {
+    console.log(err);
+  }
+}
+logTestAsync().then((x) => {
   console.log(x);
 });
+
 /* Synchronous Vs Asynchronous Programming
 Synchronous executes sequentially its clean but it hats the entire system therefore time consuming.
 
