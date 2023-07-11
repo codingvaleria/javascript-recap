@@ -116,6 +116,11 @@ function testAsync() {
 testAsync().then((x) => {
   console.log(x);
 });
+/* Synchronous Vs Asynchronous Programming
+Synchronous executes sequentially its clean but it hats the entire system therefore time consuming.
+
+Asynchronous; executes based on available resource
+*/
 
 // Async/Await
 function getData() {
@@ -138,4 +143,49 @@ async function start2() {
     console.log(result);
   });
 }
-start2()
+start2();
+
+// more on async/await
+let result = function (score) {
+  return new Promise((resolve, reject) => {
+    console.log("Calculating results...");
+    if (score > 50) {
+      resolve("Congratulations! you have passed");
+    } else {
+      reject("You have failed");
+    }
+  });
+};
+
+let grade = function (response) {
+  return new Promise((resolve, reject) => {
+    console.log("Calculating your grade...");
+    resolve("Your grade is A. " + response);
+  });
+};
+
+// result(60)
+//   .then((response) => {
+//     console.log("Results received");
+//     return grade(response);
+//   })
+//   .then((finalgrade) => {
+//     console.log(finalgrade);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+// Refactoring to use async/ await
+async function calculateResult() {
+  try {
+    const response = await result(80);
+    console.log("Results received");
+    const finalgrade = await grade(response);
+    console.log(finalgrade);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+calculateResult();
