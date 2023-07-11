@@ -91,33 +91,14 @@ function testAsync() {
       resolve(0);
     }, 3000);
   });
-  //     .then((x) => {
-  //       console.log(x);
-  //       return new Promise(function (resolve, reject) {
-  //         setTimeout(() => {
-  //           console.log("promise 4");
-  //           resolve(x + 1);
-  //         }, 1000);
-  //       }).then((x) => {
-  //         return x + 1;
-  //       });
-  //     })
-  //     .then((x) => {
-  //       console.log("x2", x);
-  //       return x * 2;
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
   console.log("Here");
   return promise3;
 }
-
 // testAsync().then((x) => {
 //   console.log(x);
 // });
 
-function testAsync2() {
+function testAsync2(x) {
   return new Promise(function (resolve, reject) {
     setTimeout(() => {
       console.log("promise 4");
@@ -128,91 +109,90 @@ function testAsync2() {
 
 async function logTestAsync() {
   try {
-    const x = await testAsync();
-    console.log(x);
-    x = await testAsync2();
+    let x = await testAsync();
+    x = await testAsync2(x);
     x = x + 1;
+    console.log(x);
     console.log("x2", x);
     x = x * 2;
   } catch (err) {
     console.log(err);
   }
 }
-logTestAsync().then((x) => {
-  console.log(x);
-});
 
-/* Synchronous Vs Asynchronous Programming
-Synchronous executes sequentially its clean but it hats the entire system therefore time consuming.
+logTestAsync();
 
-Asynchronous; executes based on available resource
-*/
+// /* Synchronous Vs Asynchronous Programming
+// Synchronous executes sequentially its clean but it hats the entire system therefore time consuming.
 
-// Async/Await
-function getData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(46);
-    }, 1000);
-  });
-}
-// to read the value of promise
-async function start() {
-  const result = await getData();
-  console.log(result);
-}
+// Asynchronous; executes based on available resource
+// */
 
-start();
-// another way.
-async function start2() {
-  getData().then((result) => {
-    console.log(result);
-  });
-}
-start2();
-
-// more on async/await
-let result = function (score) {
-  return new Promise((resolve, reject) => {
-    console.log("Calculating results...");
-    if (score > 50) {
-      resolve("Congratulations! you have passed");
-    } else {
-      reject("You have failed");
-    }
-  });
-};
-
-let grade = function (response) {
-  return new Promise((resolve, reject) => {
-    console.log("Calculating your grade...");
-    resolve("Your grade is A. " + response);
-  });
-};
-
-// result(60)
-//   .then((x) => {
-//     console.log("Results received");
-//     console.log(x);
-//     return grade(x);
-//   })
-//   .then((finalgrade) => {
-//     console.log(finalgrade);
-//   })
-//   .catch((err) => {
-//     console.log(err);
+// // Async/Await
+// function getData() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(46);
+//     }, 1000);
 //   });
+// }
+// // to read the value of promise
+// async function start() {
+//   const result = await getData();
+//   console.log(result);
+// }
 
-// Refactoring to use async/ await
-async function calculateResult() {
-  try {
-    const x = await result(80);
-    console.log("Results received");
-    const finalgrade = await grade(x);
-    console.log(finalgrade);
-  } catch (err) {
-    console.log(err);
-  }
-}
+// start();
+// // another way.
+// async function start2() {
+//   getData().then((result) => {
+//     console.log(result);
+//   });
+// }
+// start2();
 
-calculateResult();
+// // more on async/await
+// let result = function (score) {
+//   return new Promise((resolve, reject) => {
+//     console.log("Calculating results...");
+//     if (score > 50) {
+//       resolve("Congratulations! you have passed");
+//     } else {
+//       reject("You have failed");
+//     }
+//   });
+// };
+
+// let grade = function (response) {
+//   return new Promise((resolve, reject) => {
+//     console.log("Calculating your grade...");
+//     resolve("Your grade is A. " + response);
+//   });
+// };
+
+// // result(60)
+// //   .then((x) => {
+// //     console.log("Results received");
+// //     console.log(x);
+// //     return grade(x);
+// //   })
+// //   .then((finalgrade) => {
+// //     console.log(finalgrade);
+// //   })
+// //   .catch((err) => {
+// //     console.log(err);
+// //   });
+
+// // Refactoring to use async/ await
+// async function calculateResult() {
+//   try {
+//     const x = await result(80);
+//     console.log("Results received");
+//     const finalgrade = await grade(x);
+//     console.log(finalgrade);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+// calculateResult();
