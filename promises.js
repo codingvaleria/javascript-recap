@@ -165,9 +165,10 @@ let grade = function (response) {
 };
 
 // result(60)
-//   .then((response) => {
+//   .then((x) => {
 //     console.log("Results received");
-//     return grade(response);
+//     console.log(x);
+//     return grade(x);
 //   })
 //   .then((finalgrade) => {
 //     console.log(finalgrade);
@@ -179,9 +180,9 @@ let grade = function (response) {
 // Refactoring to use async/ await
 async function calculateResult() {
   try {
-    const response = await result(80);
+    const x = await result(80);
     console.log("Results received");
-    const finalgrade = await grade(response);
+    const finalgrade = await grade(x);
     console.log(finalgrade);
   } catch (err) {
     console.log(err);
